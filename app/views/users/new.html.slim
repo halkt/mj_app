@@ -3,14 +3,4 @@ h1 メンバーの新規登録
 .nav.justify-content-end
   = link_to '一覧' , users_path, class: 'nav-link'
 
-= form_with model: @user, local: true do |f|
-  .form-group
-    = f.label :name
-    = f.text_field :name, class: 'form-control', id:'user_name'
-  .form-group
-    = f.label :mail
-    = f.text_field :mail, class: 'form-control', id:'user_mail'
-  .form-group
-    = f.label :description
-    = f.text_area :description, rows: 3, class: 'form-control', id: 'user_description'
-  = f.submit nil , class: 'btn-primary'
+= render partial: 'form', locals: { user: @user }
