@@ -10,6 +10,9 @@ html
   body
     .app-title.navbar.navbar-expand-md.navbar-light.bg-light
       .navbar-brand 麻雀成績管理アプリ
+      ul.navbar-nav.ml-auto
+        li.nav-item= link_to 'ユーザ一覧', users_path, class: 'nav-link'
+        li.nav-item= link_to '対局一覧', events_path, class: 'nav-link'
     .container
       - if flash.notice.present?
         .alert.alert-success = flash.notice

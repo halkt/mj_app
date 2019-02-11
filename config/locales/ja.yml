@@ -8,14 +8,23 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     models:
       user: ユーザー
+      event: 対局
     attributes:
-      user:
-        id: ID
-        name: 名前
-        mail: メールアドレス
-        description: 詳しい説明
-        created_at: 登録日時
-        updated_at: 更新日時
+        user:
+          id: ユーザーID
+          name: 名前
+          mail: メールアドレス
+          description: 詳しい説明
+          created_at: 登録日時
+          updated_at: 更新日時
+        event:
+          id: イベントID
+          name: 対局名
+          description: 詳しい説明
+          created_at: 登録日時
+          updated_at: 更新日時
+          day: 対局日
+
   date:
     abbr_day_names:
     - 日

@@ -1,0 +1,16 @@
+h1 対局メンバー
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th = User.human_attribute_name(:name)
+      th = User.human_attribute_name(:mail)
+      th = EventUser.human_attribute_name(:created_at)
+      th
+    tbody
+      - @event_users.each do |event_user|
+        tr
+          td = event_user.user.name
+          td = event_user.user.mail
+          td = event_user.created_at

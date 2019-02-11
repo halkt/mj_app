@@ -1,0 +1,6 @@
+h1 対局更新
+
+.nav.justify-content-end
+  = link_to '一覧' , events_path, class: 'nav-link'
+
+= render partial: 'form', locals: { event: @event }

@@ -1,5 +1,10 @@
-h1 ユーザー一覧
-= link_to 'ユーザー登録', new_user_path, class: 'btn btn-primary'
+h1 対局メンバー
+- @users.each do |user|
+= form_with model: user, local: true do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control', id:'user_name'
+  = f.submit nil , class: 'btn-primary'
 
 .mb-3
 table.table.table-hover
@@ -15,5 +20,3 @@ table.table.table-hover
           td = user.created_at
           td = link_to '編集', edit_user_path(user), class: 'btn btn-primary mr-3'
           td = link_to '削除', user, method: :delete, data: { confirm: "タスク「#{user.name}」を削除します。よろしいですか？"}, class: 'btn btn-primary mr-3'
-
-= link_to '対局一覧', events_path, class: 'btn btn-primary'

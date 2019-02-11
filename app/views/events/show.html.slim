@@ -1,0 +1,46 @@
+h1 対局の詳細
+
+.nav.justify-content-end
+  = link_to '一覧' , users_path, class: 'nav-link'
+table.table.table-hover
+  tbody
+    tr
+      th = Event.human_attribute_name(:id)
+      td = @event.id
+    tr
+      th = Event.human_attribute_name(:name)
+      td = @event.name
+    tr
+      th = Event.human_attribute_name(:day)
+      td = @event.day
+    tr
+      th = Event.human_attribute_name(:description)
+      td = simple_format(h(@event.description), {}, sanitize: false, wrapper_tag: "div")
+    tr
+      th = Event.human_attribute_name(:created_at)
+      td = @event.created_at
+    tr
+      th = Event.human_attribute_name(:updated_at)
+      td = @event.updated_at
+= link_to '編集', edit_event_path, class: 'btn btn-primary mr-3'
+= link_to '削除', @event, method: :delete, data: { confirm: "タスク「#{@event.name}」を削除します。よろしいですか？"}, class: 'btn btn-primary mr-3'
+
+br
+br
+br
+
+h1 メンバー
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th = User.human_attribute_name(:name)
+      th = User.human_attribute_name(:mail)
+      th
+    tbody
+      - @event_users.each do |event_user|
+        tr
+          td = event_user.user.name
+          td = event_user.user.mail
+= link_to 'メンバー更新', '#', class: 'btn btn-primary mr-3'
