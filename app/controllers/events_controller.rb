@@ -18,14 +18,26 @@ class EventsController < ApplicationController
 
   def create
     event = Event.new(event_params)
-    event.save!
-    redirect_to events_url, notice: "対局「#{event.name}」を登録しました。"
+    if event.save
+      redirect_to events_url, notice: "対局「#{event.name}」を登録しました。"
+    else
+      render :new
+    end
   end
 
   def update
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      redirect_to event_path(params[:id]), notice: "対局「#{@event.name}」を更新しました。"
+    else
+      render :edit
+    end
+  end
+
+  def destroy
     event = Event.find(params[:id])
-    event.update!(event_params)
-    redirect_to events_url, notice: "対局「#{event.name}」を更新しました。"
+    event.destroy
+    redirect_to events_url, notice: "対局「#{event.name}」を削除しました。"
   end
 
   private

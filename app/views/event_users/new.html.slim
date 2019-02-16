@@ -1,0 +1,9 @@
+h1 対局メンバー
+= form_with model: @eventuser, local: true do |f|
+  .form-group
+    = f.label :user_id
+    = f.text_field :user_id, class: 'form-control', id:'event_user_user_id'
+  .form-group
+    = f.label :event_id
+    = f.text_field :event_id, class: 'form-control', id:'event_user_event_id'
+  = f.submit nil , class: 'btn-primary'

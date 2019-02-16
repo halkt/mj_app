@@ -23,4 +23,4 @@ table.table.table-hover
       th = User.human_attribute_name(:updated_at)
       td = @user.updated_at
 = link_to '編集', edit_user_path, class: 'btn btn-primary mr-3'
-= link_to '削除', @user, method: :delete, data: { confirm: "タスク「#{@user.name}」を削除します。よろしいですか？"}, class: 'btn btn-primary mr-3'
+= link_to '削除', @user, method: :delete, data: { confirm: "ユーザー「#{@user.name}」を削除します。よろしいですか？"}, class: 'btn btn-primary mr-3'

@@ -1,16 +1,37 @@
-h1 対局メンバー
-
+h1 この対局に参加しているメンバー
+.nav.justify-content-end
+  = link_to 'イベントの詳細に戻る' , event_path(params[:event_id]), class: 'nav-link'
 .mb-3
 table.table.table-hover
   thead.thead-default
     tr
       th = User.human_attribute_name(:name)
-      th = User.human_attribute_name(:mail)
-      th = EventUser.human_attribute_name(:created_at)
-      th
+      th = User.human_attribute_name(:created_at)
     tbody
-      - @event_users.each do |event_user|
+      - @eventusers.each do |eventuser|
         tr
-          td = event_user.user.name
-          td = event_user.user.mail
-          td = event_user.created_at
+          td = eventuser.user.name
+          td = eventuser.user.created_at
+
+h1 メンバー登録
+p ●選択したユーザーを登録できます
+
+= form_tag event_event_users_path(params[:event_id]) do
+  .mb-3
+  table.table.table-hover
+    thead.thead-default
+      tr
+        th
+        th = User.human_attribute_name(:name)
+        th = User.human_attribute_name(:mail)
+        th = User.human_attribute_name(:created_at)
+        th
+      tbody
+        - @users.each do |user|
+          tr
+            td = check_box_tag 'event_users_attributes[]', user.id
+            td = link_to user.name, user_path(user)
+            td = user.mail
+            td = user.created_at
+
+  = submit_tag "選択したメンバーを追加する", class: 'btn btn-primary mr-3'
