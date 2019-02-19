@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_16_151915) do
+ActiveRecord::Schema.define(version: 2019_02_19_132022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,38 @@ ActiveRecord::Schema.define(version: 2019_02_16_151915) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "day"
+  end
+
+  create_table "game_details", force: :cascade do |t|
+    t.integer "game_id"
+    t.integer "user_id"
+    t.integer "point"
+    t.float "score"
+    t.integer "rank"
+    t.integer "tobi_flg"
+    t.integer "yakitori_flg"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.integer "event_id"
+    t.text "description"
+    t.integer "genten"
+    t.integer "kaeshiten"
+    t.integer "tobi_rule"
+    t.integer "yakitori_rule"
+    t.integer "horse_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "horses", force: :cascade do |t|
+    t.string "name"
+    t.integer "point1"
+    t.integer "point2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "records", force: :cascade do |t|

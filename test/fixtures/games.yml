@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_id: 1
+  description: MyText
+  genten: 1
+  kaeshiten: 1
+  tobi_rule: 1
+  yakitori_rule: 1
+  horse_id: 1
+
+two:
+  event_id: 1
+  description: MyText
+  genten: 1
+  kaeshiten: 1
+  tobi_rule: 1
+  yakitori_rule: 1
+  horse_id: 1
