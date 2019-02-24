@@ -1,0 +1,11 @@
+= form_with model: @horse, local: true do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control', id:'horse_name'
+  .form-group
+    = f.label :point1
+    = f.text_field :point1, class: 'form-control', id:'horse_point1'
+  .form-group
+    = f.label :point2
+    = f.text_field :point2, class: 'form-control', id:'horse_point2'
+  = f.submit nil , class: 'btn-primary'

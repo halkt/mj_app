@@ -1,0 +1,43 @@
+= form_for([@event, @game]) do |f|
+  .form-group
+    = f.hidden_field :event_id, value: params[:event_id]
+  .form-group
+    = f.label :genten
+    = f.text_field :genten, value: "25000", class: 'form-control'
+  .form-group
+    = f.label :kaeshiten
+    = f.text_field :kaeshiten, value: "30000", class: 'form-control', id: 'focusedInput'
+  .form-group
+    = f.label :horse_id
+    = f.collection_select :horse_id, Horse.all , :id, :name, class: 'form-control'
+  .form-group
+    = f.label :tobi_rule
+    = f.select :tobi_rule, ["有り", "無し"]
+  .form-group
+    = f.label :yakitori_rule
+    = f.select :yakitori_rule, ["有り", "無し"]
+  .form-group
+    = f.label :description
+    = f.text_field :description, class: 'form-control'
+
+    = f.fields_for :game_detail do |game_detail|
+      .form-group
+        = game_detail.label :user_id
+        = game_detail.collection_select :user_id, @user.all , :id, :name
+      .form-group
+        = game_detail.label :point
+        = game_detail.text_field :point, class: 'form-control'
+      .form-group
+        = game_detail.label :yakitori_flg
+        = game_detail.check_box :yakitori_flg
+      .form-group
+        = game_detail.label :rank
+        = game_detail.select :rank, ["1", "2", "3", "4"]
+      .form-group
+        = game_detail.label :tobi_flg
+        = game_detail.check_box :tobi_flg
+      .form-group
+        = game_detail.label :yakitori_flg
+        = game_detail.check_box :yakitori_flg
+
+  = submit_tag "登録", class: 'btn btn-primary mr-3'

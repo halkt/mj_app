@@ -6,6 +6,10 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @event_users = EventUser.where("event_id = ?", params[:id])
+    @game = Game.joins(:event).where("event_id = ?" , params[:id])
+    @game_details = Game.joins(:event, :game_detail).select("*").where("event_id = ?" , params[:id])
+    #@game = Game.joins(:event, :game_detail).where("event_id = ?" , params[:id])
+    #@game_details = GameDetail.joins(:game).where("game_id = ?" , 45)
   end
 
   def new

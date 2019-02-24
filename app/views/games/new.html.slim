@@ -1,0 +1,6 @@
+h1 対局スコア登録
+
+.nav.justify-content-end
+  = link_to '対局スコア一覧' , event_games_path(params[:event_id]), class: 'nav-link'
+
+= render partial: 'form', locals: { game: @game }

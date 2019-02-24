@@ -1,5 +1,16 @@
 class User < ApplicationRecord
-  validates :name, presence: true
+  # リレーションの定義
   has_many :event_users, :dependent => :destroy
   has_many :events, through: :event_users
+
+  # 名称のバリデーションチェック
+  validates :name, presence: true, length: { maximum: 50 }
+
+  # メールアドレスのバリデーションチェック
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  validates :mail,  length: { maximum: 255 },
+                    format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: true
+  # 説明のバリデーションチェック
+  validates :description, length: { maximum: 140 }
 end

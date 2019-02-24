@@ -24,6 +24,25 @@ ja:
           created_at: 登録日時
           updated_at: 更新日時
           day: 対局日
+        game:
+          id: ゲームID
+          description: 詳しい説明
+          genten: 原点
+          kaeshiten: 返し点
+          horse_id: ウマ
+          tobi_rule: 飛び賞
+          yakitori_rule: 焼き鳥
+          point: ポイント
+          created_at: 登録日時
+          updated_at: 更新日時
+        game_detail:
+          user_id: 対局者
+          point: 点棒
+          score: スコア
+          rank: 順位
+          tobi_flg: 飛び有無
+          yakitori_flg: 焼き鳥有無
+
 
   date:
     abbr_day_names:
