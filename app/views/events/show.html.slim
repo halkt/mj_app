@@ -34,14 +34,42 @@ table.table.table-hover
   thead.thead-default
     tr
       th
+      th
       - @event_users.each do |event_user|
         th = event_user.user.name
     - @game.each do |game|
       tbody
         tr
           th
-            - @game_details.where("game_id = ?", game.id).each do |game_detail|
-              td = game_detail.score
+          th
+            - ary = Array.new(@event_users.count).map{Array.new(2)}
+            - i = 0
+            - @event_users.each do |event_user|
+              - ary[i][0] = event_user.user_id
+              - gamedetail = GameDetail.where("game_id = ?", game.id).where("user_id = ?", event_user.user_id)
+              - if gamedetail.empty?
+                - ary[i][1] = '-'
+              - else
+                - gamedetail.each do |a|
+                  - ary[i][1] = a.score
+              td = ary[i][1]
+              - i = i + 1
+    tr
+      th
+        td = "合計"
+        - @event_users.each do |event_user|
+          - j = 0
+          - b = 0
+          - @game.each do |game|
+            - gamedetail = GameDetail.where("game_id = ?", game.id).where("user_id = ?", event_user.user_id)
+            - if gamedetail.empty?
+            - else
+              - gamedetail.each do |a|
+                - b = b + a.score
+          td = b
+          - j = j + 1
+
+
 = link_to '対局スコアを登録する', new_event_game_path(params[:id]), class: 'btn btn-primary mr-3'
 
 br

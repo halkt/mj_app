@@ -9,7 +9,7 @@ html
     = javascript_include_tag  'application', 'data-turbolinks-track': 'reload'
   body
     .app-title.navbar.navbar-expand-md.navbar-light.bg-light
-      .navbar-brand 麻雀成績管理アプリ
+      .navbar-brand =link_to '麻雀成績管理アプリ', root_path, class: 'nav-link'
       ul.navbar-nav.ml-auto
         li.nav-item= link_to 'ユーザ一覧', users_path, class: 'nav-link'
         li.nav-item= link_to '対局一覧', events_path, class: 'nav-link'

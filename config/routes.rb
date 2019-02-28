@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'static_pages/home'
   get 'static_pages/help'
-  root to: 'events#index'
+  root to: 'static_pages#home'
   resources :users
   resources :horses, only:[ :index, :create, :new, :destroy, :edit, :update]
   resources :events do

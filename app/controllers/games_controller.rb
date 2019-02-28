@@ -9,18 +9,15 @@ class GamesController < ApplicationController
     @game =Game.new
     4.times { @game.game_detail.build }
     @user = User.joins(:event_users).where("event_id = ?", params[:event_id])
-
-    # デフォルトで2つの住所入力欄を作成したい場合は次のようにする
-    # @game.game_detail.build
-
   end
 
   def create
     @game = Game.create(game_params)
     if @game.save
-      redirect_to event_path(params[:event_id]), notice: "保存成功"
+      redirect_to event_path(params[:event_id]), notice: "対局スコアの登録に成功しました"
     else
-      redirect_to new_event_games_path(params[:event_id]), notice: "保存失敗"
+      flash.now[:alert] = "対局スコアの登録に失敗しました"
+      render :action => :new
     end
   end
 

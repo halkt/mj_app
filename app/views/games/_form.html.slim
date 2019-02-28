@@ -12,10 +12,10 @@
     = f.collection_select :horse_id, Horse.all , :id, :name, class: 'form-control'
   .form-group
     = f.label :tobi_rule
-    = f.select :tobi_rule, ["有り", "無し"]
+    = f.select(:tobi_rule, [['無し', 0], ['有り', 1]])
   .form-group
     = f.label :yakitori_rule
-    = f.select :yakitori_rule, ["有り", "無し"]
+    = f.select(:yakitori_rule, [['無し', 0], ['有り', 1]])
   .form-group
     = f.label :description
     = f.text_field :description, class: 'form-control'
