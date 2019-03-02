@@ -6,6 +6,7 @@ class GameDetail < ApplicationRecord
   validates :point, numericality: true, length: { maximum: 8 }
   #validates :score, numericality: true, length: { maximum: 5 }
   validates :rank, inclusion: { in: 1..4 }
+  validate :participant_check
   # validates :tobi_flg, inclusion: { in: 0..1 }
   # validates :yakitori_flg, inclusion: { in: 0..1 }
 
@@ -41,4 +42,8 @@ class GameDetail < ApplicationRecord
         self.point - Horse.find(game.horse_id).point2
     end
   end
+
+  def participant_check
+  end
+
 end

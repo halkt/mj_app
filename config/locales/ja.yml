@@ -42,7 +42,11 @@ ja:
           rank: 順位
           tobi_flg: 飛び有無
           yakitori_flg: 焼き鳥有無
-
+        horse:
+          name: 名称
+          point1: 4位から1位の点数
+          point2: 3位から2位の点数
+          games: すでに登録されている対局
 
   date:
     abbr_day_names:

@@ -8,8 +8,8 @@ class Game < ApplicationRecord
   # バリデーション
   validates :genten, numericality: true, length: { maximum: 5 }
   validates :kaeshiten, numericality: true, length: { maximum: 5 }
-  validates :tobi_flg, inclusion: { in: 0..1 }
-  validates :tobi_flg, inclusion: { in: 0..1 }
+  validates :tobi_rule, inclusion: { in: 0..1 }
+  validates :yakitori_rule, inclusion: { in: 0..1 }
   validates :description, length: { maximum: 140 }
 
 end

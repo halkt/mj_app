@@ -8,9 +8,12 @@ class HorsesController < ApplicationController
   end
 
   def create
-    horse = Horse.new(horse_params)
-    horse.save!
-    redirect_to horses_url, notice: "ウマ「#{horse.name}」を登録しました。"
+    @horse = Horse.new(horse_params)
+    if @horse.save
+      redirect_to horses_url, notice: "ウマ「#{@horse.name}」を登録しました。"
+    else
+      render :new
+    end
   end
 
   def edit
@@ -19,14 +22,20 @@ class HorsesController < ApplicationController
 
   def update
     @horse = Horse.find(params[:id])
-    @horse.update!(horse_params)
-    redirect_to horses_url, notice: "ウマ「#{@horse.name}」を更新しました。"
+    if @horse.update(horse_params)
+      redirect_to horses_url, notice: "ウマ「#{@horse.name}」を更新しました。"
+    else
+      render :edit
+    end
   end
 
   def destroy
     horse = Horse.find(params[:id])
-    horse.destroy
-    redirect_to horses_url, notice: "ウマ「#{horse.name}」を削除しました。"
+    if horse.destroy
+      redirect_to horses_url, notice: "ウマ「#{horse.name}」を削除しました。"
+    else
+      redirect_to horses_url, notice: "#{horse.errors.messages[:base].join('。')}"
+    end
   end
 
   private

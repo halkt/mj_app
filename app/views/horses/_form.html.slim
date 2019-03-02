@@ -1,4 +1,5 @@
 = form_with model: @horse, local: true do |f|
+  = render 'shared/error_messages', object: f.object
   .form-group
     = f.label :name
     = f.text_field :name, class: 'form-control', id:'horse_name'

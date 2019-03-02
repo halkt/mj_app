@@ -1,0 +1,8 @@
+- if object.errors.any?
+  #error_explanation
+    .alert.alert-danger
+      | エラーが #{pluralize(object.errors.count, "件あります")}.
+    ul
+      .alert.alert-danger
+        - object.errors.full_messages.each do |msg|
+          li= msg
