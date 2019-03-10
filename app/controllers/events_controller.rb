@@ -11,7 +11,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @users = User.all
+    @users = User.all.order(:name, :id)
     @event.event_users.build
   end
 
