@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  # digest作成用の関数を宣言
+  has_secure_password
+
   # リレーションの定義
   has_many :event_users, :dependent => :destroy
   has_many :events, through: :event_users

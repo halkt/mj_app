@@ -17,6 +17,9 @@ ja:
           description: 詳しい説明
           created_at: 登録日時
           updated_at: 更新日時
+          password: パスワード
+          password_confirmation: パスワード（確認）
+          admin: 管理者権限
         event:
           id: イベントID
           name: 対局名
