@@ -1,12 +1,8 @@
 h1 対局の詳細
-
 .nav.justify-content-end
   = link_to '対局一覧に戻る' , events_path, class: 'nav-link'
 table.table.table-hover
   tbody
-    tr
-      th = Event.human_attribute_name(:id)
-      td = @event.id
     tr
       th = Event.human_attribute_name(:name)
       td = @event.name
@@ -16,12 +12,6 @@ table.table.table-hover
     tr
       th = Event.human_attribute_name(:description)
       td = simple_format(h(@event.description), {}, sanitize: false, wrapper_tag: "div")
-    tr
-      th = Event.human_attribute_name(:created_at)
-      td = @event.created_at
-    tr
-      th = Event.human_attribute_name(:updated_at)
-      td = @event.updated_at
 = link_to '編集', edit_event_path, class: 'btn btn-primary mr-3'
 = link_to '削除', @event, method: :delete, data: { confirm: "対局「#{@event.name}」を削除します。よろしいですか？"}, class: 'btn btn-primary mr-3'
 
@@ -37,11 +27,14 @@ table.table.table-hover
       th
       - @event_users.each do |event_user|
         th = event_user.user.name
+    - count = 1
     - @game.each do |game|
       tbody
         tr
           th
-          th
+            td = link_to "#{count} 回戦", edit_event_game_path(params[:id],game.id)
+            - count = count + 1
+
             - ary = Array.new(@event_users.count).map{Array.new(2)}
             - i = 0
             - @event_users.each do |event_user|
@@ -95,3 +88,4 @@ h1 この対局に参加しているメンバー
             td = event_user.user.mail
   = submit_tag "選択したメンバーの削除", class: 'btn btn-primary mr-3'
   = link_to 'メンバーの追加',  event_event_users_path(params[:id]), class: 'btn btn-primary mr-3'
+br

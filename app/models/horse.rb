@@ -4,8 +4,8 @@ class Horse < ApplicationRecord
 
   # バリデーション
   validates :name, presence: true, uniqueness: true
-  validates :point1, presence: true, numericality: true, length: { maximum: 6 }
-  validates :point2, presence: true, numericality: true, length: { maximum: 6 }
+  validates :point1, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to:100000 }
+  validates :point2, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to:100000 }
   validate :point_check, if: :point_nil_check?
 
   # privateメソッド

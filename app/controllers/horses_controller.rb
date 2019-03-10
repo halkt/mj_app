@@ -1,6 +1,6 @@
 class HorsesController < ApplicationController
   def index
-    @horses = Horse.all
+    @horses = Horse.all.order(:point1, :point2)
   end
 
   def new

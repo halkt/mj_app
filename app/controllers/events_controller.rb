@@ -1,17 +1,18 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    @events = Event.all.order(:id)
   end
 
   def show
     @event = Event.find(params[:id])
-    @event_users = EventUser.where("event_id = ?", params[:id])
-    @game = Game.joins(:event).where("event_id = ?" , params[:id])
-    #@game_details = GameDetail.eager_load(game: {event: :event_users}).where(event_users: { event_id: params[:id] })
+    @event_users = EventUser.where("event_id = ?", params[:id]).order(:id)
+    @game = Game.joins(:event).where("event_id = ?" , params[:id]).order(:created_at)
   end
 
   def new
     @event = Event.new
+    @users = User.all
+    @event.event_users.build
   end
 
   def edit
@@ -20,6 +21,7 @@ class EventsController < ApplicationController
 
   def create
     event = Event.new(event_params)
+
     if event.save
       redirect_to events_url, notice: "対局「#{event.name}」を登録しました。"
     else
@@ -45,6 +47,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :day, :description)
+    #params.require(:event).permit(:name, :day, :description, event_users_attributes: [:id, :user_id, :event_id])
+    params.require(:event).permit(:name, :day, :description, { :user_ids=> [] } )
   end
 end

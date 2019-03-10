@@ -1,1 +1,46 @@
 @import "bootstrap";
+
+input[type="checkbox"].my_check {
+    display: none;
+}
+input[type="checkbox"].my_check + label {
+    display: inline-block;
+    cursor: pointer;
+    margin: 0px;
+}
+input[type="checkbox"].my_check + label::before {
+    width: 30px;
+    height: 30px;
+    line-height: 26px;
+    font-size: 35px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    content: "\2713";
+    color: transparent;
+    margin: 0;
+    padding: 0;
+    border-radius: 5px;
+    border: 3px solid #dddddd;
+    background: #f0f0f0;
+    -webkit-transition: .1s;
+    transition: .1s;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+input[type="checkbox"].my_check + label:hover{
+    color: #808080;
+}
+input[type="checkbox"].my_check + label:hover::before{
+    background-color: #fff;
+}
+input[type="checkbox"].my_check:checked + label{
+    color: #15c;
+}
+input[type="checkbox"].my_check:checked + label::before{
+    font-size: 25px;
+    background: #fff !important;
+    border-color: #15c !important;
+    color: #15c !important;
+}

@@ -17,10 +17,25 @@ class EventUsersController < ApplicationController
     f = params[:event_users_attributes]
     f.map do |u_id|
       event_user = EventUser.new(user_id: u_id ,event_id: params[:event_id])
-      event_user.save
+      if event_user.save
+        flash[u_id] = "登録・・・！"
+      else
+        
+      end
     end
     redirect_to event_path(params[:event_id]), notice: "選択したユーザーを登録しました。"
   end
+
+  def create_all
+    checked_data = params[:event_users_attributes] # ここでcheckされたデータを受け取っています。
+    if checked_data.nil?
+      redirect_to event_path(params[:event_id]), notice: "ユーザーが選択されていません"
+    else
+      EventUser.new(checked_data)
+      redirect_to event_path(params[:event_id]), notice: "選択したユーザーを削除しました。"
+    end
+  end
+
 
   def update
     @hoge = Hoge.new(hoge_params)

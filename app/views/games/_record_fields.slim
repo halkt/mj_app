@@ -1,0 +1,10 @@
+fieldset
+  .form-group
+    = f.label :user_id
+    = f.collection_select :user_id, @user.all , :id, :name
+  .form-group
+    = f.label :point
+    = f.text_field :point, class: 'form-control'
+  .form-group
+    = f.label :rank
+    = f.select :rank, ["1", "2", "3", "4"]

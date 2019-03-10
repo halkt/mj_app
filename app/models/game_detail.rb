@@ -1,18 +1,21 @@
 class GameDetail < ApplicationRecord
   # リレーション定義
   belongs_to :game
+  belongs_to :user
 
   # バリデーション
   validates :point, numericality: true, length: { maximum: 8 }
   #validates :score, numericality: true, length: { maximum: 5 }
   validates :rank, inclusion: { in: 1..4 }
-  validate :participant_check
+  # validate :participant_check
   # validates :tobi_flg, inclusion: { in: 0..1 }
   # validates :yakitori_flg, inclusion: { in: 0..1 }
 
   # コールバック関数の設定
   before_save :calc_score
+  #before_validation :calc_score
 
+  # プライベートメソッドの定義
   private
 
   def calc_score

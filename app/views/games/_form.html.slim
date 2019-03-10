@@ -9,32 +9,30 @@
     = f.text_field :kaeshiten, value: "30000", class: 'form-control', id: 'focusedInput'
   .form-group
     = f.label :horse_id
-    = f.collection_select :horse_id, Horse.all , :id, :name, class: 'form-control'
-  .form-group
-    = f.label :tobi_rule
-    = f.select(:tobi_rule, [['無し', 0], ['有り', 1]])
-  .form-group
-    = f.label :yakitori_rule
-    = f.select(:yakitori_rule, [['無し', 0], ['有り', 1]])
-  .form-group
-    = f.label :description
-    = f.text_field :description, class: 'form-control'
+    .dropdown
+      = f.collection_select :horse_id, Horse.all.order(:point1, :point2) , :id, :name, class: 'dropdown-menu'
 
-    = f.fields_for :game_detail do |game_detail|
-      .form-group
-        = game_detail.label :user_id
-        = game_detail.collection_select :user_id, @user.all , :id, :name
-      .form-group
-        = game_detail.label :point
-        = game_detail.text_field :point, class: 'form-control'
-      .form-group
-        = game_detail.label :rank
-        = game_detail.select :rank, ["1", "2", "3", "4"]
-      .form-group
-        = game_detail.label :tobi_flg
-        = game_detail.check_box :tobi_flg
-      .form-group
-        = game_detail.label :yakitori_flg
-        = game_detail.check_box :yakitori_flg
+    = f.fields_for :game_detail, @game.game_detail.sort_by(&:id) do |builder|
+      br
 
-  = submit_tag "登録", class: 'btn btn-primary mr-3'
+      .card
+        .card-header.text-white.bg-info.mb-3
+          | 個人成績入力
+        .card-body
+          .form-group
+            = builder.label :user_id
+            = builder.collection_select :user_id, @user.all , :id, :name
+          .form-group
+            = builder.label :point
+            = builder.text_field :point, class: 'form-control'
+          .form-group
+            = builder.radio_button(:rank, "1")
+            = builder.label(:rank, "1位", value: "1位")
+            = builder.radio_button(:rank, "2")
+            = builder.label(:rank, "2位", value: "2位")
+            = builder.radio_button(:rank, "3")
+            = builder.label(:rank, "3位", value: "3位")
+            = builder.radio_button(:rank, "4")
+            = builder.label(:rank, "4位", value: "4位")
+  /= submit_tag "登録", class: 'btn btn-primary mr-3'
+  = f.submit nil , class: 'btn btn-primary mr-3'
