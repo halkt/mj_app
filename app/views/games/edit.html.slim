@@ -1,6 +1,6 @@
 h1 スコア更新
 
 .nav.justify-content-end
-  = link_to '対局スコア一覧' , event_games_path(params[:event_id]), class: 'nav-link'
+  = link_to '対局情報に戻る' , event_path(params[:event_id]), class: 'nav-link'
 
 = render partial: 'form', locals: { game: @game }
