@@ -1,3 +1,9 @@
+User.create!(name:  "admin",
+             mail: "admin@example.com",
+             admin: true,
+             password:              "password",
+             password_confirmation: "password")
+
 5.times do |i|
   i += 1
   User.create(
