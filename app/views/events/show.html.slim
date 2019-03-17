@@ -13,7 +13,7 @@ table.table.table-hover
       th = Event.human_attribute_name(:description)
       td = simple_format(h(@event.description), {}, sanitize: false, wrapper_tag: "div")
 = link_to '編集', edit_event_path, class: 'btn btn-primary mr-3'
-= link_to '削除', @event, method: :delete, data: { confirm: "対局「#{@event.name}」を削除します。よろしいですか？"}, class: 'btn btn-primary mr-3'
+= link_to '削除', @event, method: :delete, data: { confirm: "対局「#{@event.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
 
 br
 br

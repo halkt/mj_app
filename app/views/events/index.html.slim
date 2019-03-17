@@ -13,5 +13,5 @@ table.table.table-hover
           td = link_to event.name, event_path(event)
           td = event.day
           td = link_to '編集', edit_event_path(event), class: 'btn btn-primary mr-3'
-          td = link_to '削除', event, method: :delete, data: { confirm: "対局「#{event.name}」を削除します。よろしいですか？"}, class: 'btn btn-primary mr-3'
+          td = link_to '削除', event, method: :delete, data: { confirm: "対局「#{event.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
 = link_to '対局の登録', new_event_path, class: 'btn btn-primary'

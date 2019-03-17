@@ -1,0 +1,56 @@
+h2 対局情報
+.mb-3
+  table.table.table-hover
+    tbody
+      tr
+        th = User.human_attribute_name(:name)
+        td = current_user.name
+      tr
+        th = "最大獲得点数"
+        td = "#{@gamedetails.maximum(:point)}点"
+      tr
+        th = "最低獲得点数"
+        td = "#{@gamedetails.minimum(:point)}点"
+      tr
+        th = "合計スコア"
+        td = @scoreSum.round(2)
+      tr
+        th = "平均スコア"
+        td = @scoreAvg .round(2)
+      tr
+        th = "最大スコア"
+        td = @gamedetails.maximum(:score)
+      tr
+        th = "最低スコア"
+        td = @gamedetails.minimum(:score)
+      tr
+        th = "平均順位"
+        td = @rankAvg.round(2)
+      tr
+        th = "合計対局回数"
+        td = "#{@counts}回"
+      tr
+        th = "トップ率(%)"
+        td = "#{@topAvg.round(2)}%"
+
+  = pie_chart @chart
+h2 最近の成績
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th
+      th = GameDetail.human_attribute_name(:score)
+      th = GameDetail.human_attribute_name(:rank)
+      th = Event.human_attribute_name(:name)
+      th = Event.human_attribute_name(:day)
+    tbody
+      - count = 0
+      - @recentdetails.each do |recentdetails|
+        - count = count + 1
+        tr
+          td = "#{count} "
+          td = recentdetails.score
+          td = recentdetails.rank
+          td = link_to recentdetails.game.event.name, event_path(recentdetails.game.event)
+          td = recentdetails.game.event.day

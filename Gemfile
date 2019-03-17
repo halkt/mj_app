@@ -66,3 +66,5 @@ gem 'html2slim'
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'faker',          '1.7.3'
+gem "chartkick"
+gem 'chartable'

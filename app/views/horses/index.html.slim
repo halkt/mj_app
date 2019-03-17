@@ -18,6 +18,6 @@ table.table.table-hover
           td = horse.point1
           td = horse.point2
           td = link_to '編集', edit_horse_path(horse), class: 'btn btn-primary mr-3'
-          td = link_to '削除', horse, method: :delete, data: { confirm: "ウマ「#{horse.name}」を削除します。よろしいですか？"}, class: 'btn btn-primary mr-3'
+          td = link_to '削除', horse, method: :delete, data: { confirm: "ウマ「#{horse.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
 
 = link_to 'ウマ登録', new_horse_path, class: 'btn btn-primary'
