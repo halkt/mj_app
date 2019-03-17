@@ -1,4 +1,4 @@
-= form_with model: @horse, local: true do |f|
+= form_with model:  [:admin, @horse], local: true do |f|
   = render 'shared/error_messages', object: f.object
   .form-group
     = f.label :name

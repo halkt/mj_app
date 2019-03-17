@@ -2,7 +2,7 @@ doctype html
 html
   head
     title
-      |  麻雀成績管理アプリ
+      |  麻雀NOTE
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag     'application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -10,7 +10,7 @@ html
     meta[name="viewport" content="width=device-width, initial-scale=1"]
   body
     .app-title.navbar.navbar-expand-md.navbar-dark.bg-info
-      .navbar-brand.mb-0.h1 =link_to '麻雀成績管理アプリ', root_path, id: "logo"
+      .navbar-brand.mb-0.h1 =link_to 'MJ-NOTE', root_path, id: "logo"
       ul.navbar-nav.ml-auto
         button.navbar-toggler aria-controls="navbarNav" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarNav" data-toggle="collapse" type="button"
           span.navbar-toggler-icon
@@ -24,7 +24,7 @@ html
                     = link_to 'ユーザ一覧', admin_users_path, class: 'nav-link'
                 li.nav-item.active
                   a.nav-link data-target=".navbar-collapse.show" data-toggle="collapse" href="#"
-                    = link_to 'ウマ管理', horses_path, class: 'nav-link'
+                    = link_to 'ウマ管理', admin_horses_path, class: 'nav-link'
               li.nav-item.active
                 a.nav-link data-target=".navbar-collapse.show" data-toggle="collapse" href="#"
                   = link_to '対局一覧', events_path, class: 'nav-link'

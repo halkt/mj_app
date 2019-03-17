@@ -1,6 +1,6 @@
 h1 ウマ登録
 
 .nav.justify-content-end
-  = link_to 'ウマ一覧' , horses_path, class: 'nav-link'
+  = link_to 'ウマ一覧' , admin_horses_path, class: 'nav-link'
 
 = render partial: 'form', locals: { horse: @horse }

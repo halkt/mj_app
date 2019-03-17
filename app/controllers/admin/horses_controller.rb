@@ -1,4 +1,4 @@
-class HorsesController < ApplicationController
+class Admin::HorsesController < ApplicationController
   def index
     @horses = Horse.all.order(:point1, :point2)
   end
@@ -10,7 +10,7 @@ class HorsesController < ApplicationController
   def create
     @horse = Horse.new(horse_params)
     if @horse.save
-      redirect_to horses_url, notice: "ウマ「#{@horse.name}」を登録しました。"
+      redirect_to admin_horses_path(@horse), notice: "ウマ「#{@horse.name}」を登録しました。"
     else
       render :new
     end
@@ -23,7 +23,7 @@ class HorsesController < ApplicationController
   def update
     @horse = Horse.find(params[:id])
     if @horse.update(horse_params)
-      redirect_to horses_url, notice: "ウマ「#{@horse.name}」を更新しました。"
+      redirect_to admin_horses_path(@horse), notice: "ウマ「#{@horse.name}」を更新しました。"
     else
       render :edit
     end
@@ -32,9 +32,9 @@ class HorsesController < ApplicationController
   def destroy
     horse = Horse.find(params[:id])
     if horse.destroy
-      redirect_to horses_url, notice: "ウマ「#{horse.name}」を削除しました。"
+      redirect_to admin_horses_path(@horse), notice: "ウマ「#{horse.name}」を削除しました。"
     else
-      redirect_to horses_url, notice: "#{horse.errors.messages[:base].join('。')}"
+      redirect_to admin_horses_path(@horse), notice: "#{horse.errors.messages[:base].join('。')}"
     end
   end
 
