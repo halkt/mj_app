@@ -33,22 +33,22 @@ Horse.create(name: "10-20", point1: 10000, point2: 20000)
               )
   # ゲーム詳細
   GameDetail.create(game_id: i,
-                    user_id: 1,
+                    user_id: 2,
                     point: 40000,
                     rank: 1
                     )
   GameDetail.create(game_id: i,
-                    user_id: i,
+                    user_id: 3,
                     point: 30000,
                     rank: 2
                     )
   GameDetail.create(game_id: i,
-                    user_id: 3,
+                    user_id: 4,
                     point: 20000,
                     rank: 3
                     )
   GameDetail.create(game_id: i,
-                    user_id: 4,
+                    user_id: 5,
                     point: 10000,
                     rank: 4
                     )
