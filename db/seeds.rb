@@ -6,9 +6,9 @@ User.create!(name:  "admin",
              password_confirmation: "password")
 
 # ウマを作成する
-horse.create(name: "無し", point1: 0, point2: 0)
-horse.create(name: "5-10", point1: 5000, point2: 10000)
-horse.create(name: "10-20", point1: 10000, point2: 20000)
+Horse.create(name: "無し", point1: 0, point2: 0)
+Horse.create(name: "5-10", point1: 5000, point2: 10000)
+Horse.create(name: "10-20", point1: 10000, point2: 20000)
 
 5.times do |i|
   i += 1
