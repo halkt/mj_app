@@ -31,27 +31,7 @@ Horse.create(name: "10-20", point1: 10000, point2: 20000)
               kaeshiten: 30000,
               horse_id: 1
               )
-  # ゲーム詳細
-  GameDetail.create(game_id: i,
-                    user_id: 2,
-                    point: 40000,
-                    rank: 1
-                    )
-  GameDetail.create(game_id: i,
-                    user_id: 3,
-                    point: 30000,
-                    rank: 2
-                    )
-  GameDetail.create(game_id: i,
-                    user_id: 4,
-                    point: 20000,
-                    rank: 3
-                    )
-  GameDetail.create(game_id: i,
-                    user_id: 5,
-                    point: 10000,
-                    rank: 4
-                    )
+
 end
 
 # イベントにユーザーを紐付ける
@@ -60,3 +40,27 @@ EventUser.create(user_id: 3, event_id: 1)
 EventUser.create(user_id: 4, event_id: 1)
 EventUser.create(user_id: 5, event_id: 1)
 EventUser.create(user_id: 6, event_id: 1)
+
+5.times do |j|
+  # ゲーム詳細
+  GameDetail.create(game_id: j,
+                    user_id: 2,
+                    point: 40000,
+                    rank: 1
+                    )
+  GameDetail.create(game_id: j,
+                    user_id: 3,
+                    point: 30000,
+                    rank: 2
+                    )
+  GameDetail.create(game_id: j,
+                    user_id: 4,
+                    point: 20000,
+                    rank: 3
+                    )
+  GameDetail.create(game_id: j,
+                    user_id: 5,
+                    point: 10000,
+                    rank: 4
+                    )
+end
