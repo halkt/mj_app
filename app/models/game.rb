@@ -11,18 +11,20 @@ class Game < ApplicationRecord
   validates :description, length: { maximum: 140 }
 
   # コールバック関数の設定
+  before_save :calc_score
   before_update :calc_score
 
   # プライベートメソッドの定義
   private
 
   def calc_score
-    # ディテールを取得する
-    #game = Game.find(params[:id])
-    #gamedetail = GameDetail.where("game_id = ?", params[:id])
-    self.game_detail.each do |gamedetail|
+    i = 0
+    self.game_detail.order(point: "DESC").each do |gamedetail|
+      i += 1
+      gamedetail.attributes = {rank: i}
       score = calc_horse(gamedetail) # ウマ計算
       score = score - self.kaeshiten
+
       # 1位の場合のみオカを加算する
       if gamedetail.rank == 1
         score = score + (self.kaeshiten - self.genten)*4
@@ -30,13 +32,11 @@ class Game < ApplicationRecord
 
       score = score/1000
 
-
       # 更新
       gamedetail.attributes = {score: score}
-      #gamedetail.save = {score: score}
+      gamedetail.save!
     end
   end
-
 
   def calc_horse(gamedetail)
     case gamedetail.rank
@@ -48,6 +48,8 @@ class Game < ApplicationRecord
         gamedetail.point - Horse.find(self.horse_id).point1
       when 4 then
         gamedetail.point - Horse.find(self.horse_id).point2
+      else
+        exit # とりあえずは
     end
   end
 

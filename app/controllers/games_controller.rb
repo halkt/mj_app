@@ -19,7 +19,7 @@ class GamesController < ApplicationController
       redirect_to event_path(params[:event_id]), notice: "対局スコアの登録に成功しました"
     else
       flash.now[:alert] = "対局スコアの登録に失敗しました"
-      render :action => :edit
+      render :action => :new # なおそう
     end
   end
 

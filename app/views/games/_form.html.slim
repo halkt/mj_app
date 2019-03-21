@@ -25,14 +25,4 @@
           .form-group
             = builder.label :point
             = builder.text_field :point, class: 'form-control'
-          .form-group
-            = builder.radio_button(:rank, "1")
-            = builder.label(:rank, "1位", value: "1位")
-            = builder.radio_button(:rank, "2")
-            = builder.label(:rank, "2位", value: "2位")
-            = builder.radio_button(:rank, "3")
-            = builder.label(:rank, "3位", value: "3位")
-            = builder.radio_button(:rank, "4")
-            = builder.label(:rank, "4位", value: "4位")
-  /= submit_tag "登録", class: 'btn btn-primary mr-3'
   = f.submit nil , class: 'btn btn-primary mr-3'
