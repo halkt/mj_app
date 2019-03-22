@@ -1,6 +1,8 @@
-h1 ユーザー一覧
-= link_to 'ユーザー登録', new_admin_user_path, class: 'btn btn-primary'
+h2 ユーザー一覧
 
+.nav.justify-content-start
+  p 件数：#{@users.count} 件
+= link_to 'ユーザー登録', new_admin_user_path, class: 'btn btn-primary'
 .mb-3
 table.table.table-hover
   thead.thead-default
@@ -20,5 +22,4 @@ table.table.table-hover
           td
             = link_to '編集', edit_admin_user_path(user), class: 'btn btn-primary mr-3'
             = link_to '削除', [:admin, user], method: :delete, data: { confirm: "ユーザー「#{user.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
-
-= link_to '対局一覧', events_path, class: 'btn btn-primary'
+= link_to 'ユーザー登録', new_admin_user_path, class: 'btn btn-primary'

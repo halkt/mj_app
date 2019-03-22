@@ -11,19 +11,19 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @users = User.all.order(:name, :id)
     @event.event_users.build
+    @users = User.all.order(:id)
   end
 
   def edit
     @event = Event.find(params[:id])
+    @users = User.all.order(:id)
   end
 
   def create
-    event = Event.new(event_params)
-
-    if event.save
-      redirect_to events_url, notice: "対局「#{event.name}」を登録しました。"
+    @event = Event.new(event_params)
+    if @event.save
+      redirect_to events_url, notice: "対局「#{@event.name}」を登録しました。"
     else
       render :new
     end
@@ -47,7 +47,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    #params.require(:event).permit(:name, :day, :description, event_users_attributes: [:id, :user_id, :event_id])
     params.require(:event).permit(:name, :day, :description, { :user_ids=> [] } )
   end
+
 end

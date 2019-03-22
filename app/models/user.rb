@@ -3,9 +3,9 @@ class User < ApplicationRecord
   has_secure_password
 
   # リレーションの定義
-  has_many :event_users, :dependent => :destroy
+  has_many :event_users, :dependent => :destroy # 他テーブルの情報もまとめて削除する
   has_many :events, through: :event_users
-  has_many :game_detail, :dependent => :destroy
+  has_many :game_detail, dependent: :restrict_with_error # 他のテーブルで利用されている場合エラー
 
   # 名称のバリデーションチェック
   validates :name, presence: true, length: { maximum: 50 }
@@ -17,6 +17,23 @@ class User < ApplicationRecord
                     uniqueness: true,
                     allow_nil: true
 
+  # メールアドレスは小文字で登録する
+  before_save   :downcase_mail
+
+  # adminのバリデーションチェック
+  validates :admin, inclusion: {in: [true, false]}
+
+  # パスワードの長さを定義する。空更新を許可する
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+
   # 説明のバリデーションチェック
   validates :description, length: { maximum: 140 }
+
+  private
+
+  # メールアドレスをすべて小文字にする
+  def downcase_mail
+    self.mail.downcase!
+  end
+
 end

@@ -3,7 +3,7 @@ class Horse < ApplicationRecord
   has_many :games, dependent: :restrict_with_error # 他のテーブルで利用されている場合エラー
 
   # バリデーション
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :point1, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to:100000 }
   validates :point2, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to:100000 }
   validate :point_check, if: :point_nil_check?

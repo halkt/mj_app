@@ -5,6 +5,5 @@ class GameDetail < ApplicationRecord
 
   # バリデーション
   validates :point, numericality: true, length: { maximum: 8 }
-  #validates :rank, inclusion: { in: 1..4 }
 
 end

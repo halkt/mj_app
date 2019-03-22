@@ -6,6 +6,7 @@ class Event < ApplicationRecord
   accepts_nested_attributes_for :event_users, allow_destroy: true
 
   # バリデーション
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: 50 }
+  validates :day, presence: true
   validates :description, length: { maximum: 140 }
 end

@@ -20,13 +20,10 @@
           th メールアドレス
           th 追加/除外
         tbody
-          = f.collection_check_boxes(:user_ids, User.all, :id, :name, include_hidden: false) do |user|
+          = f.collection_check_boxes(:user_ids, User.all.order(:id), :id, :name, include_hidden: false) do |user|
             = user.label do
               tr
                 td = user.object.name
                 td = user.object.mail
                 td = user.check_box
-
-
-
     = f.submit nil , class: 'btn btn-primary mr-3'

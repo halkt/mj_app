@@ -2,7 +2,7 @@ class Game < ApplicationRecord
   # リレーションを定義する
   belongs_to :event
   belongs_to :horse
-  has_many :game_detail
+  has_many :game_detail, :dependent => :destroy # 他テーブルの情報もまとめて削除する
   accepts_nested_attributes_for :game_detail, allow_destroy: true, limit: 4
 
   # バリデーション

@@ -1,5 +1,8 @@
-h1 ウマ一覧
+h2 ウマ一覧
 
+.nav.justify-content-start
+  p 件数：#{@horses.count} 件
+= link_to 'ウマ登録', new_admin_horse_path, class: 'btn btn-primary'
 .mb-3
 table.table.table-hover
   thead.thead-default
