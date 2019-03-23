@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   root to: 'mypages#show'
   resources :events do
       delete :event_users, to: 'event_users#destroy_all'
-      resources :event_users, only:[ :index ,:create, :new ]
-      resources :games, only:[ :create, :new, :edit, :update ]
+      #resources :event_users, only:[ :index ,:create, :new ]
+      resources :games, only:[ :create, :new, :edit, :update, :show, :destroy ]
   end
 end

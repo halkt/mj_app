@@ -36,7 +36,8 @@ br
             tbody
               tr
                 th
-                  td = link_to "#{count} 回戦", edit_event_game_path(params[:id],game.id)
+                  /td = link_to "#{count} 回戦", edit_event_game_path(params[:id],game.id)
+                  td = link_to "#{count} 回戦", event_game_path(params[:id],game.id)
                   - count = count + 1
 
                   - ary = Array.new(@event_users.count).map{Array.new(2)}
@@ -68,6 +69,6 @@ br
         - else
           p ※成績が登録されていません！
 - if @event_users.count >= 4
-  = link_to 'スコア登録', new_event_game_path(params[:id]), class: 'btn btn-primary mr-3'
+  = link_to '成績登録', new_event_game_path(params[:id]), class: 'btn btn-primary mr-3'
 - else
   p ※参加者が足りません。4名以上の参加者を登録してください！

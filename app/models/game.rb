@@ -6,9 +6,13 @@ class Game < ApplicationRecord
   accepts_nested_attributes_for :game_detail, allow_destroy: true, limit: 4
 
   # バリデーション
-  validates :genten, numericality: true, length: { maximum: 5 }
-  validates :kaeshiten, numericality: true, length: { maximum: 5 }
+  validates :genten, presence: true, numericality: true, length: { maximum: 5 }
+  validates :kaeshiten, presence: true, numericality: true, length: { maximum: 5 }
   validates :description, length: { maximum: 140 }
+  validate :pointCheck
+  validate :userCheck
+
+
 
   # コールバック関数の設定
   before_save :calc_score
@@ -49,7 +53,29 @@ class Game < ApplicationRecord
       when 4 then
         gamedetail.point - Horse.find(self.horse_id).point2
       else
-        exit # とりあえずは
+        exit
+    end
+  end
+
+  # [エラーチェック]合計点数の妥当性のチェック
+  def pointCheck
+    sum = 0
+    self.game_detail.each do |x|
+      sum += x.point
+    end
+    total = self.genten * 4
+    errors.add(:base, "点棒の合計点数が「#{sum.to_s(:delimited)}点」です。「#{total.to_s(:delimited)}点」になるよう再入力してください。") if total != sum
+  end
+
+  # [エラーチェック]同じユーザーが登録されていないこと
+  def userCheck
+    userAry = Array.new
+    self.game_detail.each do |user|
+      if userAry.include?(user.user_id)
+        errors.add(:base, "「#{user.user.name}」が重複しています。")
+      else
+        userAry.push(user.user_id)# user追加
+      end
     end
   end
 

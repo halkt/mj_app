@@ -14,22 +14,38 @@ class GamesController < ApplicationController
   end
 
   def create
+    @event = Event.find(params[:event_id])
+    @user = User.joins(:event_users).where("event_id = ?", params[:event_id]).order(:name)
     @game = Game.create(game_params)
     if @game.save
       redirect_to event_path(params[:event_id]), notice: "対局スコアの登録に成功しました"
     else
-      flash.now[:alert] = "対局スコアの登録に失敗しました"
-      render :action => :new # なおそう
+      render 'games/new', id: params[:event_id]
     end
   end
 
   def update
+    @event = Event.find(params[:event_id])
+    @user = User.joins(:event_users).where("event_id = ?", params[:event_id]).order(:name)
     @game = Game.find(params[:id])
     if @game.update(update_game_params)
       redirect_to event_path(params[:event_id]), notice: "対局スコアの更新に成功しました"
     else
-      flash.now[:alert] = "対局スコアの更新に失敗しました"
-      render :action => :new
+      render 'games/edit', id: params[:event_id] , id: params[:id]
+    end
+  end
+
+  def show
+    @game = Game.find(params[:id])
+  end
+
+  def destroy
+    @game = Game.find(params[:id])
+    param = @game.event.id
+    if @game.destroy
+      redirect_to event_path(param), notice: "成績の削除しました。"
+    else
+      redirect_to event_path(params[:event_id]), notice: "#{@game.errors.messages[:base].join('。')}"
     end
   end
 

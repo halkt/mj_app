@@ -4,6 +4,6 @@ class GameDetail < ApplicationRecord
   belongs_to :user
 
   # バリデーション
-  validates :point, numericality: true, length: { maximum: 8 }
-
+  validates :point, presence: true, numericality: true, length: { maximum: 8 }
+  validates :user_id, :uniqueness => {:scope => :game_id} #ユーザーIDとゲームIDの組み合わせは一意
 end

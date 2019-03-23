@@ -1,4 +1,5 @@
 = form_for([@event, @game]) do |f|
+  = render 'shared/error_messages', object: f.object
   .form-group
     = f.hidden_field :event_id, value: params[:event_id]
   .form-group
@@ -21,7 +22,7 @@
         .card-body
           .form-group
             = builder.label :user_id
-            = builder.collection_select :user_id, @user.all , :id, :name
+            = builder.collection_select :user_id, @user.all , :id, :name, :prompt => true
           .form-group
             = builder.label :point
             = builder.text_field :point, class: 'form-control'
