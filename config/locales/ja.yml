@@ -45,6 +45,7 @@ ja:
           rank: 順位
           tobi_flg: 飛び有無
           yakitori_flg: 焼き鳥有無
+          user: 対局者
         horse:
           name: 名称
           point1: 4位から1位の点数
