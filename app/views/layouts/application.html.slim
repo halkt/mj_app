@@ -30,6 +30,9 @@ html
                   = link_to '対局一覧', events_path, class: 'nav-link'
               li.nav-item.active
                 a.nav-link data-target=".navbar-collapse.show" data-toggle="collapse" href="#"
+                  = link_to 'マイページ', root_path, class: 'nav-link'
+              li.nav-item.active
+                a.nav-link data-target=".navbar-collapse.show" data-toggle="collapse" href="#"
                   = link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
             - else
               li.nav-item.active
