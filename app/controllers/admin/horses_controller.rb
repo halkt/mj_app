@@ -1,4 +1,6 @@
 class Admin::HorsesController < ApplicationController
+  before_action :require_admin
+
   def index
     @horses = Horse.all.order(:point1, :point2)
   end
@@ -44,4 +46,7 @@ class Admin::HorsesController < ApplicationController
     params.require(:horse).permit(:name, :point1, :point2)
   end
 
+  def require_admin
+    redirect_to root_path unless current_user.admin?
+  end
 end
