@@ -1,24 +1,26 @@
-# README
+# MJ-NOTE
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+「MJ-NOTE」は、麻雀の成績を自動計算＆管理できるRails APIアプリケーションです。
+簡単なルールと対局終了の点数を入力することで、自動的にスコアが計算されて登録されます。
+また、過去の成績を照会することや、自分の成績を確認することができます。
+※スマートフォンからの利用も可能なよう、レスポンシブデザインを採用しています。
 
-Things you may want to cover:
+# このアプリの位置づけ
+アプリ開発の勉強をするため、小規模ながら人の役に立つサービスを作りたいと思っていた。
+趣味である麻雀の成績管理に関する課題を解決するためこのアプリを開発した。
 
-* Ruby version
+# 課題
+* スコアの計算方法が少し特殊なため、計算が難しい。ルールによっても計算式が異なるため、初心者に教えることがなかなか難しい上に
+長年やってる人やプロでも計算を間違えることもあり、計算ミスによる手戻りなどもたまに起きてしまう。
+* 成績は往々にして紙に書くことが多く、あとになって結果を振り返ることが困難であった。また、個人レベルで何回の対局を行ったのか、個人レベルでの平均のスコアなどを集計することが紙ではできなかった。
 
-* System dependencies
+# 機能要件
+* 計算機能を実装する
+* 個人成績照会機能を実装する
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# このアプリ開発で学んだこと
+* 要件定義やテーブル定義
+* ERの作成
+* 基本的なCRUD機能
+* 多対多を含むリレーションの処理を実装
+* 認証機能の実装

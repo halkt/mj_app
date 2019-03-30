@@ -26,4 +26,9 @@
           .form-group
             = builder.label :point
             = builder.text_field :point, class: 'form-control'
+            br
+    br
+    = button_tag type: 'button', onclick: "calcLastPoint()" , class: 'btn btn-success mr-3' do
+      = '最後の点数を計算'
   = f.submit nil , class: 'btn btn-primary mr-3'
+|
