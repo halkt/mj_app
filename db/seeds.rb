@@ -55,18 +55,22 @@ end
   i += 1
   GameDetail.create(game_id: i,
                     user_id: 1,
-                    point: 40000
+                    point: 40000,
+                    rank: 1
                     )
   GameDetail.create(game_id: i,
                     user_id: 2,
-                    point: 30000
+                    point: 30000,
+                    rank: 2
                     )
   GameDetail.create(game_id: i,
                     user_id: 3,
-                    point: 20000
+                    point: 20000,
+                    rank: 3
                     )
   GameDetail.create(game_id: i,
                     user_id: 4,
-                    point: 10000
+                    point: 10000,
+                    rank: 4
                     )
 end
