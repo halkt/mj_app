@@ -26,7 +26,7 @@ Horse.create(name: "10-20", point1: 10000, point2: 20000)
 5.times do |i|
   i += 1
   Event.create(
-    name: "麻雀大会#{i}"
+    name: "麻雀大会#{i}",
     day: "2019-04-01"
   )
   # イベント
