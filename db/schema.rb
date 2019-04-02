@@ -64,28 +64,8 @@ ActiveRecord::Schema.define(version: 2019_03_10_063651) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "records", force: :cascade do |t|
-    t.text "description"
-    t.integer "event_id"
-    t.integer "rule_id"
-    t.integer "user1_id"
-    t.integer "user2_id"
-    t.integer "user3_id"
-    t.integer "user4_id"
-    t.float "point1"
-    t.float "point2"
-    t.float "point3"
-    t.float "point4"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.float "genten"
-    t.float "kaeshiten"
-    t.string "uma"
-    t.string "yakitori"
-  end
-
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "mail"
     t.text "description"
     t.datetime "created_at", null: false

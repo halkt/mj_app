@@ -34,7 +34,7 @@ class Game < ApplicationRecord
         score = score + (self.kaeshiten - self.genten)*4
       end
 
-      score = score/1000
+      score = score.to_f/1000
 
       # 更新
       gamedetail.attributes = {score: score}

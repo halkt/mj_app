@@ -38,16 +38,14 @@ Horse.create(name: "10-20", point1: 10000, point2: 20000)
 end
 
 # ゲームを作成する
-10.times do |i|
+5.times do |i|
   i += 1
-  5.times do |j|
-    j += 1
-    Game.create(event_id: j,
-                genten: 25000,
-                kaeshiten: 30000,
-                horse_id: 1
-                )
-  end
+  Game.create(event_id: i,
+              genten: 25000,
+              kaeshiten: 30000,
+              horse_id: 1
+              )
+
 end
 
 # ゲーム詳細
