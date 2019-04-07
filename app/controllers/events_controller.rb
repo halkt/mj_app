@@ -1,6 +1,11 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all.order(:id)
+    #@events = Event.all.order(:id)
+    if current_user.admin?
+      @events = Event.all.order(:id)
+    else
+      @events = current_user.events.order(:id)
+    end
   end
 
   def show

@@ -63,8 +63,9 @@ br
                   - if gamedetail.empty?
                   - else
                     - gamedetail.each do |a|
+                      - x = a.score
                       - b = b + a.score
-                td = b
+                td = b.round(2)
                 - j = j + 1
         - else
           p ※成績が登録されていません！
