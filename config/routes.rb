@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'rankings/show'
   get 'mypages/show'
   root to: 'mypages#show'
   get '/login', to: 'sessions#new'

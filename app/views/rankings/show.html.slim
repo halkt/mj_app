@@ -1,0 +1,16 @@
+h2 ランキング(上位10名)
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th = GameDetail.human_attribute_name(:rank)
+      th = User.human_attribute_name(:name)
+      th = GameDetail.human_attribute_name(:score)
+    tbody
+      - i = 0
+      - @gamedetails.each do |gamedetail|
+        - i += 1
+        tr
+          td = "#{i} 位"
+          td = User.find(gamedetail[0]).name
+          td = gamedetail[1].round(2)

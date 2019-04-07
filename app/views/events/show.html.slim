@@ -36,7 +36,6 @@ br
             tbody
               tr
                 th
-                  /td = link_to "#{count} 回戦", edit_event_game_path(params[:id],game.id)
                   td = link_to "#{count} 回戦", event_game_path(params[:id],game.id)
                   - count = count + 1
 
