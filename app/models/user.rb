@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   # digest作成用の関数を宣言
-  has_secure_password
+  has_secure_password(validations: false)
 
   # リレーションの定義
   has_many :event_users, :dependent => :destroy # 他テーブルの情報もまとめて削除する
@@ -15,7 +15,8 @@ class User < ApplicationRecord
   validates :mail,  length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true,
-                    allow_nil: true
+                    allow_nil: true,
+                    allow_blank: true
 
   # メールアドレスは小文字で登録する
   before_save   :downcase_mail
@@ -24,7 +25,9 @@ class User < ApplicationRecord
   validates :admin, inclusion: {in: [true, false]}
 
   # パスワードの長さを定義する。空更新を許可する
-  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :password, presence: true, if: :mail?
+  validates :password, length: { minimum: 6 }, allow_nil: true, allow_blank: true
+  
 
   # 説明のバリデーションチェック
   validates :description, length: { maximum: 140 }

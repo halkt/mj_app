@@ -51,4 +51,27 @@ describe 'ユーザー管理機能' , type: :system do
     end
   end
 
+  describe '新規作成機能' do
+    let(:login_user) { user_a }
+    
+    before do
+      visit new_admin_user_path
+      fill_in '名前', with: user_name
+      fill_in 'メールアドレス', with: user_mail
+      fill_in 'パスワード', with: user_password
+      fill_in 'パスワード（確認）', with: user_password_confirm
+      click_button '登録する'
+    end
+
+    context '新規作成画面でユーザー情報を正しく入力したとき' do
+      let(:user_name) {'テストくん'}
+      let(:user_mail) {'testXXX@example.com'}
+      let(:user_password) {'password'}
+      let(:user_password_confirm) {'password'}
+      
+      it '正常に登録される' do
+        expect(page).to have_selector '.alert-success', text: 'テストくん'
+      end
+    end
+  end
 end
