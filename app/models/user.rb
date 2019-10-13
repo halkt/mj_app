@@ -24,11 +24,13 @@ class User < ApplicationRecord
   # adminのバリデーションチェック
   validates :admin, inclusion: {in: [true, false]}
 
+  # login_flgのバリデーションチェック
+  validates :login_flg, inclusion: {in: [true, false]}
+
   # パスワードの長さを定義する。空更新を許可する
-  validates :password, presence: true, if: :mail?
+  validates :password, presence: true, if: :login_flg?
   validates :password, length: { minimum: 6 }, allow_nil: true, allow_blank: true
   
-
   # 説明のバリデーションチェック
   validates :description, length: { maximum: 140 }
 

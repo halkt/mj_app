@@ -71,3 +71,6 @@ gem 'jquery-rails'
 gem 'faker',          '1.7.3'
 gem "chartkick"
 gem 'chartable'
+
+# 画像アップロード用のGemを追加する
+gem 'carrierwave'

@@ -65,3 +65,40 @@ body {
     text-decoration: none;
   }
 }
+
+/* ユーザー */
+
+/* 登録・更新画面のデフォルト表示をシンプルに */
+.login-only {
+  display: none ;
+}
+
+
+/* カレンダー */
+
+// /* スピンボタン（上下ボタン）を非表示 */
+// input[type=date]::-webkit-inner-spin-button {
+//   -webkit-appearance: none;
+// }
+
+// /* カレンダーのインジケータ（▼）を非表示 */
+// input[type=date]::-webkit-calendar-picker-indicator {
+//   color: transparent;
+//   position: relative;
+// }
+
+/* fontAwesomeのカレンダーアイコンをインジケータにする */
+// input[type=date]::-webkit-calendar-picker-indicator:before {
+//   /*content: "\f073";*/ /* fa-calendar */
+//   content: image-url('calender_icon.png'); /* fa-calendar-o */
+//   position: absolute;
+//   left: -5px; /* ここら辺はいい感じの塩梅で */
+//   top: -5px;  /* ここも */
+// }
+
+// /* もう一つの答え */
+// input[type=date]::-webkit-calendar-picker-indicator {
+//   color: transparent;
+//   background: image-url('calender_icon.svg') no-repeat;
+//   background-size: auto;
+// }
