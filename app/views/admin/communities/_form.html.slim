@@ -1,0 +1,25 @@
+= form_with model: [:admin, @community], local: true do |f|
+
+  = render 'shared/error_messages', object: f.object
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control', id:'community_name', placeholder:'コミュニティの名前を入力してください'
+  .form-group
+    = f.label :description
+    = f.text_area :description, rows: 3, class: 'form-control', id: 'community_description'
+  br
+    h2 メンバーの選択
+    table.group_list.table.table-striped
+      thead.thead-default
+        tr
+          th ユーザ名
+          th メールアドレス
+          th 追加/除外
+        tbody
+          = f.collection_check_boxes(:user_ids, User.all.order(:id), :id, :name, include_hidden: false) do |user|
+            = user.label do
+              tr
+                td = user.object.name
+                td = user.object.mail
+                td = user.check_box
+    = f.submit nil , class: 'btn btn-primary mr-3'

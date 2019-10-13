@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'static_pages/help'
   namespace :admin do
     resources :users
+    resources :communities
     resources :horses, only:[ :index, :create, :new, :destroy, :edit, :update]
   end
   resources :events do

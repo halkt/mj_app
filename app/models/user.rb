@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :event_users, :dependent => :destroy # 他テーブルの情報もまとめて削除する
   has_many :events, through: :event_users
   has_many :game_detail, dependent: :restrict_with_error # 他のテーブルで利用されている場合エラー
+  has_many :community, through: :community_users
+  has_many :community_users
 
   # 名称のバリデーションチェック
   validates :name, presence: true, length: { maximum: 50 }

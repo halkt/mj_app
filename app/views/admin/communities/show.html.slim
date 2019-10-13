@@ -1,0 +1,28 @@
+h2 コミュニティ情報
+
+.nav.justify-content-end
+  = link_to '一覧' , admin_communities_path, class: 'nav-link'
+table.table.table-hover
+  tbody
+    tr
+      th = Community.human_attribute_name(:id)
+      td = @community.id
+    tr
+      th = Community.human_attribute_name(:name)
+      td = @community.name
+
+    tr
+      th = Community.human_attribute_name(:created_at)
+      td = @community.created_at
+    tr
+      th = Community.human_attribute_name(:updated_at)
+      td = @community.updated_at
+h2 所属メンバー
+table.table.table-hover
+  tbody
+    - @community.users.each do |user|
+      tr
+        th = Community.human_attribute_name(:name)
+        td = user.name
+= link_to '編集', edit_admin_community_path, class: 'btn btn-primary mr-3'
+= link_to '削除', [:admin, @community], method: :delete, data: { confirm: "ユーザー「#{@community.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
