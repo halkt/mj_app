@@ -5,19 +5,15 @@ h2 コミュニティ情報
 table.table.table-hover
   tbody
     tr
-      th = Community.human_attribute_name(:id)
-      td = @community.id
-    tr
       th = Community.human_attribute_name(:name)
       td = @community.name
-
     tr
       th = Community.human_attribute_name(:created_at)
       td = @community.created_at
     tr
       th = Community.human_attribute_name(:updated_at)
       td = @community.updated_at
-h2 所属メンバー
+h2 所属メンバー（#{@community.users.count}名）
 table.table.table-hover
   tbody
     - @community.users.each do |user|

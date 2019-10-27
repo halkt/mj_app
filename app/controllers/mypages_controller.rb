@@ -19,10 +19,10 @@ class MypagesController < ApplicationController
     @rankAvg = @rankSum.to_f/@counts.to_f
 
     # 順位表示用変数
-    top = @gamedetails.where("rank = 1").count
-    second = @gamedetails.where("rank = 2").count
-    third = @gamedetails.where("rank = 3").count
-    last = @gamedetails.where("rank = 4").count
+    top = @gamedetails.where(rank: 1).count
+    second = @gamedetails.where(rank: 2).count
+    third = @gamedetails.where(rank: 3).count
+    last = @gamedetails.where(rank: 4).count
 
     # トップ率
     @topAvg = top.to_f/@counts.to_f*100

@@ -14,6 +14,4 @@ table.table.table-hover
         tr
           td = link_to community.name, [:admin, community]
           td
-            = link_to '編集', edit_admin_community_path(community), class: 'btn btn-primary mr-3'
-            = link_to '削除', [:admin, community], method: :delete, data: { confirm: "コミュニティ「#{community.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
 = link_to 'コミュニティ登録', new_admin_community_path, class: 'btn btn-outline-success btn-block'

@@ -12,17 +12,20 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event_users = EventUser.where("event_id = ?", params[:id]).order(:id)
     @game = Game.joins(:event).where("event_id = ?" , params[:id]).order(:created_at)
+    @community_name = Community.find(@event.community_id).name
   end
 
   def new
     @event = Event.new
     @event.event_users.build
-    @users = User.all.order(:id)
+    @communities = Community.affiliation_user(current_user.id)
+    @users = User.affiliation_community(@communities.pluck(:id))
   end
 
   def edit
     @event = Event.find(params[:id])
     @users = User.all.order(:id)
+    @communities = Community.affiliation_user(current_user.id)
   end
 
   def create
@@ -52,7 +55,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :day, :description, { :user_ids=> [] } )
+    params.require(:event).permit(:name, :day, :community_id, :description, { :user_ids=> [] } )
   end
 
 end

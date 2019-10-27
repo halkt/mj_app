@@ -10,6 +10,9 @@ table.table.table-hover
       th = Event.human_attribute_name(:day)
       td = @event.day
     tr
+      th = Event.human_attribute_name(:community_name)
+      td = @community_name
+    tr
       th = Event.human_attribute_name(:description)
       td = simple_format(h(@event.description), {}, sanitize: false, wrapper_tag: "div")
 = link_to '編集', edit_event_path, class: 'btn btn-primary mr-3'
@@ -18,9 +21,33 @@ table.table.table-hover
 br
 br
 br
-
 - if @event_users.count > 0
   h2 成績
+  .mb-3
+    table.table.table-hover
+      thead.thead-default
+        tr
+          th
+          th
+          - @event_users.each do |event_user|
+            th = event_user.user.name
+          - count = 1
+
+          - if @event.games.count > 0
+            tbody
+              tr
+                th
+                  td = "合計"
+                  - @event_users.each do |event_user|
+                    - user_point = 0
+                    - @game.each do |game|
+                      - gamedetail = GameDetail.where("game_id = ?", game.id).where("user_id = ?", event_user.user_id)
+                      - if !gamedetail.empty?
+                        - gamedetail.each do |game|
+                          - user_point += game.score
+                    td = user_point.round(2)
+- if @event_users.count > 0
+  h2 成績明細
   .mb-3
   table.table.table-hover
     thead.thead-default

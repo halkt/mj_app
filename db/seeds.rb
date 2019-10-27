@@ -2,6 +2,7 @@
 User.create!(name:  "サンプルくん",
              mail: "sample@example.com",
              admin: true,
+             login_flg: true,
              password:              "simple@sample",
              password_confirmation: "simple@sample")
 
@@ -12,6 +13,7 @@ User.create!(name:  "サンプルくん",
     name: "テストユーザー#{i}",
     mail: "user#{i}@example.com",
     admin: false,
+    login_flg: false,
     password:              "password",
     password_confirmation: "password"
   )
@@ -21,6 +23,11 @@ end
 Horse.create(name: "無し", point1: 0, point2: 0)
 Horse.create(name: "5-10", point1: 5000, point2: 10000)
 Horse.create(name: "10-20", point1: 10000, point2: 20000)
+
+# コミュニティを作成する
+Community.create(name: "麻雀部")
+Community.create(name: "N会")
+Community.create(name: "テスト")
 
 # イベントを作成する
 5.times do |i|

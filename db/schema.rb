@@ -10,19 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_13_083138) do
+ActiveRecord::Schema.define(version: 2019_10_14_074802) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "communities", force: :cascade do |t|
+  create_table "communities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "community_users", force: :cascade do |t|
+  create_table "community_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "community_id"
     t.datetime "created_at", null: false
@@ -31,7 +28,7 @@ ActiveRecord::Schema.define(version: 2019_10_13_083138) do
     t.index ["user_id"], name: "index_community_users_on_user_id"
   end
 
-  create_table "event_users", force: :cascade do |t|
+  create_table "event_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "event_id"
     t.datetime "created_at", null: false
@@ -40,15 +37,16 @@ ActiveRecord::Schema.define(version: 2019_10_13_083138) do
     t.index ["user_id"], name: "index_event_users_on_user_id"
   end
 
-  create_table "events", force: :cascade do |t|
+  create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "day"
+    t.integer "community_id"
+    t.datetime "day"
   end
 
-  create_table "game_details", force: :cascade do |t|
+  create_table "game_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "game_id"
     t.integer "user_id"
     t.integer "point"
@@ -60,7 +58,7 @@ ActiveRecord::Schema.define(version: 2019_10_13_083138) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "games", force: :cascade do |t|
+  create_table "games", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "event_id"
     t.text "description"
     t.integer "genten"
@@ -72,7 +70,7 @@ ActiveRecord::Schema.define(version: 2019_10_13_083138) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "horses", force: :cascade do |t|
+  create_table "horses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.integer "point1"
     t.integer "point2"
@@ -80,7 +78,7 @@ ActiveRecord::Schema.define(version: 2019_10_13_083138) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "mail"
     t.text "description"

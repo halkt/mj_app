@@ -2,20 +2,17 @@ h2 対局一覧
 
 .nav.justify-content-start
   p 件数：#{@events.count} 件
-= link_to '対局の登録', new_event_path, class: 'btn btn-primary'
+= link_to '対局の登録', new_event_path, class: 'btn btn-outline-success btn-block'
 .mb-3
 table.table.table-hover
   thead.thead-default
     tr
       th = Event.human_attribute_name(:name)
       th = Event.human_attribute_name(:day)
-      th
-      th
     tbody
       - @events.each do |event|
         tr
           td = link_to event.name, event_path(event)
           td = event.day
-          td = link_to '編集', edit_event_path(event), class: 'btn btn-primary mr-3'
-          td = link_to '削除', event, method: :delete, data: { confirm: "【警告!】対局「#{event.name}」を削除します。この対局に紐づくユーザーや成績も削除されますが本当によろしいですか？"}, class: 'btn btn-danger'
-= link_to '対局の登録', new_event_path, class: 'btn btn-primary'
+         
+= link_to '対局の登録', new_event_path, class: 'btn btn-outline-success btn-block'

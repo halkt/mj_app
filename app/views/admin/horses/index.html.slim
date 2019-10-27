@@ -2,7 +2,7 @@ h2 ウマ一覧
 
 .nav.justify-content-start
   p 件数：#{@horses.count} 件
-= link_to 'ウマ登録', new_admin_horse_path, class: 'btn btn-primary'
+= link_to 'ウマ登録', new_admin_horse_path, class: 'btn btn-outline-success btn-block'
 .mb-3
 table.table.table-hover
   thead.thead-default
@@ -15,10 +15,8 @@ table.table.table-hover
     tbody
       - @horses.each do |horse|
         tr
-          td = horse.name
+          td = link_to horse.name ,edit_admin_horse_path(horse)
           td = horse.point1
           td = horse.point2
-          td = link_to '編集', edit_admin_horse_path(horse), class: 'btn btn-primary mr-3'
-          td = link_to '削除', [:admin, horse], method: :delete, data: { confirm: "ウマ「#{horse.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
 
-= link_to 'ウマ登録', new_admin_horse_path, class: 'btn btn-primary'
+= link_to 'ウマ登録', new_admin_horse_path, class: 'btn btn-outline-success btn-block'

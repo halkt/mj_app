@@ -9,6 +9,9 @@ class User < ApplicationRecord
   has_many :community, through: :community_users
   has_many :community_users
 
+  # 特定のコミュニティに所属するユーザーを抽出する
+  scope :affiliation_community, -> (communities) { where(id: CommunityUser.where(community_id: communities)) }
+
   # 名称のバリデーションチェック
   validates :name, presence: true, length: { maximum: 50 }
 
@@ -37,6 +40,11 @@ class User < ApplicationRecord
   validates :description, length: { maximum: 140 }
 
   private
+  
+  # ドメインに所属するユーザー
+  def domain_users(community_id)
+    @domain_users = User.joins(:community_users).where("community_id = ?", community_id)
+  end
 
   # メールアドレスをすべて小文字にする
   def downcase_mail
