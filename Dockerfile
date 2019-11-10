@@ -12,4 +12,5 @@ RUN gem install bundler -v 2.0.1
 RUN bundle install
 RUN apt update
 RUN apt install -y graphviz
+RUN apt-get install -y vim
 ADD . /workdir
