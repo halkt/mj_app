@@ -89,6 +89,7 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
+  <<: *default
   url: <%= ENV['DATABASE_URL'] %>
   host: <%= Rails.application.credentials.rds[:host] %>
   database: <%= Rails.application.credentials.rds[:database] %>
