@@ -33,6 +33,8 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to events_url, notice: "対局「#{@event.name}」を登録しました。"
     else
+      @communities = Community.affiliation_user(current_user.id)
+      @users = User.affiliation_community(@communities.pluck(:id))
       render :new
     end
   end
