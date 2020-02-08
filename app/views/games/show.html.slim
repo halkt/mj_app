@@ -3,7 +3,7 @@ h2 成績詳細
   = link_to '対局情報に戻る' , event_path(params[:event_id]), class: 'nav-link'
 
 .card
-  .card-header.text-black.bg-Light.mb-3
+  .card-header.text-black.bg-Light
     | ルール
   table.table.table-hover
     tbody
@@ -18,7 +18,7 @@ h2 成績詳細
         td = @game.horse.name
 br
 .card
-  .card-header.text-black.bg-Light.mb-3
+  .card-header.text-black.bg-Light
     | 成績
   table.table.table-hover
     thead.thead-default

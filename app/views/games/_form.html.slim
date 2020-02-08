@@ -12,7 +12,7 @@
     = f.label :horse_id
     .dropdown
       = f.collection_select :horse_id, Horse.all.order(:point1, :point2) , :id, :name, class: 'dropdown-menu'
-
+  .form-group
     = f.fields_for :game_detail, @game.game_detail.sort_by(&:id) do |builder|
       br
 

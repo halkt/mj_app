@@ -20,4 +20,31 @@ class Event < ApplicationRecord
     end
     sum_user_score
   end
+
+  # イベントのユーザーの合計スコアを返す
+  def user_rank(user_id)
+    hash_users_rank[user_id][:rank]
+  end
+
+  private
+
+  # 合計スコアを元にユーザーの順位を返す
+  def hash_users_rank
+    hash = {}
+    users.each_with_index do |user, index|
+      hash[user.id] = {}
+      hash[user.id][:sum_score] = sum_user_score(user.id)
+      hash[user.id][:rank] = array_rank[index]
+    end
+    hash
+  end
+
+  # 合計得点を元に順位の配列を返す
+  def array_rank
+    score_array = []
+    users.each do |user|
+      score_array.push(sum_user_score(user.id))
+    end
+    score_array.map { |v| score_array.count { |a| a > v } + 1 }
+  end
 end
