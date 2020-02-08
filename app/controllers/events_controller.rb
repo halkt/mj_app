@@ -24,8 +24,8 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
-    @users = User.all.order(:id)
     @communities = Community.affiliation_user(current_user.id)
+    @users = User.affiliation_community(@communities.pluck(:id))
   end
 
   def create
@@ -44,6 +44,8 @@ class EventsController < ApplicationController
     if @event.update(event_params)
       redirect_to event_path(params[:id]), notice: "対局「#{@event.name}」を更新しました。"
     else
+      @communities = Community.affiliation_user(current_user.id)
+      @users = User.affiliation_community(@communities.pluck(:id))
       render :edit
     end
   end

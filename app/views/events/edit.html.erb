@@ -1,0 +1,7 @@
+<h2>対局更新</h2>
+
+<div class='nav justify-content-end'>
+  <%= link_to '一覧' , events_path, class: 'nav-link' %>
+</div>
+
+<%= render partial: 'form', locals: { event: @event } %>
