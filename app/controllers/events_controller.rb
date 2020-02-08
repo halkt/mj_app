@@ -1,6 +1,5 @@
 class EventsController < ApplicationController
   def index
-    #@events = Event.all.order(:id)
     if current_user.admin?
       @events = Event.all.order(:id)
     else
@@ -10,8 +9,8 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @event_users = EventUser.where("event_id = ?", params[:id]).order(:id)
-    @game = Game.joins(:event).where("event_id = ?" , params[:id]).order(:created_at)
+    @event_users = @event.users.order(:id)
+    @game = Game.joins(:event).where(event_id: params[:id]).order(:created_at)
     @community_name = Community.find(@event.community_id).name
   end
 

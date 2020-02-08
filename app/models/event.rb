@@ -10,4 +10,14 @@ class Event < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :day, presence: true
   validates :description, length: { maximum: 140 }
+
+  # イベントのユーザーの合計スコアを返す
+  def sum_user_score(user_id)
+    sum_user_score = 0
+    user_records = GameDetail.where(user_id: user_id).where(game_id: games.pluck(:id))
+    user_records.each do |user_record|
+      sum_user_score += user_record.score
+    end
+    sum_user_score
+  end
 end
