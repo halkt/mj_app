@@ -21,6 +21,10 @@ textarea {
   margin: 30px 0;
 }
 
+.flexContainer {
+  display: flex;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -62,6 +66,13 @@ body {
   margin-bottom: 60px;
 }
 
+select {
+  padding: 7px;
+  width: 100%;
+  border: 1px solid #ced4da;
+  background-color: white;
+}
+
 /* header */
 
 #logo {
@@ -86,6 +97,15 @@ body {
   display: none ;
 }
 
+/* ゲーム系 */
+.gameRuleContainer {
+  margin: 0 10px;
+}
+
+.flexChildren {
+  flex-basis: 30%;
+  margin-right: 10px;
+}
 
 /* カレンダー */
 
