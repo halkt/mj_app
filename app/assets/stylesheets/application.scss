@@ -18,11 +18,39 @@ textarea {
 }
 
 .main-container {
-  margin: 30px 0;
+  padding: 15px 10px;
 }
 
 .flexContainer {
   display: flex;
+}
+
+.main-container {
+  display: block;
+  width: 85%;
+  margin-right: 20px;
+}
+
+.sidebar {
+  width: 15%;
+  text-align: center;
+}
+
+.circle{
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #ffa500;
+  font-size: 12px;
+  color: white;
+  text-align:center;
+  line-height: 100px;
+  margin: 5px;
+}
+
+.top-header {
+  background-color: #e8383d;
 }
 
 /* typography */
@@ -63,7 +91,7 @@ p {
 
 body {
   /* 余白 */
-  margin-bottom: 60px;
+  margin-bottom: 0;
 }
 
 select {
@@ -78,7 +106,7 @@ select {
 #logo {
   float: left;
   margin-right: 10px;
-  font-size: 1.7em;
+  font-size: 1.2em;
   color: white;
   text-transform: uppercase;
   letter-spacing: -1px;
