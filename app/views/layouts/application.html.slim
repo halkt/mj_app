@@ -44,8 +44,9 @@ html
               li.nav-item.active
                 a.nav-link data-target=".navbar-collapse.show" data-toggle="collapse" href="#"
                   = link_to 'ログイン', login_path, class: 'nav-link'
-    .container
-      br
-      - if flash.notice.present?
-        .alert.alert-success = flash.notice
-      = yield
+    .top-background 
+      .container
+        br
+        - if flash.notice.present?
+          .alert.alert-success = flash.notice
+        = yield

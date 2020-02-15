@@ -90,6 +90,16 @@ select {
   }
 }
 
+/* background */
+.top-background {
+  min-height: 100vh;
+  background-image: image-url("common/bg-top.png");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+
 /* ユーザー */
 
 /* 登録・更新画面のデフォルト表示をシンプルに */
