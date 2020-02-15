@@ -36,17 +36,49 @@ textarea {
   text-align: center;
 }
 
-.circle{
+.p-menuCircle {
   display: inline-block;
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: #ffa500;
+  background: #E4A89A;
   font-size: 12px;
   color: white;
   text-align:center;
   line-height: 100px;
   margin: 5px;
+
+  &__big {
+    @extend .p-menuCircle;
+    background-color: #E8C281;
+    width: 130px;
+    height: 130px;
+    line-height: 130px;
+  }
+
+  &__small {
+    @extend .p-menuCircle;
+    background-color: #DCDCED;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+  }
+
+  &--topColor {
+    @extend .p-menuCircle;
+    background-color: #AD9C8C;
+  }
+
+  &--bottomColor {
+    @extend .p-menuCircle;
+    background-color: #CCC5C5;
+  }
+
+}
+
+.not-decoration:hover {
+  text-decoration: none;
+  color: white;
 }
 
 .top-header {
@@ -78,7 +110,7 @@ h2 {
   padding: 0.4em 0.5em;/*文字の上下 左右の余白*/
   color: #494949;/*文字色*/
   background: #f4f4f4;/*背景色*/
-  border-left: solid 5px #7db4e6;/*左線*/
+  border-left: solid 5px #e8383d;
   border-bottom: solid 3px #d7d7d7;/*下線*/
   font-size: 1.3em;
 }

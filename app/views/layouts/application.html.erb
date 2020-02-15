@@ -75,13 +75,17 @@
     <div class='top-background flexContainer'>
       <% if current_user %>
       <div class='sidebar'>
-        <%= link_to 'ユーザ一覧', admin_users_path, class: 'circle' %>
-        <%= link_to 'コミュニティ管理', admin_communities_path, class: 'circle' %>
-        <%= link_to 'ウマ管理', admin_horses_path, class: 'circle' %>
-        <%= link_to '対局一覧', events_path, class: 'circle' %>
-        <%= link_to 'マイページ', root_path, class: 'circle' %>
-        <%= link_to 'ランキング', rankings_show_path, class: 'circle' %>
-        <%= link_to 'ログアウト', logout_path, method: :delete, class: 'circle' %>
+        <div>
+          <%= link_to 'マイページ', root_path, class: 'p-menuCircle__big not-decoration' %>
+        </div>
+        <%= link_to '対局一覧', events_path, class: 'p-menuCircle--topColor not-decoration' %>
+        <%= link_to 'ランキング', rankings_show_path, class: 'p-menuCircle not-decoration' %>
+        <div>
+          <%= link_to 'ウマ管理', admin_horses_path, class: 'p-menuCircle--bottomColor not-decoration' %>
+        </div>
+        <div>
+          <%= link_to 'ログアウト', logout_path, method: :delete, class: 'p-menuCircle__small not-decoration' %>
+        </div>
       </div>
       <% end %>
 
