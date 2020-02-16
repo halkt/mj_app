@@ -11,6 +11,12 @@ table.table.table-hover
       th = User.human_attribute_name(:name)
       td = @user.name
     tr
+      th = User.human_attribute_name(:icon)
+      td = image_tag(@user.icon_url, :size =>'64x96') if @user.icon.present?
+    tr
+      th = User.human_attribute_name(:icon)
+      td = image_tag("common/user-icon.png", :size =>'64x96')
+    tr
       th = User.human_attribute_name(:login_flg)
       - if @user.login_flg?
         td = 'ログインユーザー（ログイン可能）'

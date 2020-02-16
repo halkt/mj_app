@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  mount_uploader :icon, PictureUploader
   # digest作成用の関数を宣言
   has_secure_password(validations: false)
 
