@@ -27,7 +27,7 @@ textarea {
 
 .main-container {
   display: block;
-  width: 85%;
+  width: 65%;
   margin-right: 20px;
 }
 
@@ -89,6 +89,7 @@ textarea {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
+  font-family: 'メイリオ', 'Meiryo', 'Hiragino Sans', 'ヒラギノ角ゴシック', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'ＭＳ Ｐゴシック', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 h1 {
@@ -107,7 +108,7 @@ h1 {
 // }
 
 h2 {
-  padding: 0.4em 0.5em;/*文字の上下 左右の余白*/
+  padding: 0.4em 0.5em;
   color: #494949;/*文字色*/
   background: #f4f4f4;/*背景色*/
   border-left: solid 5px #e8383d;

@@ -1,9 +1,9 @@
 class EventsController < ApplicationController
   def index
     if current_user.admin?
-      @events = Event.all.order(:id)
+      @events = Event.all.order(day: "DESC")
     else
-      @events = current_user.events.order(:id)
+      @events = Event.filter_user(current_user.id).order(day: "DESC")
     end
   end
 

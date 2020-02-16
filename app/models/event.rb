@@ -11,6 +11,9 @@ class Event < ApplicationRecord
   validates :day, presence: true
   validates :description, length: { maximum: 140 }
 
+  # scope
+  scope :filter_user, -> (user_id) { joins(:event_users).where('event_users.user_id = ?', user_id) }
+
   # イベントのユーザーの合計スコアを返す
   def sum_user_score(user_id)
     sum_user_score = 0
