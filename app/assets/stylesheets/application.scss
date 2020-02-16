@@ -27,11 +27,19 @@ textarea {
 
 .main-container {
   display: block;
-  width: 65%;
+  width: 100%;
   margin-right: 20px;
+
+  @media screen and (min-width:480px) {
+    width: 65%;
+  }
+
 }
 
 .sidebar {
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
   width: 15%;
   text-align: center;
 }

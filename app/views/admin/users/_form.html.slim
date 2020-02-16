@@ -3,6 +3,9 @@
   .form-group
     = f.label :name
     = f.text_field :name, class: 'form-control', id:'user_name', placeholder:'名前やニックネームを入力してください'
+  .form-group
+    = f.label :icon
+    = f.file_field :icon, class: 'form-control', id:'user_icon'
   .form-check
     = f.label :login_flg, class: 'form-check-label' do
       = f.check_box :login_flg, class: 'form-check-input', onclick: "displayInputForm()"

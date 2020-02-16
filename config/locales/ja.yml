@@ -21,6 +21,7 @@ ja:
           password_confirmation: パスワード（確認）
           admin: 管理者権限
           login_flg: ログイン権限
+          icon: アイコン画像
         event:
           id: イベントID
           name: 対局名
