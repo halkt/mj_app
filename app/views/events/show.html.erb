@@ -1,41 +1,27 @@
 <% # 合計成績 %>
 <% if @event_users.present? %>
-  <div>
-    <h2>合計成績</h2>
-    <div class='mb-3'>
-      <table class='table table-hover'>
-        <thead class='thead-default'>
-          <tr>
-            <th></th>
-            <th></th>
-            <% @event_users.each do |event_user| %>
-              <th><%= event_user.name %></th>
-            <% end %>
-            <% if @event.games.present? %>
-              <tbody>
-                <tr>
-                  <th>
-                    <td>合計</td>
-                    <% @event_users.each do |event_user| %>
-                      <td><%= @event.sum_user_score(event_user.id).round(2) %></td>
-                    <% end %>
-                  </th>
-                </tr>
-                <tr>
-                  <th>
-                    <td>順位</td>
-                    <% @event_users.each do |event_user| %>
-                      <td><%= @event.user_rank(event_user.id) %></td>
-                    <% end %>
-                  </th>
-                </tr>
-              </tbody>     
-            <% end %>
-            <td><%= simple_format(h(@event.description), {}, sanitize: false, wrapper_tag: "div") %></td>
-          </tr>
-        </thead>
-      </table>
-    </div>
+  <% # 合計成績(新) %>
+  <h2>成績</h2>
+
+  <div class='mb-3'>
+    <table class='table table-hover'>
+      <thead class='thead-default'>
+        <tr>
+          <th><%= GameDetail.human_attribute_name(:rank) %></th>
+          <th><%= User.human_attribute_name(:name) %></th>
+          <th><%= GameDetail.human_attribute_name(:score) %></th>
+        </tr>
+        <tbody>
+          <% @gamedetails.each_with_index do |gamedetail, index| %>
+            <tr>
+              <td><%= "#{index + 1} 位" %></td>
+              <td><%= User.find(gamedetail[0]).name %></td>
+              <td><%= gamedetail[1].round(2) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </thead>
+    </table>
   </div>
 <% end %>
 

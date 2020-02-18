@@ -12,6 +12,8 @@ class EventsController < ApplicationController
     @event_users = @event.users.order(:id)
     @game = Game.joins(:event).where(event_id: params[:id]).order(:created_at)
     @community_name = Community.find(@event.community_id).name
+    game_ids = @game.pluck(:id)
+    @gamedetails = GameDetail.where(game_id: game_ids).group_by_sum_score
   end
 
   def new
