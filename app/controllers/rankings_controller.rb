@@ -1,5 +1,5 @@
 class RankingsController < ApplicationController
   def show
-    @gamedetails = GameDetail.limit(10).order('sum_score desc').group(:user_id).sum(:score)
+    @gamedetails = GameDetail.group_by_sum_score
   end
 end

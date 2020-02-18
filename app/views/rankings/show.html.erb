@@ -1,0 +1,22 @@
+<h2>ランキング(上位10名)</h2>
+
+<div class='mb-3'>
+  <table class='table table-hover'>
+    <thead class='thead-default'>
+      <tr>
+        <th><%= GameDetail.human_attribute_name(:rank) %></th>
+        <th><%= User.human_attribute_name(:name) %></th>
+        <th><%= GameDetail.human_attribute_name(:score) %></th>
+      </tr>
+      <tbody>
+        <% @gamedetails.each_with_index do |gamedetail, index| %>
+          <tr>
+            <td><%= "#{index + 1} 位" %></td>
+            <td><%= User.find(gamedetail[0]).name %></td>
+            <td><%= gamedetail[1].round(2) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </thead>
+  </table>
+</div>
