@@ -5,6 +5,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
+import Layout from "./components/Header"
 
 const Hello = props => (
   <div>Hello {props.name}!</div>

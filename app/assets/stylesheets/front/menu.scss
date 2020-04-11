@@ -1,0 +1,40 @@
+// 汎用的なやつ
+.p-menuBtn {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  color: #67c5ff;
+  border: double 4px #67c5ff;
+  border-radius: 3px;
+  transition: .4s;
+}
+.p-menuBtn:hover {
+  background: #fffbef;
+}
+
+// ヘッダー
+.p-mainHeader {
+  background-color: #55c500;
+  color: #fff;
+}
+
+.p-mainBody {
+  background-color: #f6f6f4;
+  margin: 10px 0;
+}
+
+.p-mainFooter {
+  background-color: #3e3e3e;
+  color: #fff;
+}
+
+// menu用
+.p-menuContainer {
+  display: flex;
+  padding: 10px;
+}
+
+.p-menuBtn {
+  flex-basis: 25%;
+  margin: 5px;
+}
