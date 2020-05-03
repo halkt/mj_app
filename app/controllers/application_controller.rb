@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Response
+  include ExceptionHandler
   helper_method :current_user
   before_action :login_required
 

@@ -12,6 +12,7 @@ class User < ApplicationRecord
 
   # 特定のコミュニティに所属するユーザーを抽出する
   scope :affiliation_community, -> (communities) { where(id: CommunityUser.where(community_id: communities)) }
+  scope :filter_admin_scope, -> { where(admin: true) }
 
   # 名称のバリデーションチェック
   validates :name, presence: true, length: { maximum: 50 }

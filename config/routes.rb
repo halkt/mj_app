@@ -6,13 +6,19 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get 'static_pages/help'
+  get '/sample', to: 'sample#index', as: 'sample'
   namespace :admin do
     resources :users
     resources :communities
     resources :horses, only:[ :index, :create, :new, :destroy, :edit, :update]
   end
   resources :events do
-      delete :event_users, to: 'event_users#destroy_all'
-      resources :games, only:[ :create, :new, :edit, :update, :show, :destroy ]
+    delete :event_users, to: 'event_users#destroy_all'
+    resources :games, only:[ :create, :new, :edit, :update, :show, :destroy ]
+  end
+
+  # API用
+  namespace :api do
+    get 'users/users_list', to: 'users#users_list'
   end
 end
