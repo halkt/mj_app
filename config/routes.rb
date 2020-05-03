@@ -13,7 +13,12 @@ Rails.application.routes.draw do
     resources :horses, only:[ :index, :create, :new, :destroy, :edit, :update]
   end
   resources :events do
-      delete :event_users, to: 'event_users#destroy_all'
-      resources :games, only:[ :create, :new, :edit, :update, :show, :destroy ]
+    delete :event_users, to: 'event_users#destroy_all'
+    resources :games, only:[ :create, :new, :edit, :update, :show, :destroy ]
+  end
+
+  # API用
+  namespace :api do
+    get 'users/users_list', to: 'users#users_list'
   end
 end
