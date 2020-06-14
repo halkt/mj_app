@@ -33,6 +33,18 @@ services:
       - 80:80
     depends_on:
       - app
+      - client
+  client:
+    build: containers/client
+    command: yarn start
+    volumes:
+      - ./containers/client:/myapp/client
+    ports:
+      - "${CLIENT_PORT}:3000"
+    tty: true
+    depends_on:
+      - app
+
 volumes:
   public-data:
   tmp-data:
