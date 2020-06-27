@@ -3,3 +3,14 @@ inherit_from: .rubocop_todo.yml
 AllCops:
   TargetRubyVersion: 2.5
 
+  # Rails向けのRails copsを実行。"rubocop -R"と同じ
+  Rails:
+    Enabled: true
+
+# "Missing top-level class documentation comment."を無効
+Style/Documentation:
+  Enabled: false
+
+# Use only ascii symbols in comments.
+AsciiComments:
+  Enabled: false
