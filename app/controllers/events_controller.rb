@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class EventsController < ApplicationController
   def index
     if current_user.admin?
-      @events = Event.all.order(day: "DESC")
+      @events = Event.all.order(day: :desc)
     else
-      @events = Event.filter_user(current_user.id).order(day: "DESC")
+      @events = Event.filter_user(current_user.id).order(day: :desc)
     end
   end
 
@@ -60,7 +62,10 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :day, :community_id, :description, { :user_ids=> [] } )
+    params.require(:event).permit(:name,
+                                  :day,
+                                  :community_id,
+                                  :description,
+                                  { user_ids: [] })
   end
-
 end

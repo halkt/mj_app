@@ -1,0 +1,59 @@
+<h2>成績詳細</h2>
+
+<div class='nav justify-content-end'>
+  <%= link_to '対局情報に戻る' , event_path(params[:event_id]), class: 'nav-link' %>
+</div>
+
+<div class='card vertical-margin-medium'>
+  <div class='card-header text-black bg-Light'>
+    ルール
+  </div>
+
+  <table class='table table-hover'>
+    <tbody>
+      <tr>
+        <th><%= Game.human_attribute_name(:genten) %></th>
+        <td><%= @game.genten %></td>
+      </tr>
+      <tr>
+        <th><%= Game.human_attribute_name(:kaeshiten) %></th>
+        <td><%= @game.genten %></td>
+      </tr>
+      <tr>
+        <th><%= "順位ウマ" %></th>
+        <td><%= @game.horse.name %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class='card vertical-margin-medium'>
+  <div class='card-header text-black bg-Light'>
+    成績
+  </div>
+
+  <table class='table table-hover'>
+    <thead class='thead-default'>
+      <tr>
+        <th><%= GameDetail.human_attribute_name(:rank) %></th>
+        <th><%= User.human_attribute_name(:name) %></th>
+        <th><%= GameDetail.human_attribute_name(:point) %></th>
+        <th><%= GameDetail.human_attribute_name(:score) %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @game.game_detail.order(:rank).each do |game_detail| %>
+        <tr>
+          <td><%= game_detail.rank %>位</td>
+          <td><%= game_detail.user.name %></td>
+          <td><%= game_detail.point %>点</td>
+          <td><%= game_detail.score %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to '編集', edit_event_game_path(params[:event_id]), class: 'btn btn-primary mr-3' %>
+<%= link_to '削除', [:event, @game], method: :delete, data: { confirm: "この成績（ID:#{@game.id}）を削除します。よろしいですか？"}, class: 'btn btn-danger' %>

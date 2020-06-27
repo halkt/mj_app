@@ -1,36 +1,27 @@
+# frozen_string_literal: true
+
 class MypagesController < ApplicationController
   def show
-    # すべての起点
     @gamedetails = GameDetail.where(user_id: current_user.id)
+    @recent_details = @gamedetails.order(id: :desc).limit(10)
+    @chart = generate_chart
+    set_average_variable
+  end
 
-    # 合計対局数
-    @counts = @gamedetails.count
+  private
 
-    # スコア
-    @scoreSum = @gamedetails.sum(:score)
-    @scoreAvg = @scoreSum.to_f/@counts.to_f
+  def set_average_variable
+    game_count = @gamedetails.count
+    @average_score = @gamedetails.sum(:score) / game_count.to_f
+    @average_rank = @gamedetails.sum(:rank) / game_count.to_f
+    @average_top = @gamedetails.where(rank: 1).count / game_count.to_f * 100
+  end
 
-    # 順位
-    rankSum = @gamedetails.sum(:rank)
-    @rankAvg = rankSum.to_f/@counts.to_f
-
-    # 順位
-    @rankSum = @gamedetails.sum(:rank)
-    @rankAvg = @rankSum.to_f/@counts.to_f
-
-    # 順位表示用変数
+  def generate_chart
     top = @gamedetails.where(rank: 1).count
     second = @gamedetails.where(rank: 2).count
     third = @gamedetails.where(rank: 3).count
     last = @gamedetails.where(rank: 4).count
-
-    # トップ率
-    @topAvg = top.to_f/@counts.to_f*100
-
-    # 円グラフ
-    @chart = [['1着', top], ['2着', second], ['3着', third], ['4着', last]]
-
-    # 最近の成績
-    @recentdetails = @gamedetails.order(id: "DESC").limit(10)
+    [['1着', top], ['2着', second], ['3着', third], ['4着', last]]
   end
 end
