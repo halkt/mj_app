@@ -64,8 +64,12 @@
         <div>
           <%= link_to 'マイページ', root_path, class: 'p-menuCircle__big not-decoration' %>
         </div>
-        <%= link_to '対局一覧', events_path, class: 'p-menuCircle--topColor not-decoration' %>
-        <%= link_to 'ランキング', rankings_show_path, class: 'p-menuCircle not-decoration' %>
+        <div>
+          <%= link_to '対局一覧', events_path, class: 'p-menuCircle--topColor not-decoration' %>
+        </div>
+        <div>
+          <%= link_to 'ランキング', rankings_show_path, class: 'p-menuCircle not-decoration' %>
+        </div>
         <div>
           <%= link_to 'ウマ管理', admin_horses_path, class: 'p-menuCircle--bottomColor not-decoration' %>
         </div>

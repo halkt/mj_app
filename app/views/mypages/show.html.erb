@@ -1,5 +1,5 @@
 <h2>マイページ</h2>
-<% if @counts == 0 %>
+<% if @gamedetails.count.zero? %>
   <%= render partial: 'no_record' %>
 <% else %>
   <%= render partial: 'mypage' %>

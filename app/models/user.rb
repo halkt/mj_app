@@ -35,7 +35,7 @@ class User < ApplicationRecord
   validates :login_flg, inclusion: {in: [true, false]}
 
   # パスワードの長さを定義する。空更新を許可する
-  validates :password, presence: true, if: :login_flg?
+  # validates :password, presence: true, if: :login_flg?
   validates :password, length: { minimum: 6 }, allow_nil: true, allow_blank: true
   
   # 説明のバリデーションチェック
