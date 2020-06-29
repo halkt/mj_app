@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
   # ログインしていなくても利用可能
   skip_before_action :login_required
@@ -21,8 +23,8 @@ class SessionsController < ApplicationController
   end
 
   private
+
   def session_params
     params.require(:session).permit(:mail, :password)
   end
-
 end
