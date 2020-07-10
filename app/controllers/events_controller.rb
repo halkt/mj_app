@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class EventsController < ApplicationController
-  befeore_action :set_event, only: %i[show edit update]
+  before_action :set_event, only: %i[show edit update]
 
   def index
     @events = if current_user.admin?
@@ -61,7 +61,7 @@ class EventsController < ApplicationController
   private
 
   def set_event
-    @event = Event.find(params(:id))
+    @event = Event.find(params[:id])
   end
 
   def event_params
