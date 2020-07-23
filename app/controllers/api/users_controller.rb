@@ -1,5 +1,6 @@
-class Api::UsersController < ApplicationController
+# frozen_string_literal: true
 
+class Api::UsersController < ApplicationController
   def users_list
     @users = User.all.select(:id, :name, :icon, :mail)
     json_response(@users)
@@ -16,6 +17,10 @@ class Api::UsersController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :day, :community_id, :description, { :user_ids=> [] } )
+    params.require(:event).permit(:name,
+                                  :day,
+                                  :community_id,
+                                  :description,
+                                  { user_ids: [] })
   end
 end
