@@ -1,8 +1,12 @@
-class Community < ApplicationRecord
-    has_many :community_users
-    has_many :users, through: :community_users
-    has_many :events
+# frozen_string_literal: true
 
-    # 特定のユーザーが所属しているコミュニティ
-    scope :affiliation_user, -> (user_id) { joins(:users).where(users: {id: user_id}) }
+class Community < ApplicationRecord
+  has_many :community_users, dependent: :destroy
+  has_many :users, through: :community_users
+  has_many :events, dependent: :destroy
+
+  # 特定のユーザーが所属しているコミュニティ
+  scope :affiliation_user, (lambda do |user_id|
+    joins(:users).where(users: { id: user_id })
+  end)
 end
