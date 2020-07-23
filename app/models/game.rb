@@ -1,82 +1,60 @@
+# frozen_string_literal: true
+
 class Game < ApplicationRecord
-  # リレーションを定義する
   belongs_to :event
   belongs_to :horse
-  has_many :game_detail, :dependent => :destroy # 他テーブルの情報もまとめて削除する
+  has_many :game_detail, dependent: :destroy
   accepts_nested_attributes_for :game_detail, allow_destroy: true, limit: 4
 
   # バリデーション
-  validates :genten, presence: true, numericality: true, length: { maximum: 5 }
-  validates :kaeshiten, presence: true, numericality: true, length: { maximum: 5 }
+  validates :genten,
+            presence: true,
+            numericality: true,
+            length: { maximum: 5 }
+  validates :kaeshiten,
+            presence: true,
+            numericality: true,
+            length: { maximum: 5 }
   validates :description, length: { maximum: 140 }
-
-  # バリデーション（メソッド）
-  validate :pointCheck
-  validate :userCheck
+  validate :sum_point_check
+  validate :user_check
 
   # コールバック関数の設定
-  before_save :calc_score
-  before_update :calc_score
+  before_save :update_details
+  before_update :update_details
 
-  # プライベートメソッドの定義
+  # ポイントからスコアを計算して保存する
+  def update_details
+    game_detail.order(point: :desc).each_with_index do |detail, index|
+      detail.update_rank(index + 1)
+      detail.update_score
+    end
+  end
+
   private
 
-  def calc_score
-    i = 0
-    self.game_detail.order(point: "DESC").each do |gamedetail|
-      i += 1
-      gamedetail.attributes = {rank: i}
-      score = calc_horse(gamedetail) # ウマ計算
-      score = score - self.kaeshiten
-
-      # 1位の場合のみオカを加算する
-      if gamedetail.rank == 1
-        score = score + (self.kaeshiten - self.genten)*4
-      end
-
-      score = score.to_f/1000
-
-      # 更新
-      gamedetail.attributes = {score: score}
-      gamedetail.save!
-    end
-  end
-
-  def calc_horse(gamedetail)
-    case gamedetail.rank
-      when 1 then
-        gamedetail.point + Horse.find(self.horse_id).point2
-      when 2 then
-        gamedetail.point + Horse.find(self.horse_id).point1
-      when 3 then
-        gamedetail.point - Horse.find(self.horse_id).point1
-      when 4 then
-        gamedetail.point - Horse.find(self.horse_id).point2
-      else
-        exit
-    end
-  end
-
   # [エラーチェック]合計点数の妥当性のチェック
-  def pointCheck
-    sum = 0
-    self.game_detail.each do |x|
-      sum += x.point if x.point.present?
-    end
-    total = self.genten * 4
-    errors.add(:base, "点棒の合計点数が「#{sum.to_s(:delimited)}点」です。「#{total.to_s(:delimited)}点」になるよう再入力してください。") if total != sum
+  def sum_point_check
+    expected_sum_point = genten * 4
+    sum_point = game_detail.pluck(:point).sum
+    return if expected_sum_point == sum_point
+
+    error_message = generate_error_message_for_point(expected_sum_point,
+                                                     sum_point)
+    errors.add(:base, error_message)
   end
 
   # [エラーチェック]同じユーザーが登録されていないこと
-  def userCheck
-    userAry = Array.new
-    self.game_detail.each do |user|
-      if userAry.include?(user.user_id)
-        errors.add(:base, "「#{user.user.name}」が重複しています。") if user.user_id.present?
-      else
-        userAry.push(user.user_id)# user追加
-      end
-    end
+  def user_check
+    user_ids = game_detail.pluck(:user_id)
+    return if (user_ids.count - user_ids.uniq.count).zero?
+
+    errors.add(:base, 'ユーザーが重複しています。')
   end
 
+  def generate_error_message_for_point(expected_sum_point, sum_point)
+    text1 = "点棒の合計点数が「#{sum_point.to_s(:delimited)}点」です。"
+    text2 = "「#{expected_sum_point.to_s(:delimited)}点」になるよう再入力してください。"
+    text1 + text2
+  end
 end

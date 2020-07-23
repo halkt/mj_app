@@ -2,7 +2,7 @@
 
 class GamesController < ApplicationController
   before_action :set_event_users, only: %i[new edit create update]
-  before_action :set_game, only: %i[edit update create show destroy]
+  before_action :set_game, only: %i[edit update show destroy]
   def new
     @event = Event.find(params[:event_id])
     @game = Game.new
