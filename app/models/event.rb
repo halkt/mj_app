@@ -1,9 +1,9 @@
-# frozen_string_literal
+# frozen_string_literal: true
 
 class Event < ApplicationRecord
-  has_many :event_users, :dependent => :destroy
+  has_many :event_users, dependent: :destroy
   has_many :users, through: :event_users
-  has_many :games, :dependent => :destroy
+  has_many :games, dependent: :destroy
   belongs_to :community
   accepts_nested_attributes_for :event_users, allow_destroy: true
 
@@ -11,7 +11,9 @@ class Event < ApplicationRecord
   validates :day, presence: true
   validates :description, length: { maximum: 140 }
 
-  scope :filter_user, ->(user_id) { joins(:event_users).where('event_users.user_id = ?', user_id) }
+  scope :filter_user, (lambda do |user_id|
+    joins(:event_users).where('event_users.user_id = ?', user_id)
+  end)
 
   # イベントのユーザーの合計スコアを返す
   def sum_user_score(user_id)

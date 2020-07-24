@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
   # ログインしていなくても利用可能
   skip_before_action :login_required
 
-  def new
-  end
+  def new; end
 
   def create
     user = User.find_by(mail: session_params[:mail])
@@ -21,8 +22,8 @@ class SessionsController < ApplicationController
   end
 
   private
+
   def session_params
     params.require(:session).permit(:mail, :password)
   end
-
 end

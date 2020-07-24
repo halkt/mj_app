@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 
 class EventsController < ApplicationController
+  before_action :set_event, only: %i[show edit update]
+
   def index
-    if current_user.admin?
-      @events = Event.all.order(day: :desc)
-    else
-      @events = Event.filter_user(current_user.id).order(day: :desc)
-    end
+    @events = if current_user.admin?
+                Event.all.order(day: :desc)
+              else
+                Event.filter_user(current_user.id).order(day: :desc)
+              end
   end
 
   def show
-    @event = Event.find(params[:id])
     @event_users = @event.users.order(:id)
     @game = Game.joins(:event).where(event_id: params[:id]).order(:created_at)
     @community_name = Community.find(@event.community_id).name
@@ -26,7 +27,6 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:id])
     @communities = Community.affiliation_user(current_user.id)
     @users = User.affiliation_community(@communities.pluck(:id))
   end
@@ -43,7 +43,6 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event = Event.find(params[:id])
     if @event.update(event_params)
       redirect_to event_path(params[:id]), notice: "対局「#{@event.name}」を更新しました。"
     else
@@ -60,6 +59,10 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
   def event_params
     params.require(:event).permit(:name,

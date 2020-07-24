@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::UsersController < ApplicationController
   before_action :require_admin
 
@@ -41,14 +43,22 @@ class Admin::UsersController < ApplicationController
     if @user.destroy
       redirect_to admin_users_url, notice: "ユーザー「#{@user.name}」を削除しました。"
     else
-      redirect_to admin_users_url, notice: "#{@user.errors.messages[:base].join('。')}"
+      error_message = @user.errors.messages[:base].join('。').to_s
+      redirect_to admin_users_url, notice: error_message
     end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :mail, :description, :admin, :password, :password_confirmation, :login_flg, :icon)
+    params.require(:user).permit(:name,
+                                 :mail,
+                                 :description,
+                                 :admin,
+                                 :password,
+                                 :password_confirmation,
+                                 :login_flg,
+                                 :icon)
   end
 
   def require_admin

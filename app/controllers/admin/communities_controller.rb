@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 class Admin::CommunitiesController < ApplicationController
   before_action :require_admin
+  before_action :set_event, only: %i[show edit update destroy]
 
   def index
     @communities = Community.all.order(:id)
   end
 
-  def show
-    @community = Community.find(params[:id])
-  end
+  def show; end
 
   def new
     @community = Community.new
@@ -15,45 +16,61 @@ class Admin::CommunitiesController < ApplicationController
   end
 
   def edit
-    @community = Community.find(params[:id])
-    @users = User.all.order(:id)
+    @user = User.all.order(:id)
   end
 
   def create
     @community = Community.new(community_params)
     if @community.save
-      redirect_to admin_community_path(@community), notice: "コミュニティ「#{@community.name}」を登録しました。"
+      message = get_create_notice_message(@community.name)
+      redirect_to admin_community_path(@community), notice: message
     else
       render :new
     end
   end
 
   def update
-    @community = Community.find(params[:id])
-
     if @community.update(community_params)
-      redirect_to admin_community_path(@community), notice: "コミュニティ「#{@community.name}」を更新しました。"
+      message = get_update_notice_message(@community.name)
+      redirect_to admin_community_path(@community), notice: message
     else
       render :new
     end
   end
 
   def destroy
-    @community = Community.find(params[:id])
-    if @community.destroy
-      redirect_to admin_communities_url, notice: "コミュニティ「#{@community.name}」を削除しました。"
+    if @commnity.destroy
+      message = get_delete_notice_message(@community.name)
+      redirect_to admin_communities_url, notice: message
     else
-      redirect_to admin_communities_url, notice: "#{@community.errors.messages[:base].join('。')}"
+      error_message = @community.errors.messages[:base].join('。').to_s
+      redirect_to admin_communities_url, notice: error_message
     end
   end
 
   private
 
+  def set_community
+    @community = Community.find(params[:id])
+  end
+
   def community_params
-    params.require(:community).permit(:name, :description, { :user_ids=> [] })
+    params.require(:community).permit(:name, :description, { user_ids: [] })
   end
 
   def require_admin
     redirect_to root_path unless current_user.admin?
+  end
+
+  def get_create_notice_message(community_name)
+    "コミュニティ「#{community_name}」を登録しました。"
+  end
+
+  def get_update_notice_message(community_name)
+    "コミュニティ「#{community_name}」を更新しました。"
+  end
+
+  def get_delete_notice_message(community_name)
+    "コミュニティ「#{community_name}」を削除しました。"
   end
 end

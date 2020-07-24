@@ -35,7 +35,7 @@
   <table class='table table-hover'>
     <thead class='thead-default'>
       <tr>
-        <th><%= GameDetail.human_attribute_name(:rank) %></th>
+        <th><%= GameDetail.human_attribute_name(:rank) %><th>
         <th><%= User.human_attribute_name(:name) %></th>
         <th><%= GameDetail.human_attribute_name(:point) %></th>
         <th><%= GameDetail.human_attribute_name(:score) %></th>
@@ -44,12 +44,12 @@
 
     <tbody>
       <% @game.game_detail.order(:rank).each do |game_detail| %>
-        <tr>
-          <td><%= game_detail.rank %>位</td>
-          <td><%= game_detail.user.name %></td>
-          <td><%= game_detail.point %>点</td>
-          <td><%= game_detail.score %></td>
-        </tr>
+      <tr>
+        <td><%= game_detail.rank %>位</td>
+        <td><%= game_detail.user.name %></td>
+        <td><%= game_detail.point %>点</td>
+        <td><%= game_detail.score %></td>
+      </tr>
       <% end %>
     </tbody>
   </table>
