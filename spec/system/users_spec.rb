@@ -1,14 +1,28 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'ユーザー管理機能' , type: :system do
-  let(:user_a) { FactoryBot.create(:user, name: '管理者', mail: 'admin@example.com', admin: true ) }
-  let(:user_b) { FactoryBot.create(:user, name: '一般人', mail: 'civil@example.com', admin: false ) }
+  let(:user_a) do
+    FactoryBot.create(:user,
+                      name: '管理者',
+                      mail: 'admin@example.com',
+                      admin: true,
+                      login_flg: true)
+  end
+  let(:user_b) do
+    FactoryBot.create(:user,
+                      name: '一般人',
+                      mail: 'civil@example.com',
+                      admin: false,
+                      login_flg: true)
+  end
 
   before do
     visit login_path
     fill_in 'メールアドレス', with: login_user.mail
     fill_in 'パスワード', with: login_user.password
-    click_button 'ログインする'
+    click_button 'ログイン'
   end
 
   shared_examples_for '登録したユーザーが表示される' do
@@ -53,7 +67,7 @@ describe 'ユーザー管理機能' , type: :system do
 
   describe '新規作成機能' do
     let(:login_user) { user_a }
-    
+
     before do
       visit new_admin_user_path
       fill_in '名前', with: user_name
@@ -64,11 +78,11 @@ describe 'ユーザー管理機能' , type: :system do
     end
 
     context '新規作成画面でユーザー情報を正しく入力したとき' do
-      let(:user_name) {'テストくん'}
-      let(:user_mail) {'testXXX@example.com'}
-      let(:user_password) {'password'}
-      let(:user_password_confirm) {'password'}
-      
+      let(:user_name) { 'テストくん' }
+      let(:user_mail) { 'testXXX@example.com' }
+      let(:user_password) { 'password' }
+      let(:user_password_confirm) { 'password' }
+
       it '正常に登録される' do
         expect(page).to have_selector '.alert-success', text: 'テストくん'
       end
