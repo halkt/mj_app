@@ -1,0 +1,7 @@
+<h2>コミュニティの新規登録</h2>
+
+<div class='nav justify-content-end'>
+  <%= link_to '一覧' , admin_communities_path, class: 'nav-link' %>
+</div>
+
+<%= render partial: 'form', locals: { community: @community } %>

@@ -1,0 +1,38 @@
+<h2>コミュニティ情報</h2>
+
+<div class='nav justify-content-end'>
+  <%= link_to '一覧' , admin_communities_path, class: 'nav-link' %>
+</div>
+
+<table class='table table-hover'>
+  <tbody>
+    <tr>
+      <th><%= Community.human_attribute_name(:name) %></th>
+      <td><%= @community.name %></td>
+    </tr>
+    <tr>
+      <th><%= Community.human_attribute_name(:created_at) %></th>
+      <td><%= @community.created_at %></td>
+    </tr>
+    <tr>
+      <th><%= Community.human_attribute_name(:updated_at) %></th>
+      <td><%= @community.updated_at %></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2><%= "所属メンバー（#{@community.users.count}名）" %></h2>
+
+<table class='table table-hover'>
+  <tbody>
+    <% @community.users.each do |user| %>
+      <tr>
+        <th><%= Community.human_attribute_name(:name) %></th>
+        <td><%= user.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to '編集', edit_admin_community_path, class: 'btn btn-primary mr-3' %>
+<%= link_to '削除', [:admin, @community], method: :delete, data: { confirm: "ユーザー「#{@community.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger' %>
