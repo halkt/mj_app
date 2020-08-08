@@ -1,0 +1,7 @@
+<h2>ユーザーの詳細</h2>
+
+<div class='nav justify-content-end'>
+  <%= link_to 'ウマ一覧' , admin_users_path, class: 'nav-link' %>
+</div>
+
+<%= render partial: 'form', locals: { user: @user } %>
