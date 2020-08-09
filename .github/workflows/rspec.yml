@@ -61,7 +61,8 @@ jobs:
       run:  yarn install --check-files
     - name: migration
       run: |
-        touch config/master.key
+        rm config/credentials.yml.enc
+        sudo EDITOR=vim rails credentials:edit
         bundle exec rails db:create
         bundle exec rails db:migrate
     - name: run rspec
