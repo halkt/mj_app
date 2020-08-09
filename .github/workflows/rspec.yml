@@ -25,7 +25,7 @@ jobs:
           - 33060:3306
         env:
           MYSQL_USER: root
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_ROOT_PASSWORD: password
           BIND-ADDRESS: 0.0.0.0
     #container:
       #image: ruby:2.6.3
