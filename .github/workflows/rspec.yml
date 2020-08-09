@@ -62,7 +62,7 @@ jobs:
     - name: migration
       run: |
         rm config/credentials.yml.enc
-        sudo EDITOR=vim rails credentials:edit
+        bundle exec EDITOR=vim rails credentials:edit
         bundle exec rails db:create
         bundle exec rails db:migrate
     - name: run rspec
