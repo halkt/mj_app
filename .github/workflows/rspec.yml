@@ -26,7 +26,7 @@ jobs:
       - name: Build and setup
         run: |
           rm -f config/database.yml
-          gem install bundler --no-document -v $(grep "BUNDLED WITH" -1 Gemfile.lock | tail -n 1)
+          sudo gem install bundler --no-document -v $(grep "BUNDLED WITH" -1 Gemfile.lock | tail -n 1)
           bundle config set deployment 'true'
           bundle install --jobs 4 --retry 3
           bundle exec rails db:setup assets:precompile
