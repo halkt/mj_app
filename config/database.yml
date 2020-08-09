@@ -68,6 +68,7 @@ development:
 test:
   <<: *default
   database: mj_app_test
+  port: <%= ENV['DB_TEST_PORT'] %>
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
