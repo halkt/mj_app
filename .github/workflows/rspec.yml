@@ -58,7 +58,7 @@ jobs:
         bundle install --jobs 4 --retry 3 --path vendor/bundle
     - name: yarn install
       run:  yarn install --check-files
-        - name: migration
+    - name: migration
       run: |
         bundle exec rake db:create
         bundle exec rake db:test:prepare
