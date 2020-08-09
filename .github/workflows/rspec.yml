@@ -54,7 +54,7 @@ jobs:
           ${{ runner.os }}-node-
     - name: bundle install
       run: |
-        gem install bundler
+        gem install bundler:1.16.6
         bundle install --jobs 4 --retry 3 --path vendor/bundle
     - name: yarn install
       run:  yarn install --check-files
