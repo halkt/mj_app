@@ -30,10 +30,10 @@ jobs:
       #image: ruby:2.6.3
     steps:
     - uses: actions/checkout@v1
-    - name: Set up Ruby 2.6
+    - name: Set up Ruby 2.5
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: 2.6.x
+        ruby-version: 2.5.x
     - name: apt-get
       run: |
         sudo apt-get update
