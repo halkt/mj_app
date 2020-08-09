@@ -1,19 +1,6 @@
 name: Ruby
 
-# masterブランチへのPR時の実行
-on:
-  pull_request:
-    branches:
-    - master
-    - development
-    # ex.
-    # # Trigger the workflow on push or pull request
-    # on: [push, pull_request]
-    # # Trigger the workflow on pull request activity
-    # on:
-    #   release
-    #     # Only use the types keyword to narrow down the activity types that will trigger your workflow.
-    #     types: [published, created, edited]
+on: [push]
 
 jobs:
   run_spec:
@@ -22,22 +9,26 @@ jobs:
     # ジョブを実行する仮想マシンを選択（ubuntu/macOS/Windows)
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:5.7
+        options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10
+        env:
+          MYSQL_ROOT_PASSWORD: mysql123
+      container:
+        image: ruby:2.5.1
+        env:
+          DATABASE_URL: mysql2://root:mysql123@mysql:3306/rails6_sample
+
     steps:
-    # actions/checkoutリポジトリのaction.ymlを利用する
-    - uses: actions/checkout@v1 # https://github.com/actions/checkout/blob/master/action.yml
-        # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsuses
-        #   @~でバージョンやブランチ、コミットIDを指定できる
-        #   自リポジトリのaction.ymlがあるディレクトリを相対パスで指定することもできる
-        #     ex. uses: ./.github/actions/my-action
-        #   Dockerhubのイメージを利用することもできる
-        #     ex. uses: docker://alpine:3.8
-    - name: Set up Ruby 2.5
       # actions/checkoutリポジトリのaction.ymlを利用する
-      uses: actions/setup-ruby@v1 # https://github.com/actions/setup-ruby/blob/master/action.yml
-      with:
-        ruby-version: 2.5.x
-    - name: Test with Rspec
-      run: |
-        gem install bundler
-        bundle install --path vendor/bundle --quiet --jobs 4 --retry 3
-        bundle exec rspec
+      - uses: actions/checkout@v1 # https://github.com/actions/checkout/blob/master/action.yml
+      - name: Build and setup
+        run: |
+          rm -f config/database.yml
+          gem install bundler --no-document -v $(grep "BUNDLED WITH" -1 Gemfile.lock | tail -n 1)
+          bundle config set deployment 'true'
+          bundle install --jobs 4 --retry 3
+          bundle exec rails yarn:install db:setup assets:precompile
+      - name: Exec tests
+        run: bundle exec rspec
