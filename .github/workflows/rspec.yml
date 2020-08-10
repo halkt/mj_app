@@ -17,8 +17,6 @@ jobs:
       RAILS_ENV: test
       DB_TEST_PORT: 33060
       DB_HOST: 127.0.0.1
-      # 以下、ダミー変数
-      DATABASE_URL: 127.0.0.1
     services:
       db:
         image: mysql:5.7.27
