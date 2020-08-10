@@ -60,7 +60,12 @@ jobs:
     - name: yarn install
       run:  yarn install --check-files
     - name: migration
+      env:
+        EDITOR: vim
       run: |
+        rm config/credentials.yml.enc
+        mv config/master.key.test config/master.key
+        mv config/credentials.yml.enc.test config/credentials.yml.enc
         bundle exec rails db:create
         bundle exec rails db:migrate
     - name: run rspec
