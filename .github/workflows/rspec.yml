@@ -64,8 +64,8 @@ jobs:
         EDITOR: vim
       run: |
         rm config/credentials.yml.enc
-        cp config/master.key.test config/master.key
-        cp config/credentials.yml.enc.test config/credentials.yml.enc
+        mv config/master.key.test config/master.key
+        mv config/credentials.yml.enc.test config/credentials.yml.enc
         bundle exec rails db:create
         bundle exec rails db:migrate
     - name: run rspec
