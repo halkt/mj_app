@@ -18,6 +18,7 @@ test:
   <<: *default
   database: mj_app_test
   port: <%= ENV['DB_TEST_PORT'] %>
+  host: <%= ENV['DB_HOST'] %>
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -40,8 +41,10 @@ test:
 #
 production:
   <<: *default
+  <% if Rails.application.credentials.rds.present? %>
   url: <%= ENV['DATABASE_URL'] %>
   host: <%= Rails.application.credentials.rds[:host] %>
   database: <%= Rails.application.credentials.rds[:database] %>
   username: <%= Rails.application.credentials.rds[:username] %>
   password: <%= Rails.application.credentials.rds[:password] %>
+  <% end %>
