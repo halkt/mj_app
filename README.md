@@ -1,5 +1,6 @@
-# MJ-NOTE
 ![Rspec](https://github.com/halkt/mj_app/workflows/Ruby/badge.svg)
+
+# MJ-NOTE
 「MJ-NOTE」は、麻雀の成績を自動計算＆管理できるRails APIアプリケーションです。
 簡単なルールと対局終了の点数を入力することで、自動的にスコアが計算されて登録されます。
 また、過去の成績を照会することや、自分の成績を確認することができます。
