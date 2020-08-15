@@ -16,7 +16,7 @@ class Game < ApplicationRecord
             numericality: true,
             length: { maximum: 5 }
   validates :description, length: { maximum: 140 }
-  validate :sum_point_check
+  validate :check_sum_point
   validate :user_check
 
   # コールバック関数の設定
@@ -24,6 +24,7 @@ class Game < ApplicationRecord
   before_update :update_details
 
   # ポイントからスコアを計算して保存する
+  # TODO: 同点の場合の考慮が足りない
   def update_details
     game_detail.order(point: :desc).each_with_index do |detail, index|
       detail.update_rank(index + 1)
@@ -34,7 +35,7 @@ class Game < ApplicationRecord
   private
 
   # [エラーチェック]合計点数の妥当性のチェック
-  def sum_point_check
+  def check_sum_point
     expected_sum_point = genten * 4
     sum_point = game_detail.pluck(:point).sum
     return if expected_sum_point == sum_point
