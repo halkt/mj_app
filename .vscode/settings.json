@@ -4,5 +4,6 @@
         "html",
         "erb"
       ]
-    }
+    },
+    "editor.tabSize": 2
 }
