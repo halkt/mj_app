@@ -30,13 +30,13 @@ class GameDetail < ApplicationRecord
   def calc_horse(horse)
     case rank
     when 1
-      point + horse.point2
-    when 2
       point + horse.point1
+    when 2
+      point + horse.point2
     when 3
-      point - horse.point1
-    when 4
       point - horse.point2
+    when 4
+      point - horse.point1
     end
   end
 
