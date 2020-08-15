@@ -3,7 +3,7 @@
 <html>
   <head>
     <title>
-      |  麻雀NOTE
+      麻雀NOTE
     </title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -15,8 +15,8 @@
   <body>
     <div class='app-title navbar navbar-expand-md navbar-dark top-header'>
       <h1 class='navbar-brand mb-0'>
-        <%= link_to 'MJ-NOTE', root_path, id: "logo" %>
-      </h1>
+        <%= link_to image_tag("common/header-title-logo.png", :size => '188x40' ), root_path, id: "logo" %>
+        </h1>
       <ul class='navbar-nav ml-auto'>
         <button class='navbar-toggler' aria-controls="navbarNav" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarNav" data-toggle="collapse" type="button">
           <span class='navbar-toggler-icon'></span>
@@ -27,17 +27,17 @@
               <% if current_user.admin? %>
                 <li class='nav-item active'>
                   <a class='nav-link' data-target=".navbar-collapse.show" data-toggle="collapse" href="#">
-                    <%= link_to 'ユーザ一覧', admin_users_path, class: 'nav-link' %>
+                    <%= link_to image_tag("common/user-list.png", :size => '35x35' ), admin_users_path, class: 'nav-link' %>
                   </a>
                 </li>
                 <li class='nav-item active'>
                   <a class='nav-link' data-target=".navbar-collapse.show" data-toggle="collapse" href="#">
-                    <%= link_to 'コミュニティ管理', admin_communities_path, class: 'nav-link' %>
+                    <%= link_to image_tag("common/community-icon.png", :size => '35x35' ), admin_communities_path, class: 'nav-link' %>
                   </a>
                 </li>
                 <li class='nav-item active'>
                   <a class='nav-link' data-target=".navbar-collapse.show" data-toggle="collapse" href="#">
-                    <%= link_to 'ウマ管理', admin_horses_path, class: 'nav-link' %>
+                    <%= link_to image_tag("common/uma-icon.png", :size => '35x35' ), admin_horses_path, class: 'nav-link' %>
                   </a>
                 </li>
               <% end %>

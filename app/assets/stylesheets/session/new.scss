@@ -8,3 +8,56 @@
     width: 65%;
   }
 }
+
+// ログイン画面
+.login-form {
+  background:#fff;
+  border-radius:6px;
+  padding:20px;
+  padding-top:30px;
+  width:90%;
+  margin:50px auto;
+  box-shadow:10px 10px 0px rgba(0,0,0,.1);
+
+  @media screen and (min-width:480px) {
+    width: 60%;
+  }
+
+  h3 {
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: 700;
+    color:#777;
+    margin-bottom: 24px;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    width:100%;
+    background:#f5f5f5;
+    border: 0;
+    padding: 25px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    border: 1px solid #eee;
+  }
+
+  .btn {
+    position: relative;
+    width: 100%;
+    border-radius: 19px;
+    background-color: #55b1df;
+    border: 1px solid #55b1df;
+    color: #fff;
+    font-weight: bold;
+  }
+  .btn:hover {
+    background-color: #fff;
+    border: 1px solid #55b1df;
+    color:#55b1df;
+    cursor: pointer;
+  }
+  .btn:focus {
+    outline: none;
+  }
+}
