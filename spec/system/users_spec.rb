@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'ユーザー管理機能' , type: :system do
+describe 'ユーザー管理機能', type: :system do
   let(:user_a) do
     FactoryBot.create(:user,
                       name: '管理者',
