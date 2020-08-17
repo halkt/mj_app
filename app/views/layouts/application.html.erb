@@ -22,35 +22,21 @@
           <span class='navbar-toggler-icon'></span>
         </button>
         <div id='navbarNav' class='collapse navbar-collapse'>
-          <ul class='navbar-nav'>
+          <ul class='navbar-nav header-navigation'>
             <% if current_user %>
               <% if current_user.admin? %>
-                <li class='nav-item active'>
-                  <a class='nav-link' data-target=".navbar-collapse.show" data-toggle="collapse" href="#">
-                    <%= link_to image_tag("common/user-list.png", :size => '35x35' ), admin_users_path, class: 'nav-link' %>
-                  </a>
+                <li>
+                  <%= link_to image_tag("common/user-list.png", :size => '48x30' ), admin_users_path %>
                 </li>
-                <li class='nav-item active'>
-                  <a class='nav-link' data-target=".navbar-collapse.show" data-toggle="collapse" href="#">
-                    <%= link_to image_tag("common/community-icon.png", :size => '35x35' ), admin_communities_path, class: 'nav-link' %>
-                  </a>
+                <li>
+                  <%= link_to image_tag("common/community-icon.png", :size => '48x30' ), admin_communities_path %>
                 </li>
-                <li class='nav-item active'>
-                  <a class='nav-link' data-target=".navbar-collapse.show" data-toggle="collapse" href="#">
-                    <%= link_to image_tag("common/uma-icon.png", :size => '35x35' ), admin_horses_path, class: 'nav-link' %>
-                  </a>
+                <li>
+                  <%= link_to image_tag("common/uma-icon.png", :size => '48x30' ), admin_horses_path %>
                 </li>
               <% end %>
-              <li class='nav-item active'>
-                <a class='nav-link' data-target=".navbar-collapse.show" data-toggle="collapse" href="#">
-                  <%= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link' %>
-                </a>
-              </li>
-            <% else %>
-              <li class='nav-item active'>
-                <a class='nav-link' data-target=".navbar-collapse.show" data-toggle="collapse" href="#">
-                  <%= link_to 'ログイン', login_path, class: 'nav-link'%>
-                </a>
+              <li>
+                <%= link_to 'LOGOUT', logout_path, method: :delete, class: 'logout-btn' %>
               </li>
             <% end %>
           </ul>

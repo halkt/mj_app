@@ -152,12 +152,44 @@ select {
   color: white;
   text-transform: uppercase;
   letter-spacing: -1px;
-  padding-top: 9px;
   font-weight: bold;
   &:hover {
     color: white;
     text-decoration: none;
   }
+}
+
+.header-navigation {
+  padding-top:10px;
+
+  li {
+    padding:0 6px;
+  }
+  
+  .logout-btn {
+    width: 120px;
+    margin-left: 15px;
+    padding: 2px 12px;
+    border-radius: 19px;
+    line-height: 30px;
+    background-color: #fff;
+    border: 1px solid #ec407a;
+    color: #ec407a;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .logout-btn:hover {
+    background-color: #ec407a;
+    border: 1px solid #fff;
+    color:#fff;
+    cursor: pointer;
+  }
+  
+  .logout-btn:focus {
+    outline: none;
+  }
+
 }
 
 /* background */
