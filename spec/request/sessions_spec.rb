@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'SessionsController', type: :request do
+RSpec.describe SessionsController, type: :request do
   describe 'GET /login' do
     before { get '/login' }
     it 'ログイン画面の表示に成功すること' do

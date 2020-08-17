@@ -30,9 +30,6 @@ require 'simplecov'
 
 SimpleCov.start do                                     # 最低限、この行のみ必要。ブロックの中はオプション。
   add_filter '/spec/'                                  # /spec/ が含まれるファイルは除外する。
-  add_filter do |source_file|
-    source_file.lines.count < 5                        # 行数が 5行未満のファイルは除外する。
-  end
 
   enable_coverage :branch                              # https://github.com/colszowka/simplecov#branch-coverage-ruby--25
 
