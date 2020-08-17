@@ -20,9 +20,9 @@ describe 'ユーザー管理機能', type: :system do
 
   before do
     visit login_path
-    fill_in 'メールアドレス', with: login_user.mail
-    fill_in 'パスワード', with: login_user.password
-    click_button 'ログイン'
+    fill_in 'session_mail', with: login_user.mail
+    fill_in 'session_password', with: login_user.password
+    click_button 'LOGIN'
   end
 
   shared_examples_for '登録したユーザーが表示される' do
