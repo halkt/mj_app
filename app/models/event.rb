@@ -19,7 +19,7 @@ class Event < ApplicationRecord
   def sum_user_score(user_id)
     sum_user_score = 0
     user_records = GameDetail.where(user_id: user_id)
-                             .where(game_id: games.pluck(:id))
+                             .where(game_id: games.select(:id))
     user_records.each do |user_record|
       sum_user_score += user_record.score
     end
