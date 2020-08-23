@@ -1,5 +1,7 @@
 <%= stylesheet_link_tag('session/new') %>
 
+<%= image_tag('common/main-title-logo.png', :size =>'345x96') %>
+
 <%= form_with scope: :session, class: 'login-form', local: true do |f| %>
   <div class='form-group'>
     <%= f.text_field :mail, placeholder: 'xxx@example.com', class: 'form-control', id: 'session_mail' %>
