@@ -1,0 +1,50 @@
+<div class='sidebar'>
+  <div>
+    <%= link_to image_tag('common/header-title-logo.png', :size => '188x40' ), root_path %>
+  </div>
+  <div class='pic_frame'>
+    <%= link_to root_path do %>
+      <%= image_tag('common/home-icon.png', :size => '48x30' ) %>
+      <p>マイページ</p>
+    <% end %>
+  </div>
+  <div class='pic_frame'>
+    <%= link_to events_path do %>
+      <%= image_tag('common/event-icon-white.png', :size => '48x30' ) %>
+      <p>対局一覧</p>
+    <% end %>
+  </div>
+  <div class='pic_frame'>
+    <%= link_to rankings_show_path do %>
+      <%= image_tag('common/ranking-icon.png', :size => '48x30' ) %>
+      <p>ランキング</p>
+    <% end %>
+  </div>
+
+  <div class='line'></div>
+
+  <div class='pic_frame'>
+    <%= link_to admin_users_path do %>
+      <%= image_tag('common/user-list.png', :size => '48x30' ) %>
+      <p>ユーザ管理</p>
+    <% end %>
+  </div>
+
+  <div class='pic_frame'>
+    <%= link_to admin_communities_path do %>
+      <%= image_tag('common/community-icon.png', :size => '48x30' ) %>
+      <p>コミュニティー管理</p>
+    <% end %>
+  </div>
+
+  <div class='pic_frame'>
+    <%= link_to admin_horses_path do %>
+      <%= image_tag('common/uma-icon.png', :size => '48x30' ) %>
+      <p>ウマ管理</p>
+    <% end %>
+  </div>
+
+  <div>
+    <%= link_to 'LOGOUT', logout_path, method: :delete, class: 'logout-btn' %>
+  </div>
+</div>

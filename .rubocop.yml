@@ -4,11 +4,15 @@ require:
   - rubocop-rails
 
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 2.5.8
 
 # Use only ascii symbols in comments.
 AsciiComments:
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
 
 # Layout
 Layout/EmptyLinesAroundAttributeAccessor:
@@ -19,19 +23,46 @@ Layout/SpaceAroundMethodCallOperator:
 
 # Lint
 Lint/RaiseException:
-  Enabled: false
+  Enabled: true
 
 Lint/StructNewOverride:
-  Enabled: false
+  Enabled: true
 
 Lint/DeprecatedOpenSSLConstant:
-  Enabled: false
+  Enabled: true
 
 Lint/DuplicateElsifCondition:
-  Enabled: false
+  Enabled: true
 
 Lint/MixedRegexpCaptureTypes:
-  Enabled: false
+  Enabled: true
+
+Lint/BinaryOperatorWithIdenticalOperands:
+  Enabled: true
+
+Lint/DuplicateRescueException:
+  Enabled: true
+
+Lint/EmptyConditionalBody:
+  Enabled: true
+
+Lint/FloatComparison:
+  Enabled: true
+
+Lint/MissingSuper:
+  Enabled: true
+
+Lint/OutOfRangeRegexpRef:
+  Enabled: true
+
+Lint/SelfAssignment:
+  Enabled: true
+
+Lint/TopLevelReturnWithArgument:
+  Enabled: true
+
+Lint/UnreachableLoop:
+  Enabled: true
 
 # Style
 # "Missing top-level class documentation comment."を無効
@@ -39,89 +70,104 @@ Style/Documentation:
   Enabled: false
 
 Style/HashEachMethods:
-  Enabled: false
+  Enabled: true
 
 Style/HashTransformKeys:
-  Enabled: false
+  Enabled: true
 
 Style/HashTransformValues:
-  Enabled: false
+  Enabled: true
 
 Style/AccessorGrouping:
-  Enabled: false
+  Enabled: true
 
 Style/ArrayCoercion:
-  Enabled: false
+  Enabled: true
 
 Style/BisectedAttrAccessor:
-  Enabled: false
+  Enabled: true
 
 Style/CaseLikeIf:
-  Enabled: false
+  Enabled: true
 
 Style/ExponentialNotation:
-  Enabled: false
+  Enabled: true
 
 Style/HashAsLastArrayItem:
-  Enabled: false
+  Enabled: true
 
 Style/HashLikeCase:
-  Enabled: false
+  Enabled: true
 
 Style/RedundantAssignment:
-  Enabled: false
+  Enabled: true
 
 Style/RedundantFetchBlock:
-  Enabled: false
+  Enabled: true
 
 Style/RedundantFileExtensionInRequire:
-  Enabled: false
+  Enabled: true
 
 Style/RedundantRegexpCharacterClass:
-  Enabled: false
+  Enabled: true
 
 Style/RedundantRegexpEscape:
-  Enabled: false
+  Enabled: true
 
 Style/SlicingWithRange:
-  Enabled: false
+  Enabled: true
+
+Style/ExplicitBlockArgument:
+  Enabled: true
+
+Style/GlobalStdStream:
+  Enabled: true
+
+Style/OptionalBooleanParameter:
+  Enabled: true
+
+Style/SingleArgumentDig:
+  Enabled: true
+
+Style/StringConcatenation:
+ Enabled: true
 
 # Rails
 Rails/ActiveRecordCallbacksOrder:
-  Enabled: false
+  Enabled: true
 
 Rails/FindById:
-  Enabled: false
+  Enabled: true
 
 Rails/Inquiry:
-  Enabled: false
+  Enabled: true
 
 Rails/MailerName:
-  Enabled: false
+  Enabled: true
 
 Rails/MatchRoute:
-  Enabled: false
+  Enabled: true
 
 Rails/NegateInclude:
-  Enabled: false
+  Enabled: true
 
 Rails/Pluck:
-  Enabled: false
+  Enabled: true
 
 Rails/PluckId:
-  Enabled: false
+  Enabled: true
 
 Rails/PluckInWhere:
-  Enabled: false
+  Enabled: true
 
 Rails/RenderInline:
-  Enabled: false
+  Enabled: true
 
 Rails/RenderPlainText:
-  Enabled: false
+  Enabled: true
 
 Rails/ShortI18n:
-  Enabled: false
+  Enabled: true
 
 Rails/WhereExists:
-  Enabled: false
+  Enabled: true

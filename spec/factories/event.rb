@@ -12,6 +12,8 @@ FactoryBot.define do
       after(:build) do |event|
         event.users << FactoryBot.build(:user, name: 'one')
         event.users << FactoryBot.build(:user, name: 'two')
+        event.users << FactoryBot.build(:user, name: 'three')
+        event.users << FactoryBot.build(:user, name: 'four')
       end
     end
   end

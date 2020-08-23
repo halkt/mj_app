@@ -4,13 +4,10 @@
 </div>
 
 <div class='contents-box'>
-  <div class='nav justify-content-start'>
-    <p>件数：<%= @events.count %>件</p>
-  </div>
-
-  <div class='btn-field'>
+  <div class='nav justify-content-end'>
     <%= link_to '対局の登録', new_event_path, class: 'insert-btn' %>
   </div>
+  <div>件数：<%= @events.count %>件</div>
 
   <div>
     <table class='main-table'>

@@ -4,7 +4,9 @@ class SessionsController < ApplicationController
   # ログインしていなくても利用可能
   skip_before_action :login_required
 
-  def new; end
+  def new
+    redirect_to root_path if session[:user_id].present?
+  end
 
   def create
     user = User.find_by(mail: session_params[:mail])
