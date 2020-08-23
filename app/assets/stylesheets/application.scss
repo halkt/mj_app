@@ -18,7 +18,7 @@ textarea {
 }
 
 .main-container {
-  padding: 15px 10px;
+  padding: 15px 30px;
 }
 
 .flexContainer {
@@ -28,10 +28,9 @@ textarea {
 .main-container {
   display: block;
   width: 100%;
-  margin-right: 20px;
 
   @media screen and (min-width:480px) {
-    width: 65%;
+    width: 100%;
   }
 
 }
@@ -40,8 +39,31 @@ textarea {
   @media screen and (max-width: 768px) {
     display: none;
   }
-  width: 15%;
+  width: 25%;
+  max-width: 220px;
   text-align: center;
+  background-color: #f43e43;
+  padding-top: 20px;
+}
+
+.pic_frame {
+  text-align: center;
+  margin-top: 10px;
+
+  p {
+    font-size:12px;
+    color: #fff;
+    font-weight: bold;
+  }
+  :hover {
+    text-decoration: none;
+    opacity: 0.8;
+  }
+}
+
+div.line {
+  border-bottom: 1px solid #fff;
+  margin:10px;
 }
 
 .p-menuCircle {
@@ -163,33 +185,32 @@ select {
   padding-top:10px;
 
   li {
-    padding:0 6px;
-  }
-  
-  .logout-btn {
-    width: 120px;
-    margin-left: 15px;
-    padding: 2px 12px;
-    border-radius: 19px;
-    line-height: 30px;
-    background-color: #fff;
-    border: 1px solid #ec407a;
-    color: #ec407a;
-    font-weight: bold;
-    text-decoration: none;
+    padding: 0 2px;
   }
 
-  .logout-btn:hover {
-    background-color: #ec407a;
-    border: 1px solid #fff;
-    color:#fff;
-    cursor: pointer;
+  :hover img {
+    opacity: 0.6;
   }
-  
-  .logout-btn:focus {
-    outline: none;
-  }
+}
 
+.logout-btn {
+  width: 120px;
+  padding: 2px 12px;
+  border-radius: 19px;
+  line-height: 30px;
+  background-color: #fff;
+  border: 1px solid #ec407a;
+  color: #ec407a;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.logout-btn:hover {
+  background-color: #ec407a;
+  border: 1px solid #fff;
+  color:#fff;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 /* background */
@@ -204,6 +225,66 @@ select {
 /* 共通 */
 .vertical-margin-medium {
   margin: 15px 0; 
+}
+
+.page-title {
+  font-size: 30px;
+  font-weight: bold;
+  padding-left: 25px;
+  margin-top: 10px;
+  margin-bottom: -20px;
+  color: #5f5f5f;
+  // color: #f43e43;
+  // border-style: none;
+  // vertical-align: middle;
+  // height: auto;
+  // background-color: transparent;
+  // position: relative;
+  // z-index: 1;
+
+  img {
+    margin-top: -22px;
+  }
+}
+
+.table-caption {
+	padding: 0.1em 0.3em;
+  border-left: 8px solid #00BCD4;
+  font-weight: bold;
+}
+
+.contents-box {
+  background-color: #fff;
+  color: #856404;
+  padding: 30px;
+}
+
+.btn-field {
+  text-align: center;
+  padding: 20px 0 10px;
+}
+
+.insert-btn {
+  position: relative;
+  border-radius: 19px;
+  background-color: #55b1df;
+  border: 1px solid #55b1df;
+  color: #fff;
+  font-weight: bold;
+  padding: 4px 30px;
+  text-align: center;
+}
+
+.insert-btn:hover {
+  background-color: #fff;
+  border: 1px solid #798185;
+  color:#55b1df;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.insert-btn:focus {
+  outline: none;
 }
 
 /* ユーザー */
@@ -251,3 +332,69 @@ select {
 //   background: image-url('calender_icon.svg') no-repeat;
 //   background-size: auto;
 // }
+
+/* テーブル */
+.main-table {
+  margin: 0 auto 20px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-collapse: separate;
+  
+  th {
+    text-align: center;
+    color: #fff;;
+    background: #348191;
+    padding: 6px;
+    border: 3px solid #fff;
+  }
+
+  td {
+    padding: 2px 10px;
+    vertical-align: middle;
+    border: 1px dotted #ddd;
+    border-collapse: separate;
+
+    .text-center {
+      text-align: center;
+    }
+  }
+}
+
+.main-table input[type=checkbox] {
+  margin-top: 5px;
+  margin-bottom: 0;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	color: #fff;
+	border: none;
+	outline: none;
+  background: #c8d6de;
+  appearance: none;
+}
+
+.main-table input[type=checkbox]:hover {
+	background: #8ac4e6;
+}
+
+.main-table input[type=checkbox]:checked {
+	background: #55b1df;
+}
+
+.main-table input[type=checkbox]:checked::before {
+	font-size: 20px;
+	line-height: 30px;
+	position: absolute;
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	content: '✔';
+	text-align: center;
+}
+
+.main-table input[type=checkbox]:checked::after {
+	position: relative;
+	display: block;
+	content: '';
+	background: #55b1df;
+}

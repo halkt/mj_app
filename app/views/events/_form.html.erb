@@ -1,46 +1,58 @@
 <div class='check_box'>
   <%= form_for @event do |form| %>
-    <%= render 'shared/error_messages', object: form.object %>
-    <div class='form-group'>
-      <%= form.label :name %>
-      <%= form.text_field :name, class: 'form-control', id:'event_name' %>
-    </div>
-    <div class='form-group'>
-      <%= form.label :day %>
-      <%= form.date_field :day, class: 'form-control', value: Time.now.strftime("%Y-%m-%d"), id:'event_day' %>
-    </div>
-    <div class='form-group'>
-      <%= form.label :community_name %>
-      <div class='dropdown'>
-        <%= form.collection_select :community_id, @communities, :id, :name %>
+    <div class='contents-box'>
+      <div class='nav justify-content-end'>
+        <%= link_to '一覧' , events_path, class: 'insert-btn' %>
+      </div>
+      <%= render 'shared/error_messages', object: form.object %>
+      <div class='form-group'>
+        <%= form.label :name, class: 'table-caption' %>
+        <%= form.text_field :name, class: 'form-control', id:'event_name' %>
+      </div>
+      <div class='form-group'>
+        <%= form.label :day, class: 'table-caption' %>
+        <%= form.date_field :day, class: 'form-control', value: Time.now.strftime("%Y-%m-%d"), id:'event_day' %>
+      </div>
+      <div class='form-group'>
+        <%= form.label :community_name, class: 'table-caption' %>
+        <div class='dropdown'>
+          <%= form.collection_select :community_id, @communities, :id, :name %>
+        </div>
+      </div>
+      <div class='form-group'>
+        <%= form.label :description, class: 'table-caption' %>
+        <%= form.text_area :description, rows: 3, class: 'form-control', id: 'event_description' %>
+      </div>
+
+      <br/>
+
+      <div class='table-caption'>
+        メンバーの選択
+      </div>
+
+      <table class='main-table'>
+        <thead class='thead-default'>
+          <tr>
+            <th>ユーザ名</th>
+            <th>メールアドレス</th>
+            <th>追加/除外</th>
+          </tr>
+          <tbody>
+            <%= form.collection_check_boxes(:user_ids, @users, :id, :name, include_hidden: false) do |user| %>
+              <%= user.label do %>
+                <tr>
+                  <td><%= user.object.name %></td>
+                  <td><%= user.object.mail %></td>
+                  <td class='text-center'><%= user.check_box %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </thead>
+      </table>
+      <div class='btn-field'>
+        <%= form.submit nil , class: 'insert-btn' %>
       </div>
     </div>
-    <div class='form-group'>
-      <%= form.label :description %>
-      <%= form.text_area :description, rows: 3, class: 'form-control', id: 'event_description' %>
-    </div>
-
-    <h2>メンバーの選択</h2>
-    <table class='group_list table table-striped'>
-      <thead class='thead-default'>
-        <tr>
-          <th>ユーザ名</th>
-          <th>メールアドレス</th>
-          <th>追加/除外</th>
-        </tr>
-        <tbody>
-          <%= form.collection_check_boxes(:user_ids, @users, :id, :name, include_hidden: false) do |user| %>
-            <%= user.label do %>
-              <tr>
-                <td><%= user.object.name %></td>
-                <td><%= user.object.mail %></td>
-                <td><%= user.check_box %></td>
-              </tr>
-            <% end %>
-          <% end %>
-        </tbody>
-      </thead>
-    </table>
-    <%= form.submit nil , class: 'btn btn-primary mr-3' %>
   <% end %>
 </div>

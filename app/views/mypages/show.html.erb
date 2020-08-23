@@ -1,4 +1,7 @@
-<h2>マイページ</h2>
+<div class='page-title'>
+  マイページ
+  <%= image_tag('common/title-home-icon.png', :size => '29x24' ) %>
+</div>
 <% if @gamedetails.count.zero? %>
   <%= render partial: 'no_record' %>
 <% else %>
