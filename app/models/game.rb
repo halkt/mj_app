@@ -37,12 +37,23 @@ class Game < ApplicationRecord
   # [エラーチェック]合計点数の妥当性のチェック
   def check_sum_point
     expected_sum_point = genten * 4
-    sum_point = game_detail.pluck(:point).sum
+    sum_point = calc_sum_point
     return if expected_sum_point == sum_point
 
     error_message = generate_error_message_for_point(expected_sum_point,
                                                      sum_point)
     errors.add(:base, error_message)
+  end
+
+  def calc_sum_point
+    sum_point = 0
+    if game_detail.count.zero?
+      # buildしたgame_detailの暫定処理
+      4.times { |index| sum_point += game_detail[index].point }
+    else
+      sum_point = game_detail.pluck(:point).sum
+    end
+    sum_point
   end
 
   # [エラーチェック]同じユーザーが登録されていないこと
