@@ -4,4 +4,105 @@
   padding: 30px;
 }
 
+.profile-icon {
+  text-align:center;
+  margin:0 15px;
+  margin-top: 10px;
 
+  img {
+    padding:10px;
+    border: solid 1px #ddd;
+    border-radius: 50px;
+  }
+}
+
+.basic-information {
+  width:100%;
+  margin:0 5px;
+}
+
+.edit-btn {
+  position: relative;
+  border-radius: 19px;
+  background-color: #55b1df;
+  border: 1px solid #55b1df;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 2px 20px;
+  text-align: center;
+}
+
+.edit-btn:hover {
+  background-color: #fff;
+  border: 1px solid #55b1df;
+  color:#55b1df;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* タブ */
+.mypage-tab {
+	margin: 10px auto;
+}
+
+.mypage-tab > input[type='radio'] {
+	margin: 0;
+	padding: 0;
+	border: none;
+	border-radius: 0;
+	outline: none;
+	background: none;
+	display: none;
+}
+
+.mypage-tab .mypage-tabpanel {
+  display: none;
+}
+
+.mypage-tab > input:first-child:checked ~ .mypage-tabpanels > .mypage-tabpanel:first-child,
+.mypage-tab > input:nth-child(3):checked ~ .mypage-tabpanels > .mypage-tabpanel:nth-child(2),
+.mypage-tab > input:nth-child(5):checked ~ .mypage-tabpanels > .mypage-tabpanel:nth-child(3),
+.mypage-tab > input:nth-child(7):checked ~ .mypage-tabpanels > .mypage-tabpanel:nth-child(4),
+.mypage-tab > input:nth-child(9):checked ~ .mypage-tabpanels > .mypage-tabpanel:nth-child(5),
+.mypage-tab > input:nth-child(11):checked ~ .mypage-tabpanels > .mypage-tabpanel:nth-child(6) {
+	display: block;
+}
+
+.mypage-tab > label {
+	position: relative;
+	display: inline-block;
+	padding: 10px 15px;
+	cursor: pointer;
+	border: 1px solid transparent;
+  border-bottom: 0;
+  margin-bottom: 0;
+}
+
+.mypage-tab > label:hover,
+.mypage-tab > input:focus + label {
+	color: #0066cc;
+}
+
+.mypage-tab > input:checked + label {
+	margin-bottom: -1px;
+	border-color: #ccc;
+	border-bottom: 1px solid #fff;  /*背景色と同じ*/
+	border-radius: 6px 6px 0 0;
+}
+
+.mypage-tab .mypage-tabpanel {
+  padding: 10px 20px;
+  padding-top:20px;
+	border-top: 1px solid #ccc;
+}
+
+@media (max-width: 480px) {
+	.mypage-tab {
+		width: 100%;
+		font-size: 0.8em;
+	}
+	.mypage-tab label {
+		padding: 0.5em;
+	}
+}
