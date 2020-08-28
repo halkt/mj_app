@@ -2,8 +2,10 @@
   マイページ
   <%= image_tag('common/title-home-icon.png', :size => '29x24' ) %>
 </div>
-<% if @gamedetails.count.zero? %>
-  <%= render partial: 'no_record' %>
-<% else %>
-  <%= render partial: 'mypage' %>
-<% end %>
+<div class='contents-box'>
+  <% if @gamedetails.count.zero? %>
+    <%= render partial: 'no_record' %>
+  <% else %>
+    <%= render partial: 'mypage' %>
+  <% end %>
+</div>
