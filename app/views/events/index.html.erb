@@ -1,27 +1,30 @@
-<h2>対局一覧</h2>
-
-<div class='nav justify-content-start'>
-  <p>件数：<%= @events.count %>件</p>
+<div class='page-title'>
+  対局一覧
+  <%= image_tag('common/title-home-icon.png', :size => '29x24' ) %>
 </div>
 
-<%= link_to '対局の登録', new_event_path, class: 'btn btn-outline-success btn-block' %>
+<div class='contents-box'>
+  <div class='nav justify-content-end'>
+    <%= link_to '対局の登録', new_event_path, class: 'insert-btn' %>
+  </div>
+  <div>件数：<%= @events.count %>件</div>
 
-<div class='mb-3'>
-  <table class='table table-hover'>
-    <thead class='thead-default'>
-      <tr>
-        <th><%= Event.human_attribute_name(:day) %></th>
-        <th><%= Event.human_attribute_name(:name) %></th>
-      </tr>
-      <tbody>
-        <% @events.each do |event| %>
-          <tr>
-            <td><%= link_to event.day.strftime("%F"), event_path(event) %></td>
-            <td><%= event.name %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </thead>
-  </table>
-  <%= link_to '対局の登録', new_event_path, class: 'btn btn-outline-success btn-block' %>
+  <div>
+    <table class='main-table'>
+      <thead class='thead-default'>
+        <tr>
+          <th><%= Event.human_attribute_name(:day) %></th>
+          <th><%= Event.human_attribute_name(:name) %></th>
+        </tr>
+        <tbody>
+          <% @events.each do |event| %>
+            <tr>
+              <td><%= link_to event.day.strftime("%F"), event_path(event) %></td>
+              <td><%= event.name %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </thead>
+    </table>
+  </div>
 </div>

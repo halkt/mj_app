@@ -4,9 +4,30 @@ require 'rails_helper'
 
 RSpec.describe SessionsController, type: :request do
   describe 'GET /login' do
-    before { get '/login' }
-    it 'ログイン画面の表示に成功すること' do
-      expect(response).to have_http_status(200)
+    context 'sessionがない場合' do
+      before { get '/login' }
+      it 'ログイン画面の表示に成功すること' do
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context 'sessionがある場合' do
+      before do
+        post '/login', params: params
+        get '/login'
+      end
+      let!(:user) { FactoryBot.create(:user) }
+      let!(:params) do
+        {
+          session: {
+            mail: user.mail,
+            password: 'password'
+          }
+        }
+      end
+      it 'ログイン画面が表示されずリダイレクトされること' do
+        expect(response).to have_http_status(302)
+      end
     end
   end
 

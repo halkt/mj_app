@@ -1,3 +1,71 @@
-// Place all the styles related to the Admin::Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.basic-information {
+  margin-left:25px;
+}
+
+.authority-style {
+  margin-bottom: -5px;
+}
+
+.name-style {
+  font-size: 28px;
+  letter-spacing: 0.3em;
+}
+
+.mail-style {
+  margin:10px 0;
+  img {
+    margin-right: 10px;
+  }
+}
+
+.day-style {
+  font-size: 13px;
+
+  th {
+    padding-right: 10px;
+  }
+}
+
+.description-box {
+  margin: 20px 0 10px;
+
+  .headline {
+    padding: .3em;
+    border-bottom: 3px double #0097a7;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .description-text {
+    padding: 0.5em 1em;
+    margin: 5px 0;
+    background: white;
+    border: solid 1px #ddd;
+  
+    p {
+      margin: 0; 
+      padding: 0;
+      text-align: left;
+      min-height: 20px;
+    }
+  }
+
+  .description-edit {
+    margin:5px 0;
+  }
+}
+
+.authority {
+
+  label {
+    margin: 5px;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+}
+
+.main-table {
+  th {
+    max-width: 120px;
+  }
+}

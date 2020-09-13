@@ -18,4 +18,5 @@ Rails.application.config.assets.precompile += %w[
   front/*
   session/new.css
   mypage/index.css
+  admin/users.css
 ]

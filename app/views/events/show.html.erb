@@ -1,110 +1,120 @@
-<% # 合計成績 %>
-<% if @event_users.present? %>
-  <% # 合計成績(新) %>
-  <h2>成績</h2>
-
-  <div class='mb-3'>
-    <table class='table table-hover'>
-      <thead class='thead-default'>
-        <tr>
-          <th><%= GameDetail.human_attribute_name(:rank) %></th>
-          <th><%= User.human_attribute_name(:name) %></th>
-          <th><%= GameDetail.human_attribute_name(:score) %></th>
-        </tr>
-        <tbody>
-          <% @gamedetails.each_with_index do |gamedetail, index| %>
-            <tr>
-              <td><%= "#{index + 1} 位" %></td>
-              <td><%= User.find(gamedetail[0]).name %></td>
-              <td><%= gamedetail[1].round(2) %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </thead>
-    </table>
-  </div>
-<% end %>
-
-<% # 成績明細 %>
-<% if @event_users.present? %>
-  <div>
-    <h2>成績明細</h2>
-    <table class='table table-hover'>
-      <thead class='thead-default'>
-        <tr>
-          <th></th>
-          <th></th>
-          <% @event_users.each do |event_user| %>
-            <th><%= event_user.name %></th>
-          <% end %>
-          <% if @event.games.present? %>
-            <% @game.each_with_index do |game, index| %>
-              <tbody>
-                <tr>
-                  <th>
-                    <td><%= link_to "#{index + 1} 回戦", event_game_path(params[:id],game.id) %></td>
-                    <% @event_users.each_with_index do |event_user, index| %>
-                      <% gamedetail = GameDetail.user_records(game.id, event_user.id).first %>
-                      <% if gamedetail.present? %>
-                        <td><%= gamedetail.score %></td>
-                      <% else %>
-                        <td>-</td>
-                      <% end %>
-                    <% end %>
-                  </th>
-                </tr>
-              </tbody>
-            <% end %>
-
-            <tr>
-              <th>
-                <td>合計</td>
-                <% @event_users.each do |event_user| %>
-                  <td><%= @event.sum_user_score(event_user.id).round(2) %></td>
-                <% end %>
-              </th>
-            </tr>
-          <% else %>
-            <p>※成績が登録されていません！</p>
-          <% end %>
-        </tr>
-      </thead>
-    </table>
-  </div>
-<% end %>
-
-<% if @event_users.count >= 4 %>
-  <%= link_to '成績登録', new_event_game_path(params[:id]), class: 'btn btn-primary mr-3' %>
-<% else %>
-  <p>※参加者が足りません。4名以上の参加者を登録してください！</p>
-<% end %>
-
-<h2>対局の詳細</h2>
-
-<div class='nav justify-content-end'>
-  <%= link_to '対局一覧に戻る' , events_path, class: 'nav-link' %>
+<div class='page-title'>
+  対局詳細
+  <%= image_tag('common/title-home-icon.png', :size => '29x24' ) %>
 </div>
 
-<table class='table table-hover'>
-  <tbody>
-    <tr>
-      <th><%= Event.human_attribute_name(:name) %></th>
-      <td><%= @event.name %></td>
-    </tr>
-    <tr>
-      <th><%= Event.human_attribute_name(:day) %></th>
-      <td><%= @event.day.strftime("%F") %></td>
-    </tr>
-    <tr>
-      <th><%= Event.human_attribute_name(:community_name) %></th>
-      <td><%= @community_name %></td>
-    </tr>
-    <tr>
-      <th><%= Event.human_attribute_name(:description) %></th>
-      <td><%= simple_format(h(@event.description), {}, sanitize: false, wrapper_tag: "div") %></td>
-    </tr>
-  </tbody>
-</table>
+<div class='contents-box'>
+  <% if @event_users.present? %>
+    <label class='sub-heading'>成績</label>
 
-<%= link_to '編集', edit_event_path, class: 'btn btn-primary mr-3' %>
-<%= link_to '削除', @event, method: :delete, data: { confirm: "対局「#{@event.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger' %>
+    <% # 成績 %>
+    <div>
+      <table class='main-table'>
+        <thead class='thead-default'>
+          <tr>
+            <th><%= GameDetail.human_attribute_name(:rank) %></th>
+            <th><%= User.human_attribute_name(:name) %></th>
+            <th><%= GameDetail.human_attribute_name(:score) %></th>
+          </tr>
+          <tbody>
+            <% @gamedetails.each_with_index do |gamedetail, index| %>
+              <tr>
+                <td><%= "#{index + 1} 位" %></td>
+                <td><%= User.find(gamedetail[0]).name %></td>
+                <td><%= gamedetail[1].round(2) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </thead>
+      </table>
+    </div>
+  <% end %>
+
+  <% # 成績明細 %>
+  <% if @event_users.present? %>
+    <div>
+      <label class='sub-heading'>成績明細</label>
+      <table class='main-table'>
+        <thead class='thead-default'>
+          <tr>
+            <th></th>
+            <th></th>
+            <% @event_users.each do |event_user| %>
+              <th><%= event_user.name %></th>
+            <% end %>
+            <% if @event.games.present? %>
+              <% @game.each_with_index do |game, index| %>
+                <tbody>
+                  <tr>
+                    <th>
+                      <td><%= link_to "#{index + 1} 回戦", event_game_path(params[:id],game.id) %></td>
+                      <% @event_users.each_with_index do |event_user, index| %>
+                        <% gamedetail = GameDetail.user_records(game.id, event_user.id).first %>
+                        <% if gamedetail.present? %>
+                          <td><%= gamedetail.score %></td>
+                        <% else %>
+                          <td>-</td>
+                        <% end %>
+                      <% end %>
+                    </th>
+                  </tr>
+                </tbody>
+              <% end %>
+
+              <tr>
+                <th>
+                  <td>合計</td>
+                  <% @event_users.each do |event_user| %>
+                    <td><%= @event.sum_user_score(event_user.id).round(2) %></td>
+                  <% end %>
+                </th>
+              </tr>
+            <% else %>
+              <p>※成績が登録されていません！</p>
+            <% end %>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  <% end %>
+
+  <% if @event_users.count >= 4 %>
+    <div class='btn-field'>
+      <%= link_to '成績登録', new_event_game_path(params[:id]), class: 'insert-btn' %>
+    </div>
+  <% else %>
+    <p>※参加者が足りません。4名以上の参加者を登録してください！</p>
+  <% end %>
+
+  <label class='sub-heading'>対局の詳細</label>
+
+  <div class='nav justify-content-end'>
+    <%= link_to '対局一覧' , events_path, class: 'insert-btn' %>
+  </div>
+
+  <table class='main-table'>
+    <tbody>
+      <tr>
+        <th><%= Event.human_attribute_name(:name) %></th>
+        <td><%= @event.name %></td>
+      </tr>
+      <tr>
+        <th><%= Event.human_attribute_name(:day) %></th>
+        <td><%= @event.day.strftime("%F") %></td>
+      </tr>
+      <tr>
+        <th><%= Event.human_attribute_name(:community_name) %></th>
+        <td><%= @community_name %></td>
+      </tr>
+      <tr>
+        <th><%= Event.human_attribute_name(:description) %></th>
+        <td><%= simple_format(h(@event.description), {}, sanitize: false, wrapper_tag: "div") %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class='btn-field'>
+    <%= link_to '編集', edit_event_path, class: 'insert-btn' %>
+    <%= link_to '削除', @event, class: 'delete-btn', method: :delete, data: { confirm: "対局「#{@event.name}」を削除します。よろしいですか？"} %>
+  </div>
+</div>

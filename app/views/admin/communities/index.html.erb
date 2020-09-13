@@ -1,28 +1,28 @@
-<h2>コミュニティ一覧</h2>
-
-<div class='nav justify-content-start'>
-  <p><%= "件数：#{@communities.count} 件" %></p>
+<div class='page-title'>
+  コミュニティ一覧
+  <%= image_tag('common/title-home-icon.png', :size => '29x24' ) %>
 </div>
 
-<%= link_to 'コミュニティ登録', new_admin_community_path, class: 'btn btn-outline-success btn-block' %>
+<div class='contents-box'>
+  <div class='nav justify-content-end'>
+    <%= link_to 'コミュニティ登録', new_admin_community_path, class: 'insert-btn' %>
+  </div>
+  <div><%= "件数：#{@communities.count} 件" %></div>
 
-<div class='mb-3'>
-  <table class='table table-hover'>
-    <thead class='thead-default'>
-      <tr>
-        <th><%= Community.human_attribute_name(:name) %></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @communities.each do |community| %>
+  <div>
+    <table class='main-table'>
+      <thead class='thead-default'>
         <tr>
-        <td><%= link_to community.name, [:admin, community] %></td>
-        <td></td>
+          <th><%= Community.human_attribute_name(:name) %></th>
         </tr>
-    <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+      <% @communities.each do |community| %>
+          <tr>
+          <td><%= link_to community.name, [:admin, community] %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-<%= link_to 'コミュニティ登録', new_admin_community_path, class: 'btn btn-outline-success btn-block' %>

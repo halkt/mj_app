@@ -51,6 +51,7 @@ class Admin::UsersController < ApplicationController
   private
 
   def user_params
+    set_authority_params
     params.require(:user).permit(:name,
                                  :mail,
                                  :description,
@@ -59,6 +60,23 @@ class Admin::UsersController < ApplicationController
                                  :password_confirmation,
                                  :login_flg,
                                  :icon)
+  end
+
+  # 権限用のパラメータをセットする
+  def set_authority_params
+    case params[:user][:authority]
+    when 'admin'
+      set_admin_and_login_parameter(true, true)
+    when 'login'
+      set_admin_and_login_parameter(false, true)
+    else
+      set_admin_and_login_parameter(false, false)
+    end
+  end
+
+  def set_admin_and_login_parameter(admin, login)
+    params[:user][:admin] = admin
+    params[:user][:login_flg] = login
   end
 
   def require_admin

@@ -1,31 +1,41 @@
-<h2>ユーザー一覧</h2>
-
-<div class='nav justify-content-start'>
-  <p><%= "件数：#{@users.count} 件"%></p>
+<div class='page-title'>
+  ユーザ一覧
+  <%= image_tag('common/title-home-icon.png', :size => '29x24' ) %>
 </div>
 
-<%= link_to 'ユーザー登録', new_admin_user_path, class: 'btn btn-outline-success btn-block' %>
+<div class='contents-box'>
+  <div class='nav justify-content-end'>
+    <%= link_to 'ユーザー登録', new_admin_user_path, class: 'insert-btn' %>
+  </div>
+  <div><%= "件数：#{@users.count} 件"%></div>
 
-<div class='mb-3'>
-  <table class='table table-hover'>
-    <thead class='thead-default'>
-      <tr>
-        <th><%= User.human_attribute_name(:name) %></th>
-        <th><%= User.human_attribute_name(:mail) %></th>
-        <th><%= User.human_attribute_name(:admin) %></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
+  <div>
+    <table class='main-table table-striped header-sticky'>
+      <thead class='thead-default'>
         <tr>
-          <td><%= link_to user.name, [:admin, user] %></td>
-          <td><%= user.mail %></td>
-          <td><%= user.admin? ? 'あり' : 'なし' %></td>
+          <th><%= User.human_attribute_name(:name) %></th>
+          <th><%= User.human_attribute_name(:mail) %></th>
+          <th>権限</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td>
+              <span class='profile-icon'>
+                <% if user.icon.present? %>
+                  <%= image_tag(user.icon_url, :size =>'35x35') %>
+                <% else %>
+                  <%= image_tag('profile-icon/0_profile_icon.png', :size => '35x35' ) %>
+                <% end %>
+              </span>
+              <%= link_to user.name, [:admin, user] %>
+            </td>
+            <td><%= user.mail %></td>
+            <td><%= user.display_type_name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-<%= link_to 'ユーザー登録', new_admin_user_path, class: 'btn btn-outline-success btn-block' %>
