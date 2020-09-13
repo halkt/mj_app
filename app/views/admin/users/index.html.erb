@@ -15,8 +15,7 @@
         <tr>
           <th><%= User.human_attribute_name(:name) %></th>
           <th><%= User.human_attribute_name(:mail) %></th>
-          <th><%= User.human_attribute_name(:admin) %></th>
-          <th><%= User.human_attribute_name(:admin) %></th>
+          <th>権限</th>
         </tr>
       </thead>
       <tbody>
@@ -33,16 +32,7 @@
               <%= link_to user.name, [:admin, user] %>
             </td>
             <td><%= user.mail %></td>
-            <td><%= user.admin? ? 'あり' : 'なし' %></td>
-            <td>
-              <% if user.admin? %>
-                <%= '管理者' %>
-              <% elsif user.login_flg? %>
-                <%= '一般' %>
-              <% else %>
-                <%= 'ゲスト' %>
-              <% end %>
-            </td>
+            <td><%= user.display_type_name %></td>
           </tr>
         <% end %>
       </tbody>
