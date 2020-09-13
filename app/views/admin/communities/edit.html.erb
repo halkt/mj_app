@@ -1,7 +1,12 @@
-<h2>コミュニティの詳細</h2>
-
-<div class='nav justify-content-end'>
-  <%= link_to '一覧' , admin_communities_path, class: 'nav-link' %>
+<div class='page-title'>
+  コミュニティの詳細
+  <%= image_tag('common/title-home-icon.png', :size => '29x24' ) %>
 </div>
 
-<%= render partial: 'form', locals: { community: @community } %>
+<div class='contents-box'>
+  <div class='nav justify-content-end'>
+    <%= link_to '一覧' , admin_communities_path, class: 'nav-link' %>
+  </div>
+
+  <%= render partial: 'form', locals: { community: @community } %>
+</div>

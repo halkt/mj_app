@@ -14,14 +14,12 @@
       <thead class='thead-default'>
         <tr>
           <th><%= Community.human_attribute_name(:name) %></th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
       <% @communities.each do |community| %>
           <tr>
           <td><%= link_to community.name, [:admin, community] %></td>
-          <td></td>
           </tr>
       <% end %>
       </tbody>

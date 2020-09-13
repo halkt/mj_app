@@ -1,6 +1,7 @@
 <%= form_with model: [:admin, @community], local: true do |f| %>
 
 <%= render 'shared/error_messages', object: f.object %>
+<!--
   <div class='form-group'>
     <%= f.label :name %>
     <%= f.text_field :name, class: 'form-control', id:'community_name', placeholder:'コミュニティの名前を入力してください' %>
@@ -10,9 +11,23 @@
     <%= f.label :description %>
     <%= f.text_area :description, rows: 3, class: 'form-control', id: 'community_description' %>
   </div>
+-->
 
-  <h2>メンバーの選択</h2>
-  <table class='group_list table table-striped'>
+  <table class='main-table table-striped'>
+    <tbody>
+      <tr>
+        <th><%= f.label :name %></th>
+        <td><%= f.text_field :name, class: 'form-control', id:'community_name', placeholder:'コミュニティの名前を入力してください' %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :description %></th>
+        <td><%= f.text_area :description, rows: 3, class: 'form-control', id: 'community_description' %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <label class="sub-heading">メンバー選択</label>
+  <table class='main-table table-striped'>
     <thead class='thead-default'>
       <tr>
         <th>ユーザ名</th>
@@ -22,7 +37,16 @@
         <%= f.collection_check_boxes(:user_ids, User.all.order(:id), :id, :name, include_hidden: false) do |user| %>
           <%= user.label do %>
             <tr>
-              <td><%= user.object.name %></td>
+              <td>
+                <span class='profile-icon'>
+                  <% if user.object.icon.present? %>
+                    <%= image_tag(user.object.icon_url, :size =>'35x35') %>
+                  <% else %>
+                    <%= image_tag('profile-icon/0_profile_icon.png', :size => '35x35' ) %>
+                  <% end %>
+                </span>
+                <%= user.object.name %>
+              </td>
               <td><%= user.check_box %></td>
             </tr>
           <% end %>
