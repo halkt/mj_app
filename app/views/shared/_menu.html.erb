@@ -3,18 +3,21 @@
     <div>
       <%= link_to image_tag('common/header-title-logo.png', :size => '188x40' ), root_path %>
     </div>
+
     <div class='pic_frame'>
       <%= link_to root_path do %>
         <%= image_tag('common/home-icon.png', :size => '48x30' ) %>
         <p>マイページ</p>
       <% end %>
     </div>
+
     <div class='pic_frame'>
       <%= link_to events_path do %>
         <%= image_tag('common/event-icon-white.png', :size => '48x30' ) %>
         <p>対局一覧</p>
       <% end %>
     </div>
+
     <div class='pic_frame'>
       <%= link_to rankings_show_path do %>
         <%= image_tag('common/ranking-icon.png', :size => '48x30' ) %>

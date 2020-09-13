@@ -22,15 +22,7 @@
     </div>
 
     <div class='basic-information'>
-      <div class='authority-style'>
-        <% if @user.admin? %>
-          <%= '管理者' %>
-        <% elsif @user.login_flg? %>
-          <%= '一般（ログイン可能）' %>
-        <% else %>
-          <%= 'ゲスト（ログイン不可）' %>
-        <% end %>
-      </div>
+      <div class='authority-style'><%= @user.display_type_name %></div>
       <div class='name-style'><%= @user.name %></div>
       <div class='mail-style'>
         <%= image_tag('common/mail-icon.png', :size => '28x28' ) %>

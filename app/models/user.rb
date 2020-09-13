@@ -47,6 +47,12 @@ class User < ApplicationRecord
   # 説明のバリデーションチェック
   validates :description, length: { maximum: 140 }
 
+  def display_type_name
+    return '管理者' if admin?
+    return '一般（ログイン可能）' if login_flg?
+    'ゲスト（ログイン不可）'
+  end
+
   private
 
   # ドメインに所属するユーザー

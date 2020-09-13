@@ -8,25 +8,6 @@
     <%= link_to 'コミュニティ一覧' , admin_communities_path, class: 'nav-link' %>
   </div>
 
-<!--
-  <table class='table table-hover'>
-    <tbody>
-      <tr>
-        <th><%= Community.human_attribute_name(:name) %></th>
-        <td><%= @community.name %></td>
-      </tr>
-      <tr>
-        <th><%= Community.human_attribute_name(:created_at) %></th>
-        <td><%= @community.created_at %></td>
-      </tr>
-      <tr>
-        <th><%= Community.human_attribute_name(:updated_at) %></th>
-        <td><%= @community.updated_at %></td>
-      </tr>
-    </tbody>
-  </table>
--->
-
   <h3 class="header-line"><%= @community.name %></h3>
 
   <div><%= "メンバー：#{@community.users.count}名"%></div>
@@ -50,7 +31,7 @@
                 <% end %>
               </span>
               <%= user.name %>
-              </td>
+            </td>
           </tr>
         <% end %>
       </tbody>
