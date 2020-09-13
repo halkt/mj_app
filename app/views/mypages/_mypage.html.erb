@@ -1,101 +1,101 @@
 <div class='flexContainer'>
-	<div class='profile-icon'>
-		<%= image_tag(current_user.icon_url, :size =>'100x100') %>
-		<p class='btn-field'>
-			<%= link_to '編集', edit_admin_user_path(current_user.id), class: 'edit-btn' %>
-		</p>
-	</div>
+  <div class='profile-icon'>
+    <%= image_tag(current_user.icon_url, :size =>'100x100') %>
+    <p class='btn-field'>
+      <%= link_to '編集', edit_admin_user_path(current_user.id), class: 'edit-btn' %>
+    </p>
+  </div>
 
-	<div class='basic-information'>
-		<table class='main-table'>
-			<tbody>
-				<tr>
-					<th><%= User.human_attribute_name(:name) %></th>
-					<td colspan=3><%= current_user.name %></td>
-				</tr>
-				<tr>
-					<th>最大獲得点数</th>
-					<td><%= @gamedetails.maximum(:point) %>点</td>
-					<th>最低獲得点数</th>
-					<td><%= @gamedetails.minimum(:point) %>点</td>
-				</tr>
-				<tr>
-					<th>合計スコア</th>
-					<td><%= @gamedetails.sum(:score).round(2) %></td>
-					<th>平均スコア</th>
-					<td><%= @average_score.round(2) %></td>
-				</tr>
-				<tr>
-					<th>最大スコア</th>
-					<td><%= @gamedetails.maximum(:score) %></td>
-					<th>最低スコア</th>
-					<td><%= @gamedetails.minimum(:score) %></td>
-				</tr>
-				<tr>
-					<th>平均順位</th>
-					<td><%= @average_rank.round(2) %></td>
-					<th>トップ率(%)</th>
-					<td><%= @average_top.round(2) %>%</td>
-				</tr>
-				<tr>
-					<th>合計対局回数</th>
-					<td><%= @gamedetails.count %>回</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+  <div class='basic-information'>
+    <table class='main-table'>
+      <tbody>
+        <tr>
+          <th><%= User.human_attribute_name(:name) %></th>
+          <td colspan=3><%= current_user.name %></td>
+        </tr>
+        <tr>
+          <th>最大獲得点数</th>
+          <td><%= @gamedetails.maximum(:point) %>点</td>
+          <th>最低獲得点数</th>
+          <td><%= @gamedetails.minimum(:point) %>点</td>
+        </tr>
+        <tr>
+          <th>合計スコア</th>
+          <td><%= @gamedetails.sum(:score).round(2) %></td>
+          <th>平均スコア</th>
+          <td><%= @average_score.round(2) %></td>
+        </tr>
+        <tr>
+          <th>最大スコア</th>
+          <td><%= @gamedetails.maximum(:score) %></td>
+          <th>最低スコア</th>
+          <td><%= @gamedetails.minimum(:score) %></td>
+        </tr>
+        <tr>
+          <th>平均順位</th>
+          <td><%= @average_rank.round(2) %></td>
+          <th>トップ率(%)</th>
+          <td><%= @average_top.round(2) %>%</td>
+        </tr>
+        <tr>
+          <th>合計対局回数</th>
+          <td><%= @gamedetails.count %>回</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <div class="mypage-tab">
-	<input type="radio" name="mypage-tab" id="tab1_1" aria-controls="first_tab01" checked>
-	<label for="tab1_1">最近の成績</label>
-	<input type="radio" name="mypage-tab" id="tab1_2" aria-controls="second_tab01">
-	<label for="tab1_2">順位グラフ</label>
-	<input type="radio" name="mypage-tab" id="tab1_3" aria-controls="third_tab01">
-	<label for="tab1_3">過去の成績</label>
+  <input type="radio" name="mypage-tab" id="tab1_1" aria-controls="first_tab01" checked>
+  <label for="tab1_1">最近の成績</label>
+  <input type="radio" name="mypage-tab" id="tab1_2" aria-controls="second_tab01">
+  <label for="tab1_2">順位グラフ</label>
+  <input type="radio" name="mypage-tab" id="tab1_3" aria-controls="third_tab01">
+  <label for="tab1_3">過去の成績</label>
 
-	<div class="mypage-tabpanels">
-		<div id="first_tab01" class="mypage-tabpanel">
-			<label class="sub-heading">最近の成績</label>
-			<div>
-				<table class='main-table'>
-					<thead>
-						<tr>
-							<th></th>
-							<th><%= GameDetail.human_attribute_name(:score) %></th>
-							<th><%= GameDetail.human_attribute_name(:rank) %></th>
-							<th><%= Event.human_attribute_name(:name) %></th>
-							<th><%= Event.human_attribute_name(:day) %></th>
-						</tr>
-					</thead>
+  <div class="mypage-tabpanels">
+    <div id="first_tab01" class="mypage-tabpanel">
+      <label class="sub-heading">最近の成績</label>
+      <div>
+        <table class='main-table'>
+          <thead>
+            <tr>
+              <th></th>
+              <th><%= GameDetail.human_attribute_name(:score) %></th>
+              <th><%= GameDetail.human_attribute_name(:rank) %></th>
+              <th><%= Event.human_attribute_name(:name) %></th>
+              <th><%= Event.human_attribute_name(:day) %></th>
+            </tr>
+          </thead>
 
-					<tbody>
-						<% @recent_details.each_with_index do |recent_details, index| %>
-							<tr>
-								<td><%= index + 1 %>回</td>
-								<td><%= recent_details.score %></td>
-								<td><%= recent_details.rank %></td>
-								<td><%= link_to recent_details.game.event.name, event_path(recent_details.game.event) %></td>
-								<td><%= recent_details.game.event.day %></td>
-							</tr>
-						<% end %>
-					</tbody>
-				</table>
-			</div>
-		</div>
+          <tbody>
+            <% @recent_details.each_with_index do |recent_details, index| %>
+              <tr>
+                <td><%= index + 1 %>回</td>
+                <td><%= recent_details.score %></td>
+                <td><%= recent_details.rank %></td>
+                <td><%= link_to recent_details.game.event.name, event_path(recent_details.game.event) %></td>
+                <td><%= recent_details.game.event.day %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-		<div id='second_tab01' class='mypage-tabpanel'>
-			<label class='sub-heading'>順位グラフ</label>
-			<div>
-				<%= pie_chart @chart %>
-			</div>
-		</div>
-		
-		<div id='third_tab01' class='mypage-tabpanel'>
-			<label class='sub-heading'>過去の成績</label>
-			<div>Third Tab text</div>
-		</div>
-	</div>
+    <div id='second_tab01' class='mypage-tabpanel'>
+      <label class='sub-heading'>順位グラフ</label>
+      <div>
+        <%= pie_chart @chart %>
+      </div>
+    </div>
+    
+    <div id='third_tab01' class='mypage-tabpanel'>
+      <label class='sub-heading'>過去の成績</label>
+      <div>Third Tab text</div>
+    </div>
+  </div>
 </div>
 
 <%= stylesheet_link_tag('mypage/index') %>
