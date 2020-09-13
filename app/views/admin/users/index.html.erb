@@ -10,20 +10,39 @@
   <div><%= "件数：#{@users.count} 件"%></div>
 
   <div>
-    <table class='main-table'>
+    <table class='main-table table-striped header-sticky'>
       <thead class='thead-default'>
         <tr>
           <th><%= User.human_attribute_name(:name) %></th>
           <th><%= User.human_attribute_name(:mail) %></th>
+          <th><%= User.human_attribute_name(:admin) %></th>
           <th><%= User.human_attribute_name(:admin) %></th>
         </tr>
       </thead>
       <tbody>
         <% @users.each do |user| %>
           <tr>
-            <td><%= link_to user.name, [:admin, user] %></td>
+            <td>
+              <span class='profile-icon'>
+                <% if user.icon.present? %>
+                  <%= image_tag(user.icon_url, :size =>'35x35') %>
+                <% else %>
+                  <%= image_tag('profile-icon/0_profile_icon.png', :size => '35x35' ) %>
+                <% end %>
+              </span>
+              <%= link_to user.name, [:admin, user] %>
+            </td>
             <td><%= user.mail %></td>
             <td><%= user.admin? ? 'あり' : 'なし' %></td>
+            <td>
+              <% if user.admin? %>
+                <%= '管理者' %>
+              <% elsif user.login_flg? %>
+                <%= '一般' %>
+              <% else %>
+                <%= 'ゲスト' %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

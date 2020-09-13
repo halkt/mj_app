@@ -1,53 +1,70 @@
-<h2>ユーザーの詳細</h2>
-
-<div class='nav justify-content-end'>
-  <%= link_to '一覧' , admin_users_path, class: 'nav-link' %>
+<div class='page-title'>
+  ユーザ詳細
+  <%= image_tag('common/title-home-icon.png', :size => '29x24' ) %>
 </div>
 
-<table class='table table-hover'>
-  <tbody>
-    <tr>
-      <th><%= User.human_attribute_name(:id) %></th>
-      <td><%= @user.id %></td>
-    </tr>
-    <tr>
-      <th><%= User.human_attribute_name(:name) %></th>
-      <td><%= @user.name %></td>
-    </tr>
-    <tr>
-      <th><%= User.human_attribute_name(:icon) %></th>
-      <td><%= image_tag(@user.icon_url, :size =>'64x96') if @user.icon.present? %></td>
-    </tr>
-    <tr>
-      <th><%= User.human_attribute_name(:icon) %></th>
-      <td><%= image_tag("common/user-icon.png", :size =>'64x96') %></td>
-    </tr>
-    <tr>
-      <th><%= User.human_attribute_name(:login) %></th>
-      <td><% @user.login_flg? ? 'ログインユーザー（ログイン可能）': 'ゲストユーザー（ログイン不可）'%></td>
-    </tr>
-    <tr>
-      <th><%= User.human_attribute_name(:mail) %></th>
-      <td><%= @user.mail %></td>
-    </tr>
-    <tr>
-      <th><%= User.human_attribute_name(:admin) %></th>
-      <td><%= @user.admin? ? 'あり' : 'なし' %></td>
-    </tr>
-    <tr>
-      <th><%= User.human_attribute_name(:description) %></th>
-      <td><%= simple_format(h(@user.description), {}, sanitize: false, wrapper_tag: "div") %></td>
-    </tr>
-    <tr>
-      <th><%= User.human_attribute_name(:created_at) %></th>
-      <td><%= @user.created_at %></td>
-    </tr>
-    <tr>
-      <th><%= User.human_attribute_name(:updated_at) %></th>
-      <td><%= @user.updated_at %></td>
-    </tr>
-  </tbody>
-</table>
+<div class='contents-box'>
+  <div class='nav justify-content-end'>
+    <%= link_to '一覧' , admin_users_path, class: 'nav-link' %>
+  </div>
 
-<%= link_to '編集', edit_admin_user_path, class: 'btn btn-primary mr-3' %>
-<%= link_to '削除', [:admin, @user], method: :delete, data: { confirm: "ユーザー「#{@user.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger' %>
+  <div class='flexContainer'>
+    <div class='profile-icon'>
+      <% if @user.icon.present? %>
+        <%= image_tag(@user.icon_url, :size =>'100x100') %>
+      <% else %>
+        <%= image_tag('common/user-icon.png', :size => '100x100' ) %>
+      <% end %>
+      <p class='btn-field'>
+        <%= User.human_attribute_name(:id) %>
+        <%= @user.id %>
+      </p>
+    </div>
+
+    <div class='basic-information'>
+      <div class='authority-style'>
+        <% if @user.admin? %>
+          <%= '管理者' %>
+        <% elsif @user.login_flg? %>
+          <%= '一般（ログイン可能）' %>
+        <% else %>
+          <%= 'ゲスト（ログイン不可）' %>
+        <% end %>
+      </div>
+      <div class='name-style'><%= @user.name %></div>
+      <div class='mail-style'>
+        <%= image_tag('common/mail-icon.png', :size => '28x28' ) %>
+        <%= @user.mail %>
+      </div>
+      <table class='day-style'>
+        <tbody>
+          <tr>
+            <th><%= User.human_attribute_name(:created_at) %></th>
+            <td><%= @user.created_at %></td>
+          </tr>
+          <tr>
+            <th><%= User.human_attribute_name(:updated_at) %></th>
+            <td><%= @user.updated_at %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class='description-box'>
+        <div class='headline'><%= User.human_attribute_name(:description) %></div>
+        <div class='description-text'>
+          <p>
+            <%= simple_format(h(@user.description), {}, sanitize: false, wrapper_tag: "div") %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='btn-field'>
+    <%= link_to '編集', edit_admin_user_path, class: 'insert-btn' %>
+    <%= link_to '削除', [:admin, @user], method: :delete, data: { confirm: "ユーザー「#{@user.name}」を削除します。よろしいですか？"}, class: 'delete-btn' %>
+  </div>
+  
+</div>
+
+<%= stylesheet_link_tag('admin/users') %>
