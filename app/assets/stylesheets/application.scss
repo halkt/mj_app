@@ -389,8 +389,8 @@ select {
   margin-top: 5px;
   margin-bottom: 0;
   width: 30px;
-	height: 30px;
-	cursor: pointer;
+  height: 30px;
+  cursor: pointer;
   color: #fff;
   border: none;
   outline: none;
@@ -399,29 +399,29 @@ select {
 }
 
 .main-table input[type=checkbox]:hover {
-	background: #8ac4e6;
+  background: #8ac4e6;
 }
 
 .main-table input[type=checkbox]:checked {
-	background: #55b1df;
+  background: #55b1df;
 }
 
 .main-table input[type=checkbox]:checked::before {
-	font-size: 20px;
-	line-height: 30px;
-	position: absolute;
-	display: inline-block;
-	width: 30px;
-	height: 30px;
-	content: '✔';
-	text-align: center;
+  font-size: 20px;
+  line-height: 30px;
+  position: absolute;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  content: '✔';
+  text-align: center;
 }
 
 .main-table input[type=checkbox]:checked::after {
-	position: relative;
-	display: block;
-	content: '';
-	background: #55b1df;
+  position: relative;
+  display: block;
+  content: '';
+  background: #55b1df;
 }
 
 .header-sticky th {
@@ -447,16 +447,16 @@ select {
 }
 
 .header-line{
-	border-bottom: solid 4px #4dd0e1;
-	position: relative;
+  border-bottom: solid 4px #4dd0e1;
+  position: relative;
   padding: .3em 0;
   text-align: center;
 }
 .header-line:after {
-	position: absolute;
-	content: " ";
-	display: block;
-	border-bottom: solid 4px #006064;
-	bottom: -4px;
-	width: 15%;
+  position: absolute;
+  content: " ";
+  display: block;
+  border-bottom: solid 4px #006064;
+  bottom: -4px;
+  width: 15%;
 }

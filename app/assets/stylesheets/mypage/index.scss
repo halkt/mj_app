@@ -20,17 +20,17 @@
 
 /* タブ */
 .mypage-tab {
-	margin: 10px auto;
+  margin: 10px auto;
 }
 
 .mypage-tab > input[type='radio'] {
-	margin: 0;
-	padding: 0;
-	border: none;
-	border-radius: 0;
-	outline: none;
-	background: none;
-	display: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  background: none;
+  display: none;
 }
 
 .mypage-tab .mypage-tabpanel {
@@ -43,43 +43,43 @@
 .mypage-tab > input:nth-child(7):checked ~ .mypage-tabpanels > .mypage-tabpanel:nth-child(4),
 .mypage-tab > input:nth-child(9):checked ~ .mypage-tabpanels > .mypage-tabpanel:nth-child(5),
 .mypage-tab > input:nth-child(11):checked ~ .mypage-tabpanels > .mypage-tabpanel:nth-child(6) {
-	display: block;
+  display: block;
 }
 
 .mypage-tab > label {
-	position: relative;
-	display: inline-block;
-	padding: 10px 15px;
-	cursor: pointer;
-	border: 1px solid transparent;
+  position: relative;
+  display: inline-block;
+  padding: 10px 15px;
+  cursor: pointer;
+  border: 1px solid transparent;
   border-bottom: 0;
   margin-bottom: 0;
 }
 
 .mypage-tab > label:hover,
 .mypage-tab > input:focus + label {
-	color: #0066cc;
+  color: #0066cc;
 }
 
 .mypage-tab > input:checked + label {
-	margin-bottom: -1px;
-	border-color: #ccc;
-	border-bottom: 1px solid #fff;  /*背景色と同じ*/
-	border-radius: 6px 6px 0 0;
+  margin-bottom: -1px;
+  border-color: #ccc;
+  border-bottom: 1px solid #fff;  /*背景色と同じ*/
+  border-radius: 6px 6px 0 0;
 }
 
 .mypage-tab .mypage-tabpanel {
   padding: 10px 20px;
   padding-top:20px;
-	border-top: 1px solid #ccc;
+  border-top: 1px solid #ccc;
 }
 
 @media (max-width: 480px) {
-	.mypage-tab {
-		width: 100%;
-		font-size: 0.8em;
-	}
-	.mypage-tab label {
-		padding: 0.5em;
-	}
+  .mypage-tab {
+    width: 100%;
+    font-size: 0.8em;
+  }
+  .mypage-tab label {
+    padding: 0.5em;
+  }
 }
