@@ -8,3 +8,8 @@ var displayInputForm = () => {
         target.style.display='none';
     }
 } ;
+
+var profileIconSet = (index) => {
+    img = '/assets/images/profile-icon/' + index + '_profile_icon.png';
+    document.getElementById('users-icon').src = img;
+}

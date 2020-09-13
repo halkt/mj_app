@@ -11,7 +11,7 @@ ja:
       event: 対局
     attributes:
         user:
-          id: ユーザーID
+          id: ユーザID
           name: 名前
           mail: メールアドレス
           description: 詳しい説明

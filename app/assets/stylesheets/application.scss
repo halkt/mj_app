@@ -35,7 +35,7 @@ textarea {
 
 }
 
-.sidebar {
+.sidebar-container {
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -43,7 +43,12 @@ textarea {
   max-width: 220px;
   text-align: center;
   background-color: #f43e43;
+}
+
+.sidebar {
   padding-top: 20px;
+  position: sticky;
+  top: 0;
 }
 
 .pic_frame {
@@ -369,7 +374,7 @@ select {
   }
 
   td {
-    padding: 2px 10px;
+    padding: 2px 6px;
     vertical-align: middle;
     border: 1px dotted #ddd;
     border-collapse: separate;
@@ -417,4 +422,41 @@ select {
 	display: block;
 	content: '';
 	background: #55b1df;
+}
+
+.header-sticky th {
+  position: sticky;
+  top: 0;  
+}
+
+.profile-icon {
+  text-align:center;
+  margin:0 15px;
+  margin-top: 10px;
+
+  img {
+    padding:3px;
+    border: solid 1px #ddd;
+    border-radius: 50px;
+  }
+}
+
+.basic-information {
+  width:100%;
+  margin:0 5px;
+}
+
+.header-line{
+	border-bottom: solid 4px #4dd0e1;
+	position: relative;
+  padding: .3em 0;
+  text-align: center;
+}
+.header-line:after {
+	position: absolute;
+	content: " ";
+	display: block;
+	border-bottom: solid 4px #006064;
+	bottom: -4px;
+	width: 15%;
 }
