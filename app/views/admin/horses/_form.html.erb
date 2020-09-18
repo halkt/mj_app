@@ -16,6 +16,9 @@
     <%= f.text_field :point2, class: 'form-control', id:'horse_point2', placeholder:'5000' %>
   </div>
 
-  <%= f.submit nil , class: 'btn btn-primary' %>
-  <%= link_to '削除', [:admin, horse], method: :delete, data: { confirm: "ウマ「#{horse.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger' %>
+  <div class='btn-field'>
+    <%= f.submit nil , class: 'insert-btn' %>
+    <%= link_to '削除', [:admin, @horse], method: :delete, data: { confirm: "ウマ「#{horse.name}」を削除します。よろしいですか？"}, class: 'delete-btn' %>
+  </div>
+
 <% end %>

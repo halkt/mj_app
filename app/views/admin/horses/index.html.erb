@@ -1,6 +1,6 @@
 <div class='page-title'>
   ウマの更新
-  <%= image_tag('common/title-home-icon.png', :size => '29x24' ) %>
+  <%= image_tag('common/title-horses-icon.png', ) %>
 </div>
 
 <div class='contents-box'>
@@ -10,8 +10,8 @@
   <div><%= "件数：#{@horses.count} 件"%></div>
 
   <div>
-    <table class='main-table'>
-      <thead class='thead-default'>
+    <table class='main-table table-striped header-sticky'>
+      <thead>
         <tr>
           <th><%= Horse.human_attribute_name(:name) %></th>
           <th><%= Horse.human_attribute_name(:point1) %></th>
