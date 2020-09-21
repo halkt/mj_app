@@ -1,7 +1,12 @@
-<h2>ウマの更新</h2>
-
-<div class='nav justify-content-end'>
-  <%= link_to 'ウマ一覧' , admin_horses_path, class: 'nav-link' %>
+<div class='page-title'>
+  ウマ更新
+  <%= image_tag('common/title-horses-icon.png' ) %>
 </div>
 
-<%= render partial: 'form', locals: { horse: @horse } %>
+<div class='contents-box'>
+  <div class='nav justify-content-end'>
+    <%= link_to 'ウマ一覧' , admin_horses_path, class: 'nav-link' %>
+  </div>
+
+  <%= render partial: 'form', locals: { horse: @horse } %>
+</div>
