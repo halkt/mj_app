@@ -1,7 +1,12 @@
-<h2>対局更新</h2>
-
-<div class='nav justify-content-end'>
-  <%= link_to '一覧' , events_path, class: 'nav-link' %>
+<div class='page-title'>
+  対局更新
+  <%= image_tag('common/title-event-icon.png' ) %>
 </div>
 
-<%= render partial: 'form', locals: { event: @event } %>
+<div class='contents-box'>
+  <div class='nav justify-content-end'>
+    <%= link_to '一覧' , events_path, class: 'nav-link' %>
+  </div>
+
+  <%= render partial: 'form', locals: { event: @event } %>
+</div>
