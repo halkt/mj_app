@@ -59,6 +59,10 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
+  config.when_first_matching_example_defined(:login) do
+    require 'support/login'
+  end
+
   config.before(:each, type: :system) do
     driven_by :rack_test
   end
