@@ -11,6 +11,7 @@ class EventsController < ApplicationController
               end
   end
 
+  # TODO: 閲覧権限があるかどうかチェックする必要あり
   def show
     @event_users = @event.users.order(:id)
     @game = Game.joins(:event).where(event_id: params[:id]).order(:created_at)
@@ -26,6 +27,7 @@ class EventsController < ApplicationController
     @users = User.affiliation_community(@communities.pluck(:id))
   end
 
+  # TODO: 閲覧権限があるかどうかチェックする必要あり
   def edit
     @communities = Community.affiliation_user(current_user.id)
     @users = User.affiliation_community(@communities.pluck(:id))
