@@ -5,7 +5,7 @@ def login_as(user)
 end
 
 RSpec.shared_context 'when login required' do
-  let!(:user) { FactoryBot.create(:user) }
+  let!(:user) { FactoryBot.create(:user, admin: true) }
   before do
     login_as(user)
   end
