@@ -6,7 +6,6 @@ RSpec.describe Admin::CommunitiesController, type: :request do
   let!(:community) { FactoryBot.create(:community) }
 
   describe '#require_admin', :login do
-    
     it '200が返ること' do
       get admin_communities_path
       expect(response).to have_http_status(200)
@@ -14,14 +13,14 @@ RSpec.describe Admin::CommunitiesController, type: :request do
   end
 
   describe 'GET /admin/communities', :login do
-    context '管理者の場合' do 
+    context '管理者の場合' do
       it '200が返ること' do
         get admin_communities_path
         expect(response).to have_http_status(200)
       end
     end
 
-    context '管理者以外の場合' do 
+    context '管理者以外の場合' do
       let!(:user) { FactoryBot.create(:user, admin: false) }
       it '302が返ること' do
         get admin_communities_path
@@ -61,7 +60,7 @@ RSpec.describe Admin::CommunitiesController, type: :request do
     end
     let(:community_params) do
       {
-        name: community_name, 
+        name: community_name,
         description: 'test',
         user_ids: [user.id]
       }
@@ -94,7 +93,7 @@ RSpec.describe Admin::CommunitiesController, type: :request do
     end
     let(:community_params) do
       {
-        name: community_name, 
+        name: community_name,
         description: 'test',
         user_ids: [user.id]
       }
