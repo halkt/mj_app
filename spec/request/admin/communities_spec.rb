@@ -5,13 +5,6 @@ require 'rails_helper'
 RSpec.describe Admin::CommunitiesController, type: :request do
   let!(:community) { FactoryBot.create(:community) }
 
-  describe '#require_admin', :login do
-    it '200が返ること' do
-      get admin_communities_path
-      expect(response).to have_http_status(200)
-    end
-  end
-
   describe 'GET /admin/communities', :login do
     context '管理者の場合' do
       it '200が返ること' do
