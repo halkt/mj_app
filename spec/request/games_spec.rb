@@ -202,13 +202,5 @@ RSpec.describe GamesController, type: :request do
         expect(response).to have_http_status(302)
       end
     end
-
-    context '異常な値の場合' do
-      let!(:another_event) { FactoryBot.create(:event) }
-      it '302が返ること' do
-        delete event_game_path(another_event.id, game.id)
-        expect(response).to have_http_status(302)
-      end
-    end
   end
 end

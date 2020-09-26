@@ -35,13 +35,9 @@ class GamesController < ApplicationController
   def show; end
 
   def destroy
-    param = @game.event.id
-    if @game.destroy
-      redirect_to event_path(param), notice: '成績の削除しました。'
-    else
-      redirect_to event_path(params[:event_id]),
-                  notice: @game.errors.messages[:base].join('。').to_s
-    end
+    event_id = @game.event.id
+    @game.destroy
+    redirect_to event_path(event_id), notice: '成績の削除しました。'
   end
 
   private
