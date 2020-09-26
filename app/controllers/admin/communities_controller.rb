@@ -39,13 +39,9 @@ class Admin::CommunitiesController < ApplicationController
   end
 
   def destroy
-    if @commnity.destroy
-      message = get_delete_notice_message(@community.name)
-      redirect_to admin_communities_url, notice: message
-    else
-      error_message = @community.errors.messages[:base].join('。').to_s
-      redirect_to admin_communities_url, notice: error_message
-    end
+    @community.destroy
+    message = get_delete_notice_message(@community.name)
+    redirect_to admin_communities_url, notice: message
   end
 
   private
