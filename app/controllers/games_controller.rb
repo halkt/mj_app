@@ -25,7 +25,7 @@ class GamesController < ApplicationController
 
   def update
     @event = Event.find(params[:event_id])
-    if @game.update(update_game_params)
+    if @game.update(game_params)
       redirect_to event_path(params[:event_id]), notice: '対局スコアの更新に成功しました'
     else
       render 'games/edit', event_id: params[:event_id], id: params[:id]
@@ -35,13 +35,9 @@ class GamesController < ApplicationController
   def show; end
 
   def destroy
-    param = @game.event.id
-    if @game.destroy
-      redirect_to event_path(param), notice: '成績の削除しました。'
-    else
-      redirect_to event_path(params[:event_id]),
-                  notice: @game.errors.messages[:base].join('。').to_s
-    end
+    event_id = @game.event.id
+    @game.destroy
+    redirect_to event_path(event_id), notice: '成績の削除しました。'
   end
 
   private
@@ -57,16 +53,6 @@ class GamesController < ApplicationController
   end
 
   def game_params
-    params.require(:game)
-          .permit(:genten,
-                  :event_id,
-                  :kaeshiten,
-                  :horse_id,
-                  :description,
-                  game_detail_attributes: %i[game_id user_id point rank id])
-  end
-
-  def update_game_params
     params.require(:game)
           .permit(:genten,
                   :event_id,
