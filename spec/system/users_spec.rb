@@ -87,5 +87,16 @@ describe 'ユーザー管理機能', type: :system do
         expect(page).to have_selector '.alert-success', text: 'テストくん'
       end
     end
+
+    context '新規作成画面でユーザー情報を誤って入力したとき' do
+      let(:user_name) { 'テストくん' }
+      let(:user_mail) { 'testexample.com' }
+      let(:user_password) { 'password' }
+      let(:user_password_confirm) { 'password' }
+
+      it '登録されない' do
+        expect(page).to have_selector '.alert-danger', text: 'エラーが 1 件あります'
+      end
+    end
   end
 end
