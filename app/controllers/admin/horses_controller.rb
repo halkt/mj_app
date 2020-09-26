@@ -34,13 +34,9 @@ class Admin::HorsesController < ApplicationController
   end
 
   def destroy
-    if @horse.destroy
-      message = get_delete_notice_message(@horse.name)
-      redirect_to admin_horses_path(@horse), notice: message
-    else
-      error_message = @horse.errors.messages[:base].join('。').to_s
-      redirect_to admin_horses_path(@horse), notice: error_message
-    end
+    @horse.destroy
+    message = get_delete_notice_message(@horse.name)
+    redirect_to admin_horses_path(@horse), notice: message
   end
 
   private
