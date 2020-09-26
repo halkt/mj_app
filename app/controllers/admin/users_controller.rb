@@ -40,12 +40,8 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    if @user.destroy
-      redirect_to admin_users_url, notice: "ユーザー「#{@user.name}」を削除しました。"
-    else
-      error_message = @user.errors.messages[:base].join('。').to_s
-      redirect_to admin_users_url, notice: error_message
-    end
+    @user.destroy
+    redirect_to admin_users_url, notice: "ユーザー「#{@user.name}」を削除しました。"
   end
 
   private

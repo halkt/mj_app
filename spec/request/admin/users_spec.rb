@@ -16,4 +16,11 @@ RSpec.describe Admin::UsersController, type: :request do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe 'DELETE /admin/users/:id', :login do
+    it '302が返ること' do
+      delete admin_user_path(user.id)
+      expect(response).to have_http_status(302)
+    end
+  end
 end
