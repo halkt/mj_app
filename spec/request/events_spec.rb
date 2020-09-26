@@ -6,9 +6,19 @@ RSpec.describe EventsController, type: :request do
   let!(:event) { FactoryBot.create(:event) }
 
   describe 'GET /events', :login do
-    it '200が返ること' do
-      get events_path
-      expect(response).to have_http_status(200)
+    context '管理者の場合' do
+      it '200が返ること' do
+        get events_path
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context '管理者以外の場合' do
+      let!(:user) { FactoryBot.create(:user, admin: false) }
+      it '302が返ること' do
+        get events_path
+        expect(response).to have_http_status(200)
+      end
     end
   end
 
