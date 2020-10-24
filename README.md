@@ -25,3 +25,4 @@ docker-compose run --rm app db:seed
 
 ### アクセス
 http://localhost/
+# memo
