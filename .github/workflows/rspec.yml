@@ -17,21 +17,26 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
-      DB_TEST_PORT: 33060
-      DB_HOST: 127.0.0.1
+      DB_TEST_PORT: 3306
+      DB_HOST: localhost
     services:
       db:
         image: mysql:5.7.36
         ports:
-          - 33060:3306
+          - 3306:3306
         env:
-          MYSQL_USER: root
-          MYSQL_ROOT_PASSWORD: password
-          BIND-ADDRESS: 0.0.0.0
-    #container:
-      #image: ruby:2.6.3
+          MYSQL_ROOT_PASSWORD: root_password
+        options: >-
+          --health-cmd "mysqladmin ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
     - uses: actions/checkout@v1
+    - name: Show Docker containers
+      run: docker ps -a
+    - name: Show databases for root user
+      run: mysql --protocol=tcp -h localhost -P 3306 -u root -proot_password -e "SHOW DATABASES"
     - name: Set up Ruby 2.6.5
       uses: actions/setup-ruby@v1
       with:
@@ -60,11 +65,14 @@ jobs:
         bundle install --jobs 4 --retry 3 --path vendor/bundle
     - name: yarn install
       run:  yarn install --check-files
-    - name: migration
+    - name: set config
       run: |
         rm config/credentials.yml.enc
         mv config/master.key.test config/master.key
         mv config/credentials.yml.enc.test config/credentials.yml.enc
+    - name: db setup
+      run: |
+        cp config/database.yml.ci config/database.yml
         bundle exec rails db:create
         bundle exec rails db:migrate
     - name: run rspec

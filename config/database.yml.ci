@@ -1,0 +1,10 @@
+test:
+  adapter: mysql2
+  charset: utf8
+  encoding: utf8
+  collation: utf8_general_ci
+  username: root
+  password: root_password
+  host: 127.0.0.1
+  database: mj_app_test
+  reconnect: false
