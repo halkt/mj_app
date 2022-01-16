@@ -12,6 +12,7 @@ services:
       - public-data:/app/public
       - tmp-data:/app/tmp
       - log-data:/app/log
+      - bundle:/app/bundle
     depends_on:
       - db
       - chrome
@@ -23,6 +24,8 @@ services:
       - 4444:4444
   db:
     image: mysql:5.7
+    volumes:
+      - db-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: root
@@ -55,3 +58,4 @@ volumes:
   tmp-data:
   log-data:
   db-data:
+  bundle:

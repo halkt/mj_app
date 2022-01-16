@@ -1,4 +1,4 @@
-FROM ruby:2.5.8
+FROM ruby:2.6.5
 
 # yarnパッケージ管理ツールインストール
 RUN apt-get update && apt-get install -y curl apt-transport-https wget && \
@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y curl apt-transport-https wget && \
     apt-get update && apt-get install -y yarn
 
 # nodejs
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get update && apt-get install -y nodejs --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
