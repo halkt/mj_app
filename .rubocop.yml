@@ -5,6 +5,7 @@ require:
 
 AllCops:
   TargetRubyVersion: 2.5.8
+  NewCops: enable
 
 # Use only ascii symbols in comments.
 AsciiComments:
