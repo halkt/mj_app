@@ -1,6 +1,6 @@
 <div class='flexContainer'>
   <div class='profile-icon'>
-    <%= image_tag(current_user.icon_url, :size =>'100x100') %>
+    <%= image_tag(current_user.icon_image_url, size: '100x100') %>
     <p class='btn-field'>
       <%= link_to '編集', edit_admin_user_path(current_user.id), class: 'edit-btn' %>
     </p>

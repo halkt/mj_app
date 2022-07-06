@@ -53,6 +53,12 @@ class User < ApplicationRecord
     'ゲスト（ログイン不可）'
   end
 
+  def icon_image_url
+    return 'profile-icon/1_profile_icon.png' if icon_url.nil?
+
+    icon_url
+  end
+
   private
 
   # ドメインに所属するユーザー
