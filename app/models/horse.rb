@@ -24,9 +24,9 @@ class Horse < ApplicationRecord
   private
 
   def point_check
-    return if point1 > point2
+    return if point1 >= point2
 
-    errors.add(:horse, 'point1はpoint2より小さい点数を入力してください')
+    errors.add(:horse, 'point2はpoint1より小さい点数を入力してください')
   end
 
   # ポイント1もしくはポイント2がnilの場合、false
