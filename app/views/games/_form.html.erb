@@ -24,17 +24,15 @@
   <div class='form-group'>
     <%= f.fields_for :game_detail, @game.game_detail.sort_by(&:id) do |builder| %>
       <div class='card vertical-margin-medium'>
-        <div class='card-header text-white bg-info mb-3'>
-          個人成績入力
-        </div>
+        <div class='card-header mb-3 game__text'>成績入力</div>
         <div class='card-body'>
           <div class='form-group'>
             <%= builder.label :user_id %>
-            <%= builder.collection_select :user_id, @user.all , :id, :name, :prompt => true %>
+            <%= builder.collection_select :user_id, @user.all, :id, :name, prompt: true %>
           </div>
           <div class='form-group'>
             <%= builder.label :point %>
-            <%= builder.text_field :point, class: 'form-control' %>
+            <%= builder.text_field :point, class: 'form-control', placeholder: '25000' %>
           </div>
         </div>
       </div>
