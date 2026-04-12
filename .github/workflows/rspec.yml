@@ -13,7 +13,6 @@ jobs:
   run_spec:
     name: Rspec
 
-    # ジョブを実行する仮想マシンを選択（ubuntu/macOS/Windows)
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
@@ -32,7 +31,7 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Show Docker containers
       run: docker ps -a
     - name: Show databases for root user
@@ -70,9 +69,9 @@ jobs:
         rm config/credentials.yml.enc
         mv config/master.key.test config/master.key
         mv config/credentials.yml.enc.test config/credentials.yml.enc
+        mv config/database.yml.ci config/database.yml
     - name: db setup
       run: |
-        cp config/database.yml.ci config/database.yml
         bundle exec rails db:create
         bundle exec rails db:migrate
     - name: run rspec
